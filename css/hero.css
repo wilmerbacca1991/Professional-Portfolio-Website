@@ -80,6 +80,8 @@
     gap: 1rem;
     margin-bottom: 2rem;
     transform: translateZ(25px);
+    justify-content: center;
+    align-items: center;
 }
 
 .btn {
