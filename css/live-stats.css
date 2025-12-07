@@ -8,14 +8,37 @@
     margin: 4rem auto;
     max-width: 1200px;
     padding: 2rem;
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 
-/* Force hide default scrollbar when live-stats section is visible */
+/* CRITICAL: Force hide ALL scrollbars in live-stats section */
 #live-stats,
+#live-stats *,
+section.live-stats,
+section.live-stats *,
+.section-content.live-stats,
+.section-content.live-stats * {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    overflow-x: hidden !important;
+}
+
+#live-stats::-webkit-scrollbar,
+#live-stats *::-webkit-scrollbar,
+section.live-stats::-webkit-scrollbar,
+section.live-stats *::-webkit-scrollbar,
+.section-content.live-stats::-webkit-scrollbar,
+.section-content.live-stats *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* Additional targeting for all possible states */
 #live-stats.section-content,
 #live-stats.section-content.active,
 #live-stats.section-content.active *,
-.live-stats,
 .live-stats.section-content,
 .live-stats.section-content.active,
 .live-stats.section-content.active * {
