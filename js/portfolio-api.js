@@ -188,7 +188,7 @@ class PortfolioAPI {
         const cacheKey = 'github_data_cache';
         const cacheTimeKey = 'github_data_timestamp';
         const cacheValidTime = 15 * 60 * 1000; // 15 minutes cache to avoid rate limits
-        const cacheVersion = 'v5'; // Increment to force cache refresh after code changes
+        const cacheVersion = 'v6'; // Increment to force cache refresh after code changes
         
         // Check if we have cached data with correct version
         try {
@@ -262,28 +262,55 @@ class PortfolioAPI {
             let totalCommits = 0;
             
             try {
-                // Fetch commits from ALL repositories (not just top 10)
+                console.log(`🔍 Fetching commits from ${reposResponse.length} repositories...`);
+                
+                // Fetch commits from ALL repositories
                 const commitPromises = reposResponse.map(async (repo) => {
                     try {
-                        const commitsUrl = `https://api.github.com/repos/${username}/${repo.name}/commits?per_page=1`;
+                        // Use a larger per_page to get accurate count from headers
+                        const commitsUrl = `https://api.github.com/repos/${username}/${repo.name}/commits?per_page=100`;
                         const response = await fetch(commitsUrl);
                         
                         if (response.ok) {
-                            // GitHub returns commit count in Link header
+                            const commits = await response.json();
+                            let count = 0;
+                            
+                            // Check Link header for pagination
                             const linkHeader = response.headers.get('Link');
                             if (linkHeader) {
-                                const match = linkHeader.match(/page=(\d+)>; rel="last"/);
-                                if (match) {
-                                    const count = parseInt(match[1]);
-                                    console.log(`📊 ${repo.name}: ${count} commits`);
-                                    return count;
+                                // Parse the last page number from Link header
+                                // Example: <https://api.github.com/repos/user/repo/commits?per_page=100&page=2>; rel="last"
+                                const lastMatch = linkHeader.match(/<[^>]*[?&]page=(\d+)[^>]*>;\s*rel="last"/);
+                                if (lastMatch) {
+                                    const lastPage = parseInt(lastMatch[1]);
+                                    // Total commits = (lastPage - 1) * 100 + commits on last page
+                                    // But we need to fetch the last page to get exact count
+                                    const lastPageUrl = `https://api.github.com/repos/${username}/${repo.name}/commits?per_page=100&page=${lastPage}`;
+                                    const lastPageResponse = await fetch(lastPageUrl);
+                                    if (lastPageResponse.ok) {
+                                        const lastPageCommits = await lastPageResponse.json();
+                                        count = (lastPage - 1) * 100 + lastPageCommits.length;
+                                    } else {
+                                        // Estimate if we can't fetch last page
+                                        count = lastPage * 100;
+                                    }
+                                } else {
+                                    // No "last" rel, just count what we got
+                                    count = commits.length;
                                 }
+                            } else {
+                                // No Link header means all commits are in this response
+                                count = commits.length;
                             }
-                            // If no pagination, likely has few commits
-                            const commits = await response.json();
-                            const count = Array.isArray(commits) ? commits.length : 1;
-                            console.log(`📊 ${repo.name}: ${count} commit(s)`);
+                            
+                            if (count > 0) {
+                                console.log(`📊 ${repo.name}: ${count} commits`);
+                            }
                             return count;
+                        } else if (response.status === 409) {
+                            // Empty repository
+                            console.log(`📊 ${repo.name}: 0 commits (empty repo)`);
+                            return 0;
                         }
                         return 0;
                     } catch (error) {
@@ -295,11 +322,10 @@ class PortfolioAPI {
                 const commitCounts = await Promise.all(commitPromises);
                 totalCommits = commitCounts.reduce((sum, count) => sum + count, 0);
                 
-                console.log(`📊 Total commits across ${reposResponse.length} repositories: ${totalCommits}`);
+                console.log(`✅ Total commits across ${reposResponse.length} repositories: ${totalCommits}`);
                 
             } catch (error) {
                 console.warn('Failed to fetch commit counts from repos:', error);
-                // Fallback to estimation if direct fetch fails
                 totalCommits = 0;
             }
             
