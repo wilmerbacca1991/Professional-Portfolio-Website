@@ -188,7 +188,7 @@ class PortfolioAPI {
         const cacheKey = 'github_data_cache';
         const cacheTimeKey = 'github_data_timestamp';
         const cacheValidTime = 15 * 60 * 1000; // 15 minutes cache to avoid rate limits
-        const cacheVersion = 'v2'; // Increment to force cache refresh after code changes
+        const cacheVersion = 'v3'; // Increment to force cache refresh after code changes
         
         // Check if we have cached data with correct version
         try {
@@ -257,32 +257,54 @@ class PortfolioAPI {
             // Calculate total stars across all repos
             const totalStars = reposResponse.reduce((sum, repo) => sum + repo.stargazers_count, 0);
             
-            // Estimate total commits from recent activity
-            // GitHub REST API doesn't provide total commits, but we can estimate from events
-            let commitEstimate = 0;
-            const pushEvents = eventsResponse.filter(event => event.type === 'PushEvent');
+            // Fetch actual commit counts from repositories
+            // This is more accurate than estimating from events
+            let totalCommits = 0;
             
-            if (pushEvents.length > 0) {
-                // Count commits from recent push events
-                const recentCommits = pushEvents.reduce((sum, event) => {
-                    return sum + (event.payload?.commits?.length || 0);
-                }, 0);
+            try {
+                // Fetch commits from top repositories (up to 10)
+                const commitPromises = reposResponse.slice(0, 10).map(async (repo) => {
+                    try {
+                        const commitsUrl = `https://api.github.com/repos/${username}/${repo.name}/commits?per_page=1`;
+                        const response = await fetch(commitsUrl);
+                        
+                        if (response.ok) {
+                            // GitHub returns commit count in Link header
+                            const linkHeader = response.headers.get('Link');
+                            if (linkHeader) {
+                                const match = linkHeader.match(/page=(\d+)>; rel="last"/);
+                                if (match) {
+                                    return parseInt(match[1]);
+                                }
+                            }
+                            // If no pagination, count the returned commits
+                            const commits = await response.json();
+                            return Array.isArray(commits) ? commits.length : 0;
+                        }
+                        return 0;
+                    } catch (error) {
+                        console.warn(`Failed to fetch commits for ${repo.name}:`, error);
+                        return 0;
+                    }
+                });
                 
-                // Estimate total based on account age and recent activity
-                const accountCreated = new Date(profileResponse.created_at);
-                const accountAgeInDays = Math.max(1, Math.floor((Date.now() - accountCreated.getTime()) / (1000 * 60 * 60 * 24)));
-                const estimatedCommitsPerDay = Math.max(0.1, recentCommits / 30); // Minimum 0.1 commits/day
-                commitEstimate = Math.floor(estimatedCommitsPerDay * accountAgeInDays);
+                const commitCounts = await Promise.all(commitPromises);
+                totalCommits = commitCounts.reduce((sum, count) => sum + count, 0);
                 
-                // Apply realistic bounds: minimum based on repos, maximum reasonable for age
-                const minEstimate = profileResponse.public_repos * 5;
-                const maxEstimate = accountAgeInDays * 10; // Max 10 commits per day average
-                commitEstimate = Math.max(minEstimate, Math.min(commitEstimate, maxEstimate));
-            } else {
-                // Fallback: conservative estimate based on repo count and age
+                console.log(`📊 Fetched commit counts from ${reposResponse.slice(0, 10).length} repositories: ${totalCommits} total commits`);
+                
+            } catch (error) {
+                console.warn('Failed to fetch commit counts from repos:', error);
+                // Fallback to estimation if direct fetch fails
+                totalCommits = 0;
+            }
+            
+            // If we couldn't get commits from repos, use a conservative estimate
+            if (totalCommits === 0) {
                 const accountCreated = new Date(profileResponse.created_at);
                 const accountAgeInYears = Math.max(0.1, (Date.now() - accountCreated.getTime()) / (1000 * 60 * 60 * 24 * 365));
-                commitEstimate = Math.floor(profileResponse.public_repos * 15 * Math.min(accountAgeInYears, 5));
+                totalCommits = Math.floor(profileResponse.public_repos * 20 * Math.min(accountAgeInYears, 5));
+                console.log(`📊 Using estimated commit count: ${totalCommits}`);
             }
             
             // Calculate contribution streak from events (recent events only give ~7 days)
@@ -407,7 +429,7 @@ class PortfolioAPI {
                     following: profileResponse.following,
                     publicRepos: profileResponse.public_repos,
                     totalStars: totalStars,
-                    totalCommits: commitEstimate > 0 ? commitEstimate : '100+', // Use estimate or fallback
+                    totalCommits: totalCommits > 0 ? totalCommits : '100+', // Use actual count or fallback
                     contributionStreak: contributionStreak > 0 ? contributionStreak : 'Active' // Use calculated streak or fallback
                 },
                 repositories: repositories,
