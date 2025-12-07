@@ -532,12 +532,26 @@ svg {
     display: block;
     overflow: visible;
     /* Ensure no scrollbars appear on section content */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
 }
 
 .section-content.active::-webkit-scrollbar {
-    display: none;
+    display: none !important;
+}
+
+/* Additional fix: hide scrollbar on live stats specifically */
+#live-stats,
+.live-stats {
+    overflow: visible;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+#live-stats::-webkit-scrollbar,
+.live-stats::-webkit-scrollbar {
+    display: none !important;
+}
 }
 
 /* Unified paragraph spacing */
