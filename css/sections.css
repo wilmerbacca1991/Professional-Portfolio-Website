@@ -469,15 +469,76 @@ section.contact {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     section {
-        padding: 4rem 0;
-        margin: 3rem auto;
+        padding: 3rem 0;
+        margin: 2rem auto;
         border-radius: 20px;
-           transform-style: flat;
+        transform-style: flat;
     }
 
-    h2 {
-        font-size: 2rem;
+    h2, .section-title {
+        font-size: clamp(1.75rem, 5vw, 2rem);
+        margin-bottom: 1.5rem;
     }
+
+    h3 {
+        font-size: clamp(1.25rem, 4vw, 1.5rem);
+    }
+
+    /* Project cards */
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .project-card {
+        padding: 1.5rem;
+    }
+
+    /* Timeline adjustments */
+    .timeline-item {
+        padding: 1.25rem;
+    }
+
+    /* CV sections */
+    .summary-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .cv-summary,
+    .cv-details {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 2.5rem 0;
+        margin: 1.5rem auto;
+    }
+
+    h2, .section-title {
+        font-size: clamp(1.5rem, 6vw, 1.75rem);
+        margin-bottom: 1.25rem;
+    }
+
+    .project-card {
+        padding: 1.25rem;
+    }
+
+    .project-card h3 {
+        font-size: 1.25rem;
+    }
+
+    .timeline-item {
+        padding: 1rem;
+    }
+
+    .cv-summary,
+    .cv-details {
+        padding: 1.25rem;
+    }
+}
 
     .projects-grid {
            gap: 2rem;
