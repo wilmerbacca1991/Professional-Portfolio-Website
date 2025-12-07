@@ -2,11 +2,10 @@
 
 /* Performance-first mobile optimizations for smooth scrolling */
 @media (max-width: 768px) {
-    /* Force GPU acceleration and optimize rendering */
-    * {
-        -webkit-transform: translateZ(0);
+    /* Optimize rendering without breaking transforms */
+    body, main, section {
         -webkit-backface-visibility: hidden;
-        -webkit-perspective: 1000;
+        backface-visibility: hidden;
     }
 
     /* Disable expensive backdrop filters on mobile */
@@ -60,8 +59,8 @@
         transform: translateY(-2px) !important;
     }
 
-    /* Disable 3D transforms on mobile */
-    * {
+    /* Disable 3D transforms on mobile (but not on html/body to preserve scrolling) */
+    .card, .project-card, .hero, .portrait-frame {
         transform-style: flat !important;
         perspective: none !important;
     }
