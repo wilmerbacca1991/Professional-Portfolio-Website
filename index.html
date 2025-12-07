@@ -1434,71 +1434,19 @@
 				wheelTimeout = setTimeout(hideIndicator, 1200);
 			}, { passive: true });
 
+			// Update progress indicator based on scroll
 
-
-			const scrollbarContainer = document.getElementById('custom-page-scrollbar');
-			const scrollbarTrack = document.getElementById('custom-page-scrollbar-track');
-			const scrollbarThumb = document.getElementById('custom-page-scrollbar-thumb');
-
-			if (!scrollbarContainer || !scrollbarTrack || !scrollbarThumb) {
-				console.error("❌ Scrollbar elements not found");
-				return;
-			}
-
-
-
-			// Variables for scroll calculations
-			let isScrolling = false;
-			let isDragging = false;
-			let dragStartY = 0;
-			let dragStartScrollTop = 0;
-			let scrollTimeout = null;
-
-			// Calculate scrollbar dimensions and position
-			function updateScrollbar() {
-				const documentHeight = document.documentElement.scrollHeight;
-				const windowHeight = window.innerHeight;
-				const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-				// Hide scrollbar if content doesn't overflow
-				if (documentHeight <= windowHeight) {
-					scrollbarContainer.style.display = 'none';
-					return;
-				} else {
-					scrollbarContainer.style.display = 'block';
-				}
-
-				const trackHeight = scrollbarTrack.clientHeight;
-				const scrollableHeight = documentHeight - windowHeight;
-				const scrollRatio = scrollTop / scrollableHeight;
-
-				// Calculate thumb height (proportional to content)
-				const thumbHeight = Math.max(40, (windowHeight / documentHeight) * trackHeight);
-				scrollbarThumb.style.height = thumbHeight + 'px';
-
-				// Calculate thumb position
-				const maxThumbTop = trackHeight - thumbHeight;
-				const thumbTop = scrollRatio * maxThumbTop;
-				scrollbarThumb.style.top = thumbTop + 'px';
-
-				// Update progress indicator (without showing it)
-				updateProgressIndicator(scrollRatio, scrollTop, scrollableHeight, false);
-
-				// Add scrolling animation
-				if (!isDragging) {
-					scrollbarThumb.classList.add('scrolling');
-					clearTimeout(scrollTimeout);
-					scrollTimeout = setTimeout(() => {
-						scrollbarThumb.classList.remove('scrolling');
-					}, 800);
-				}
-			}
-
-			// Update progress indicator with scroll information (only for wheel scrolling)
-			function updateProgressIndicator(scrollRatio, scrollTop, scrollableHeight, showIndicator = false) {
+			// Update progress indicator with scroll information
+			function updateProgressIndicator(showIndicator = false) {
 				const progressIndicator = document.getElementById('scrollbar-progress-indicator');
 				const percentageElement = progressIndicator.querySelector('.progress-percentage');
 				const remainingElement = progressIndicator.querySelector('.progress-remaining');
+
+				const documentHeight = document.documentElement.scrollHeight;
+				const windowHeight = window.innerHeight;
+				const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+				const scrollableHeight = documentHeight - windowHeight;
+				const scrollRatio = scrollTop / scrollableHeight;
 
 				// Calculate percentages
 				const scrolledPercentage = Math.round(scrollRatio * 100);
@@ -1520,158 +1468,15 @@
 				}
 			}
 
-			// Handle drag scrolling
-			function handleMouseDown(e) {
-				e.preventDefault();
-				isDragging = true;
-				dragStartY = e.clientY;
-				dragStartScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-				document.body.style.userSelect = 'none';
-				scrollbarThumb.classList.remove('scrolling');
-
-
-			}
-
-			function handleMouseMove(e) {
-				if (!isDragging) return;
-
-				e.preventDefault();
-				const deltaY = e.clientY - dragStartY;
-				const trackHeight = scrollbarTrack.clientHeight;
-				const thumbHeight = scrollbarThumb.clientHeight;
-				const maxThumbTop = trackHeight - thumbHeight;
-
-				const documentHeight = document.documentElement.scrollHeight;
-				const windowHeight = window.innerHeight;
-				const scrollableHeight = documentHeight - windowHeight;
-
-				const scrollRatio = deltaY / maxThumbTop;
-				const newScrollTop = dragStartScrollTop + (scrollRatio * scrollableHeight);
-				const clampedScrollTop = Math.max(0, Math.min(scrollableHeight, newScrollTop));
-
-				window.scrollTo(0, clampedScrollTop);
-			}
-
-			function handleMouseUp() {
-				if (isDragging) {
-					isDragging = false;
-					document.body.style.userSelect = '';
-
-				}
-			}
-
-			// Handle track click (jump to position)
-			function handleTrackClick(e) {
-				if (e.target === scrollbarThumb) return;
-
-				const trackRect = scrollbarTrack.getBoundingClientRect();
-				const clickY = e.clientY - trackRect.top;
-				const trackHeight = scrollbarTrack.clientHeight;
-				const clickRatio = clickY / trackHeight;
-
-				const documentHeight = document.documentElement.scrollHeight;
-				const windowHeight = window.innerHeight;
-				const scrollableHeight = documentHeight - windowHeight;
-
-				const targetScrollTop = clickRatio * scrollableHeight;
-				window.scrollTo({
-					top: targetScrollTop,
-					behavior: 'smooth'
-				});
-
-
-			}
-
-			// Enhanced mouse wheel handling with progress indicator
-			function handleWheel(e) {
-				// Update scrollbar position
-				updateScrollbar();
-
-				// Show progress indicator specifically for wheel scrolling
-				const documentHeight = document.documentElement.scrollHeight;
-				const windowHeight = window.innerHeight;
-				const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-				const scrollableHeight = documentHeight - windowHeight;
-				const scrollRatio = scrollTop / scrollableHeight;
-
-				// Show progress indicator with wheel scrolling
-				updateProgressIndicator(scrollRatio, scrollTop, scrollableHeight, true);
-			}
-
-			// Event listeners
-			scrollbarThumb.addEventListener('mousedown', handleMouseDown);
-			document.addEventListener('mousemove', handleMouseMove);
-			document.addEventListener('mouseup', handleMouseUp);
-			scrollbarTrack.addEventListener('click', handleTrackClick);
-			window.addEventListener('scroll', updateScrollbar, { passive: true });
-			window.addEventListener('wheel', handleWheel, { passive: true });
-			window.addEventListener('resize', updateScrollbar);
-
-			// Enhanced keyboard navigation
-			document.addEventListener('keydown', function (e) {
-				const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-				const windowHeight = window.innerHeight;
-				const documentHeight = document.documentElement.scrollHeight;
-				const maxScrollTop = documentHeight - windowHeight;
-
-				let targetScrollTop = currentScrollTop;
-				let shouldScroll = false;
-
-				switch (e.key) {
-					case 'ArrowUp':
-						if (!e.ctrlKey && !e.metaKey) {
-							e.preventDefault();
-							targetScrollTop = Math.max(0, currentScrollTop - 80);
-							shouldScroll = true;
-						}
-						break;
-					case 'ArrowDown':
-						if (!e.ctrlKey && !e.metaKey) {
-							e.preventDefault();
-							targetScrollTop = Math.min(maxScrollTop, currentScrollTop + 80);
-							shouldScroll = true;
-						}
-						break;
-					case 'PageUp':
-						e.preventDefault();
-						targetScrollTop = Math.max(0, currentScrollTop - windowHeight * 0.9);
-						shouldScroll = true;
-						break;
-					case 'PageDown':
-						e.preventDefault();
-						targetScrollTop = Math.min(maxScrollTop, currentScrollTop + windowHeight * 0.9);
-						shouldScroll = true;
-						break;
-					case 'Home':
-						e.preventDefault();
-						targetScrollTop = 0;
-						shouldScroll = true;
-						break;
-					case 'End':
-						e.preventDefault();
-						targetScrollTop = maxScrollTop;
-						shouldScroll = true;
-						break;
-				}
-
-				if (shouldScroll) {
-					window.scrollTo({
-						top: targetScrollTop,
-						behavior: 'smooth'
-					});
-				}
-			});
-
-			// Initialize scrollbar
-			updateScrollbar();
-
+			// Show progress indicator on wheel scroll
+			window.addEventListener('wheel', function() {
+				updateProgressIndicator(true);
+			}, { passive: true });
 
 		});
 	</script>
 
 	<!-- Optimized script loading -->
-	<script src="js/scrollbar-autohide.js"></script>
 	<script src="js/main.js" defer></script>
 	<script src="js/scripts.js" defer></script>
 	<script src="js/background.js" defer></script>
