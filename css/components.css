@@ -1,0 +1,317 @@
+/* Card Components */
+.project-card,
+.achievement-card,
+.experience-card,
+.contact-card {
+    position: relative;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+/* Unified spacing within cards */
+.project-card p,
+.achievement-card p,
+.experience-card p,
+.contact-card p {
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+}
+
+.project-card ul,
+.achievement-card ul,
+.experience-card ul,
+.contact-card ul {
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+}
+
+.project-card li,
+.achievement-card li,
+.experience-card li,
+.contact-card li {
+    margin-bottom: 0.65rem;
+}
+
+/* Card Hover Effects */
+.project-card:hover,
+.achievement-card:hover,
+.experience-card:hover,
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--glow-shadow);
+}
+
+/* Card Gradient Border */
+.project-card::after,
+.achievement-card::after,
+.experience-card::after,
+.contact-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: linear-gradient(
+        45deg,
+        var(--gradient-1),
+        var(--gradient-2),
+        var(--gradient-3),
+        var(--gradient-4)
+    );
+    border-radius: var(--radius-md);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.project-card:hover::after,
+.achievement-card:hover::after,
+.experience-card:hover::after,
+.contact-card:hover::after {
+    opacity: 1;
+}
+
+/* Icons and Badges */
+.icon-wrapper {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.icon-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-4));
+    opacity: 0.2;
+    transition: var(--transition);
+}
+
+.icon-wrapper:hover::before {
+    opacity: 0.4;
+}
+
+/* Badge and Tag Styles */
+.tech-badge {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text);
+    padding: 0.5em 1em;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    transition: var(--transition);
+}
+
+.tech-badge:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Section Headers */
+.section-header {
+    position: relative;
+    margin-bottom: var(--section-spacing);
+    text-align: center;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gradient-1), var(--gradient-4));
+    border-radius: 2px;
+}
+
+/* Animated Elements */
+.animated-gradient {
+    background: linear-gradient(
+        270deg,
+        var(--gradient-1),
+        var(--gradient-2),
+        var(--gradient-3),
+        var(--gradient-4)
+    );
+    background-size: 300% 300%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Glow Effects */
+.glow-hover {
+    position: relative;
+}
+
+.glow-hover::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, var(--gradient-1), var(--gradient-4));
+    opacity: 0;
+    filter: blur(8px);
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.glow-hover:hover::before {
+    opacity: 0.5;
+}
+
+/* Interactive Elements */
+.interactive-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.interactive-card:hover {
+    transform: rotateX(5deg) rotateY(5deg);
+}
+
+/* Timeline Elements */
+.timeline-item {
+    position: relative;
+    padding-left: 2rem;
+    border-left: 2px solid var(--glass-border);
+    margin-bottom: 2rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-4));
+    border: 2px solid var(--dark);
+}
+
+/* Progress Bars */
+.progress-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--glass-bg);
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gradient-1), var(--gradient-4));
+    animation: progressFill 1.5s ease-out forwards;
+}
+
+@keyframes progressFill {
+    from { width: 0; }
+    to { width: var(--progress); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--gradient-1), var(--gradient-4));
+    border-radius: 4px;
+}
+
+/* Text Selection */
+::selection {
+    background: var(--primary);
+    color: white;
+}
+
+/* Profile Picture Styling */
+.profile-pic {
+    border-radius: 30px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 10px 20px rgba(0, 0, 0, 0.2),
+        0 0 60px rgba(124, 92, 255, 0.2),
+        0 0 80px rgba(0, 230, 168, 0.1);
+    transform: translateZ(30px) perspective(1000px);
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 45px;
+    border: 3px solid transparent;
+    background-image: 
+        linear-gradient(rgba(18, 18, 27, 1), rgba(18, 18, 27, 1)),
+        linear-gradient(135deg, #7c5cff, #00e6a8, #ff8c00, #ff0080, #7c5cff);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    animation: floatingImage 6s ease-in-out infinite;
+}
+
+@keyframes floatingImage {
+    0%, 100% {
+        transform: translateY(0) translateZ(30px) rotateY(0deg) rotateX(0deg);
+        box-shadow: 
+            0 20px 40px rgba(0, 0, 0, 0.3),
+            0 10px 20px rgba(0, 0, 0, 0.2),
+            0 0 60px rgba(124, 92, 255, 0.2),
+            0 0 80px rgba(0, 230, 168, 0.1);
+    }
+    25% {
+        transform: translateY(-15px) translateZ(40px) rotateY(3deg) rotateX(-2deg);
+        box-shadow: 
+            0 25px 50px rgba(0, 0, 0, 0.35),
+            0 15px 30px rgba(0, 0, 0, 0.25),
+            0 0 70px rgba(0, 230, 168, 0.3),
+            0 0 90px rgba(124, 92, 255, 0.15);
+    }
+    50% {
+        transform: translateY(-8px) translateZ(35px) rotateY(-2deg) rotateX(1deg);
+        box-shadow: 
+            0 22px 45px rgba(0, 0, 0, 0.32),
+            0 12px 25px rgba(0, 0, 0, 0.22),
+            0 0 65px rgba(255, 140, 0, 0.25),
+            0 0 85px rgba(255, 0, 128, 0.12);
+    }
+    75% {
+        transform: translateY(-12px) translateZ(38px) rotateY(2deg) rotateX(-1deg);
+        box-shadow: 
+            0 24px 48px rgba(0, 0, 0, 0.34),
+            0 14px 28px rgba(0, 0, 0, 0.24),
+            0 0 68px rgba(255, 0, 128, 0.28),
+            0 0 88px rgba(0, 230, 168, 0.14);
+    }
+}
+
+.profile-pic:hover {
+    transform: translateY(-10px) translateZ(50px) scale(1.03) rotateY(0deg) rotateX(0deg);
+    animation-play-state: paused;
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 0 80px rgba(124, 92, 255, 0.4),
+        0 0 100px rgba(0, 230, 168, 0.3);
+}

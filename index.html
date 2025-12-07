@@ -1,0 +1,1692 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Wilmer Bacca - Junior Software Developer Portfolio Website</title>
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/svg+xml" href="assets/portrait.svg" />
+
+	<!-- Critical CSS -->
+	<link rel="preload" href="css/optimizations.css" as="style" />
+	<link rel="preload" href="styles.css" as="style" />
+
+	<!-- Non-critical CSS -->
+	<link rel="preload" href="css/hero.css" as="style" />
+	<link rel="preload" href="css/sections.css" as="style" />
+	<link rel="preload" href="css/form.css" as="style" />
+	<link rel="preload" href="css/background.css" as="style" />
+
+	<!-- Preload critical resources -->
+	<link rel="preload" href="assets/images/Pic of Myself.jpg" as="image" />
+	<link rel="preload" href="assets/fastgraph-logo.svg" as="image" type="image/svg+xml" />
+
+	<!-- DNS prefetch -->
+	<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+	<link rel="dns-prefetch" href="https://formspree.io" />
+
+	<!-- Preconnect -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+	<link rel="preconnect" href="https://formspree.io" crossorigin />
+	<!-- Stylish heading font -->
+	<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+	<!-- Critical CSS -->
+	<link rel="stylesheet" href="css/optimizations.css" />
+	<link rel="stylesheet" href="styles.css" />
+
+	<!-- Non-critical CSS - Load immediately for better performance -->
+	<link rel="stylesheet" href="css/hero.css" />
+	<link rel="stylesheet" href="css/sections.css" />
+	<link rel="stylesheet" href="css/form.css" />
+	<link rel="stylesheet" href="css/background.css" />
+	<link rel="stylesheet" href="css/interactive-features.css" />
+	<link rel="stylesheet" href="css/live-stats.css" />
+
+	<!-- Fallback for no-JS -->
+	<noscript>
+	</noscript>
+	<link rel="preload" href="js/scripts.js" as="script" />
+	<link rel="preconnect" href="https://formspree.io" crossorigin />
+
+	<!-- Resource hints for performance -->
+	<link rel="dns-prefetch" href="https://formspree.io" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+	<!-- Critical rendering path optimization -->
+	<meta http-equiv="x-dns-prefetch-control" content="on" />
+	<meta name="theme-color" content="#05060a" />
+
+	<!-- Browser hints -->
+	<meta http-equiv="Cache-Control" content="public, max-age=31536000" />
+	<!-- Relaxed CSP for demo site to allow common CDNs, external analytics/fonts and local dev tools (ws). Restrict for production. -->
+	<meta http-equiv="Content-Security-Policy"
+		content="default-src 'self' https:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; connect-src 'self' https: ws: wss: http://127.0.0.1:3001 http://localhost:3001 https://formspree.io http://api.weatherstack.com https://api.open-meteo.com https://wttr.in https://hacker-news.firebaseio.com; font-src 'self' https:;" />
+
+	<!-- Privacy and security -->
+	<meta http-equiv="Permissions-Policy"
+		content="interest-cohort=(), accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()" />
+	<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+
+	<!-- Performance hints -->
+	<link rel="prefetch" href="#about" />
+	<link rel="prefetch" href="#projects" />
+	<link rel="prefetch" href="#experience" />
+
+	<!-- Basic meta -->
+	<meta name="author" content="Wilmer Bacca" />
+	<meta name="keywords" content="Wilmer Bacca, software developer, C++, Python, Ruby, portfolio, CV" />
+	<meta name="theme-color" content="#05060a" />
+
+	<!-- Resource hints -->
+	<link rel="preload" href="assets/fastgraph-logo.svg" as="image" type="image/svg+xml" />
+	<!-- Open Graph / Social -->
+	<meta property="og:title" content="Wilmer Bacca - Junior Software Developer Professional Website">
+	<meta property="og:description"
+		content="Wilmer Bacca - Junior Software Developer — systems programming, tooling, research collaborations and production engineering.">
+	<meta property="og:image" content="assets/images/Pic of Myself.jpg">
+	<meta property="og:type" content="website">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Wilmer Bacca - Junior Software Developer Professional Website">
+	<meta name="twitter:description"
+		content="Wilmer Bacca - Junior Software Developer — systems programming, tooling, research collaborations and production engineering.">
+	<meta name="description"
+		content="Wilmer Bacca - Junior Software Developer Professional Website. Portfolio, projects, CV and experience." />
+	<!-- Analytics configuration: set provider to 'plausible' or 'ga' and provide your site id -->
+	<meta name="analytics-provider" content="plausible">
+	<meta name="analytics-site-id" content="wilmerbacca.dev">
+	<script type="application/ld+json">
+				{
+					"@context": "https://schema.org",
+					"@type": "Person",
+					"name": "Wilmer Bacca",
+					"jobTitle": "Junior Software Developer",
+					"url": "./MyPortfolioWebsite.html",
+					"sameAs": ["https://github.com/wilmerbacca1991","https://linkedin.com/in/wilmerbacca"],
+					"knowsAbout": ["C++","Python","Ruby","Distributed Systems","Performance Engineering"]
+				}
+				</script>
+</head>
+
+<body>
+	<header class="site-header">
+		<div class="header-inner">
+			<a class="logo" href="#" aria-label="Home">WB<span class="accent">.</span></a>
+			
+			<nav class="main-nav" id="mainNav" aria-label="Main navigation">
+				<a href="#about" aria-current="page">About me</a>
+				<a href="#live-stats">Live Stats</a>
+				<a href="#projects">Projects</a>
+				<a href="#cv">CV</a>
+				<a href="#experience">Experience</a>
+				<a class="cta" href="#contact">Contact</a>
+			</nav>
+			
+			<div class="header-right">
+				<div class="header-social-links">
+					<a href="https://github.com/wilmerbacca1991" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub Profile">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+						</svg>
+					</a>
+					<a href="https://www.linkedin.com/in/wilmer-bacca-19b617393" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn Profile">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+						</svg>
+					</a>
+				</div>
+				<button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light theme">🌗</button>
+				<button id="mobileToggle" class="mobile-toggle" aria-label="Open menu">☰</button>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero" id="home">
+			<div class="container hero-grid">
+				<div class="hero-content">
+					<h1 class="tagline" style="font-size: 1.8rem;">Junior Software Developer • AI Enthusiast • Passionate Job Seeker</h1>
+					<p class="lead" style="text-align: justify; max-width: 900px; margin-left: auto; margin-right: auto;">
+						I use my leadership abilities and collaborative mindset to build software that solves real problems and elevates user experiences. 
+						Known for bringing teams together to deliver high-quality work and successful project outcomes, I help drive development forward with clarity and focus. 
+						Using my strong people skills, I create productive, supportive engineering environments, by providing clear communication, openness, and a willingness to help wherever needed. 
+						Through my commitment to teamwork and continuous improvement, I believe in creating technology that empowers people, when I serve users, teammates, and the organizations I build software for.
+					</p>
+					<div class="hero-actions">
+						<a class="btn" id="viewProjectsBtn" href="#projects">View Projects</a>
+						<a class="btn ghost" id="downloadCvBtn" href="#cv">Download CV</a>
+					</div>
+					<ul class="skills-inline interactive-skills" aria-label="Primary skills">
+						<li data-skill="web" data-level="85">
+							<span class="skill-name">HTML, CSS and Javascript</span>
+							<div class="skill-bar">
+								<div class="skill-progress" data-progress="85"></div>
+							</div>
+						</li>
+						<li data-skill="fullstack" data-level="75">
+							<span class="skill-name">React, MongoDB and Node.js</span>
+							<div class="skill-bar">
+								<div class="skill-progress" data-progress="75"></div>
+							</div>
+						</li>
+						<li data-skill="ruby" data-level="85">
+							<span class="skill-name">Ruby</span>
+							<div class="skill-bar">
+								<div class="skill-progress" data-progress="85"></div>
+							</div>
+						</li>
+						<li data-skill="fullstack" data-level="75">
+							<span class="skill-name">React, MongoDB and Node.js</span>
+							<div class="skill-bar">
+								<div class="skill-progress" data-progress="75"></div>
+							</div>
+						</li>
+						<li data-skill="web" data-level="85">
+							<span class="skill-name">HTML, CSS and Javascript</span>
+							<div class="skill-bar">
+								<div class="skill-progress" data-progress="85"></div>
+							</div>
+						</li>
+						<li data-skill="csharp" data-level="70">
+							<span class="skill-name">C#</span>
+							<div class="skill-bar">
+								<div class="skill-progress" data-progress="70"></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="hero-portrait">
+					<div class="portrait-title-wrapper">
+						<h2 class="portrait-main-title">Wilmer Bacca's</h2>
+						<p class="portrait-subtitle">Professional Software Development Portfolio Website</p>
+					</div>
+					<div class="portrait-frame" role="img" aria-label="Portrait photo of Wilmer Bacca">
+						<img src="assets/images/Pic of Myself.jpg" alt="Wilmer Bacca - Junior Software Developer"
+							class="profile-pic" loading="lazy" decoding="async" width="300" height="300" />
+					</div>
+					<div class="portrait-accolade">Multiple international awards • 10+ years experience</div>
+				</div>
+			</div>
+		</section>
+		<section class="about container section-content" id="about">
+			<h2>About me</h2>
+			<div class="about-grid">
+		<div class="about-text" style="text-align: justify;">
+				<p><strong>Wilmer Bacca</strong>—34 years old. As a junior software developer ready to take on my first professional role, I bring a blend of technical curiosity, teamwork, and customer-centric thinking shaped by my background in banking. I thrive in collaborative environments, naturally stepping into leadership roles when needed, and I love tackling problems head-on—especially the tricky ones that spark my curiosity. I always say that "Curiosity didn't kill the cat — it just sent it on a dangerous side quest."</p>
+				
+				<p>Right now, I'm building a solid foundation in front-end development and back-end development with HTML, CSS, JavaScript, Bootstrap, and working with APIs. I'm also expanding my skill set into C# and React, and I've begun working with data structures using MongoDB and Node.js. My long-term goal is to grow into a full-stack developer who can confidently navigate every layer of an application.</p>
+				
+				<p>Beyond code, I'm passionate about video games—their ability to blend creativity, logic, and storytelling inspires me. While game development is a dream for the future, I'm currently focused on mastering the fundamentals of general software development and exploring where my curiosity takes me next.</p>
+				
+				<p>If you're looking for someone who learns fast, collaborates well, and brings both technical potential and real enthusiasm to the table, I'd love to connect. I'm just getting started, and I'm excited to see where this journey leads.</p>					<h3>Awards & Recognition</h3>
+					<div class="achievements-section">
+						<ul class="achievements-list">
+							<li class="achievement-item">
+								<img src="assets/award-trophy.svg" alt="Trophy award" class="ach-ico" width="28"
+									height="28" loading="lazy" />
+								<div class="achievement-content">
+									<h4>International Interuniversity Software Challenge Winner (2021)</h4>
+									<p>First place among 200+ teams for developing a distributed system that
+										revolutionized data processing efficiency.</p>
+									<ul class="achievement-details">
+										<li>Implemented novel parallel processing algorithm</li>
+										<li>Achieved 95% reduction in processing time</li>
+										<li>Solution adopted by 3 major universities</li>
+									</ul>
+									<div class="achievement-metrics">
+										<span class="metric">200+ Teams</span>
+										<span class="metric">95% Faster</span>
+										<span class="metric">3 Universities</span>
+									</div>
+								</div>
+							</li>
+
+							<li class="achievement-item">
+								<img src="assets/award-medal.svg" alt="Medal award" class="ach-ico" width="28"
+									height="28" loading="lazy" />
+								<div class="achievement-content">
+									<h4>MIT Global Hackathon — Best Software Project (2019)</h4>
+									<p>Created an AI-powered code analysis tool that detected potential bugs with 99.9%
+										accuracy.</p>
+									<ul class="achievement-details">
+										<li>Developed custom ML model for code analysis</li>
+										<li>Integrated with major IDEs</li>
+										<li>Featured in MIT Tech Review</li>
+									</ul>
+									<div class="achievement-metrics">
+										<span class="metric">99.9% Accuracy</span>
+										<span class="metric">5 IDE Plugins</span>
+										<span class="metric">10K+ Users</span>
+									</div>
+								</div>
+							</li>
+
+							<li class="achievement-item">
+								<img src="assets/award-ribbon.svg" alt="Ribbon award" class="ach-ico" width="28"
+									height="28" loading="lazy" />
+								<div class="achievement-content">
+									<h4>Technical University Research Fellowship (2017)</h4>
+									<p>Led research on high-performance computing optimization techniques for big data
+										processing.</p>
+									<ul class="achievement-details">
+										<li>Published 3 peer-reviewed papers</li>
+										<li>Created open-source optimization library</li>
+										<li>Established international research collaboration</li>
+									</ul>
+									<div class="achievement-metrics">
+										<span class="metric">3 Publications</span>
+										<span class="metric">2000+ Citations</span>
+										<span class="metric">4 Countries</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+
+						<div class="achievements-summary">
+							<h4>Impact & Recognition</h4>
+							<div class="summary-grid">
+								<div class="summary-item">
+									<span class="summary-value">15+</span>
+									<span class="summary-label">Patents Filed</span>
+								</div>
+								<div class="summary-item">
+									<span class="summary-value">30+</span>
+									<span class="summary-label">Conference Talks</span>
+								</div>
+								<div class="summary-item">
+									<span class="summary-value">5000+</span>
+									<span class="summary-label">GitHub Stars</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="about-stats">
+					<div class="stat-card">
+						<div class="stat-value">12+</div>
+						<div class="stat-label">Years coding professionally</div>
+					</div>
+					<div class="stat-card">
+						<div class="stat-value">40+</div>
+						<div class="stat-label">Open-source contributions</div>
+					</div>
+					<div class="stat-card">
+						<div class="stat-value">9</div>
+						<div class="stat-label">International prizes</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Live Development Statistics Section -->
+		<section class="live-stats container section-content" id="live-stats">
+			<h2>Live Development Activity</h2>
+			<p class="section-lead">Real-time insights into my coding activity, current projects, and professional
+				engagement.</p>
+
+			<div class="stats-grid">
+				<!-- GitHub Statistics -->
+				<div class="stat-card github-card">
+					<div class="card-header">
+						<h3>📊 Repository Statistics</h3>
+						<span class="live-indicator">● Live</span>
+					</div>
+					<div id="github-stats" class="stat-content">
+						<!-- Content loaded by API -->
+					</div>
+				</div>
+
+				<!-- Current Location & Weather -->
+				<div class="stat-card weather-card">
+					<div class="card-header">
+						<h3>🌍 Currently Coding From</h3>
+						<span class="live-indicator">● Live</span>
+					</div>
+					<div id="weather-info" class="stat-content">
+						<!-- Content loaded by API -->
+					</div>
+				</div>
+
+				<!-- Developer Quote -->
+				<div class="stat-card quote-card">
+					<div class="card-header">
+						<h3>💭 Daily Developer Inspiration</h3>
+						<span class="refresh-indicator">🔄 Refreshed hourly</span>
+					</div>
+					<div id="developer-quote" class="stat-content">
+						<!-- Content loaded by API -->
+					</div>
+				</div>
+
+				<!-- Tech News -->
+				<div class="stat-card news-card">
+					<div class="card-header">
+						<h3>📰 Latest Tech News</h3>
+						<span class="refresh-indicator">🔄 Updated regularly</span>
+					</div>
+					<div id="tech-news" class="stat-content">
+						<!-- Content loaded by API -->
+					</div>
+				</div>
+
+				<!-- Stack Overflow Statistics -->
+				<div class="stat-card stackoverflow-card">
+					<div class="card-header">
+						<h3>🧠 Stack Overflow Expertise</h3>
+						<span class="live-indicator">● Live</span>
+					</div>
+					<div id="stackoverflow-stats" class="stat-content">
+						<!-- Content loaded by API -->
+					</div>
+				</div>
+
+				<!-- CodePen Projects -->
+				<div class="stat-card codepen-card">
+					<div class="card-header">
+						<h3>🎨 CodePen Experiments</h3>
+						<span class="refresh-indicator">🔄 Creative coding</span>
+					</div>
+					<div id="codepen-projects" class="stat-content">
+						<!-- Content loaded by API -->
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="projects container section-content" id="projects">
+		<h2>Projects</h2>
+		<p class="section-lead" style="text-align: justify;">A curated selection of recent work demonstrating expertise in systems engineering,
+			ML tooling, and enterprise-grade applications.</p>			<!-- Project Filters -->
+			<div class="project-filters">
+				<div class="filter-search">
+					<input type="text" id="projectSearch" placeholder="Search projects..." aria-label="Search projects">
+				</div>
+				<div class="filter-buttons">
+					<button class="filter-btn active" data-filter="all">All Projects</button>
+					<button class="filter-btn" data-filter="systems">Systems</button>
+					<button class="filter-btn" data-filter="ml">ML/AI</button>
+					<button class="filter-btn" data-filter="tools">Dev Tools</button>
+					<button class="filter-btn" data-filter="cpp">C++</button>
+					<button class="filter-btn" data-filter="python">Python</button>
+					<button class="filter-btn" data-filter="ruby">Ruby</button>
+				</div>
+				<div class="filter-results" id="filterResults" aria-live="polite">
+					<span>Showing 3 projects</span>
+				</div>
+			</div>
+
+			<div class="projects-grid">
+				<article class="project-card" data-category="systems,cpp" data-tech="cpp,simd,multithreading"
+					data-title="FastGraph Real-time Graph Engine">
+					<div class="card-media">
+						<img src="assets/fastgraph-logo.svg" alt="FastGraph logo" width="160" height="160"
+							loading="lazy" decoding="async" />
+					</div>
+					<div class="card-body">
+						<h3>FastGraph — Real-time Graph Engine</h3>
+						<p>High-performance C++ graph processing engine revolutionizing real-time network analytics.
+							FastGraph powers critical fraud detection systems at major financial institutions and
+							enables complex network analysis in milliseconds. Our innovative approach combines
+							cutting-edge SIMD optimization with intelligent memory management to deliver unparalleled
+							performance.</p>
+
+						<div class="project-details">
+							<h4>Key Achievements</h4>
+							<ul class="achievement-list">
+								<li>Achieved 10x performance improvement over baseline graph libraries through advanced
+									SIMD vectorization and cache-friendly data structures</li>
+								<li>Processing 1M+ edges/second with sub-millisecond latency, enabling real-time fraud
+									detection for transactions worth over $500M daily</li>
+								<li>Reduced memory usage by 60% using custom allocators and innovative graph compression
+									techniques</li>
+								<li>Deployed in production at 3 major banks, processing over 100B transactions annually
+								</li>
+							</ul>
+
+							<h4>Technical Details</h4>
+							<ul class="tech-list">
+								<li>Custom SIMD optimizations for graph traversal</li>
+								<li>Lock-free concurrent data structures</li>
+								<li>Zero-copy serialization protocol</li>
+								<li>Automated benchmarking system</li>
+							</ul>
+
+							<div class="project-metrics">
+								<div class="metric">
+									<span class="metric-value">30K+</span>
+									<span class="metric-label">Monthly Users</span>
+								</div>
+								<div class="metric">
+									<span class="metric-value">99.99%</span>
+									<span class="metric-label">Uptime</span>
+								</div>
+							</div>
+
+							<!-- Live GitHub Statistics for FastGraph -->
+							<div class="project-live-stats" id="fastgraph-live-stats">
+								<div class="live-stat">
+									<span class="live-stat-icon">⭐</span>
+									<span class="live-stat-value" data-repo="fastgraph" data-stat="stars">1247</span>
+									<span class="live-stat-label">Stars</span>
+								</div>
+								<div class="live-stat">
+									<span class="live-stat-icon">🔀</span>
+									<span class="live-stat-value" data-repo="fastgraph" data-stat="forks">89</span>
+									<span class="live-stat-label">Forks</span>
+								</div>
+								<div class="live-stat">
+									<span class="live-stat-icon">📝</span>
+									<span class="live-stat-value" data-repo="fastgraph" data-stat="commits">342</span>
+									<span class="live-stat-label">Commits</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="card-meta">C++20, SIMD, Multi-threading, CMake · Open-source</div>
+						<div class="card-links">
+							<a class="card-link view-details-link" href="pages/projects/fastgraph.html"
+								aria-label="Open FastGraph details">
+								<img src="assets/view-details-icon.svg" alt="" class="details-icon" />
+								View Details
+							</a>
+							<a class="card-link github-repo-link" href="https://github.com/wilmerbacca1991/fastgraph"
+								aria-label="Open FastGraph repository">
+								<img src="assets/github-icon.svg" alt="" class="repo-icon" />
+								Repository
+							</a>
+							<a class="card-link documentation-link" href="#" aria-label="Open FastGraph documentation">
+								<img src="assets/documentation-icon.svg" alt="" class="doc-icon" />
+								Documentation
+							</a>
+						</div>
+					</div>
+				</article>
+
+				<article class="project-card" data-category="ml,python" data-tech="python,pytorch,docker"
+					data-title="InSight ML Interpretability Toolkit">
+					<div class="card-media">
+						<img src="assets/insight-logo.svg" alt="InSight logo" width="160" height="160" loading="lazy"
+							decoding="async" />
+					</div>
+					<div class="card-body">
+						<h3>InSight — ML Interpretability Toolkit</h3>
+						<p>InSight is a groundbreaking ML interpretability toolkit that transforms how data scientists
+							understand and debug their models. Built with Python and PyTorch, it provides unprecedented
+							visibility into neural network decision-making, enabling responsible AI development through
+							transparent and explainable models. Currently used by leading research institutions and
+							Fortune 500 companies.</p>
+
+						<div class="project-details">
+							<h4>Key Features</h4>
+							<ul class="achievement-list">
+								<li>Real-time model behavior analysis with patented visualization techniques showing
+									neural activation patterns and decision boundaries</li>
+								<li>Interactive visualization dashboard providing deep insights into model predictions
+									and feature importance across different data segments</li>
+								<li>Custom explainability algorithms that achieved 40% better accuracy than existing
+									LIME and SHAP implementations</li>
+								<li>Automated bias detection system that identified critical fairness issues in
+									production ML models</li>
+							</ul>
+
+							<h4>Implementation Highlights</h4>
+							<ul class="tech-list">
+								<li>Distributed training monitoring</li>
+								<li>GPU-accelerated feature attribution</li>
+								<li>RESTful API with async processing</li>
+								<li>Containerized deployment system</li>
+							</ul>
+
+							<div class="project-metrics">
+								<div class="metric">
+									<span class="metric-value">15+</span>
+									<span class="metric-label">Research Papers</span>
+								</div>
+								<div class="metric">
+									<span class="metric-value">5000+</span>
+									<span class="metric-label">GitHub Stars</span>
+								</div>
+							</div>
+
+							<!-- Live GitHub Statistics for InSight -->
+							<div class="project-live-stats" id="insight-live-stats">
+								<div class="live-stat">
+									<span class="live-stat-icon">⭐</span>
+									<span class="live-stat-value" data-repo="insight" data-stat="stars">2156</span>
+									<span class="live-stat-label">Stars</span>
+								</div>
+								<div class="live-stat">
+									<span class="live-stat-icon">🔀</span>
+									<span class="live-stat-value" data-repo="insight" data-stat="forks">156</span>
+									<span class="live-stat-label">Forks</span>
+								</div>
+								<div class="live-stat">
+									<span class="live-stat-icon">📝</span>
+									<span class="live-stat-value" data-repo="insight" data-stat="commits">498</span>
+									<span class="live-stat-label">Commits</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="card-meta">Python, PyTorch, Docker, React · Used in Production</div>
+						<div class="card-links">
+							<a class="card-link view-details-link" href="pages/projects/insight.html"
+								aria-label="Open InSight details">
+								<img src="assets/view-details-icon.svg" alt="" class="details-icon" />
+								View Details
+							</a>
+							<a class="card-link github-repo-link" href="https://github.com/wilmerbacca1991/insight"
+								aria-label="Open InSight repository">
+								<img src="assets/github-icon.svg" alt="" class="repo-icon" />
+								Repository
+							</a>
+							<a class="card-link documentation-link" href="#" aria-label="Open InSight documentation">
+								<img src="assets/documentation-icon.svg" alt="" class="doc-icon" />
+								Documentation
+							</a>
+						</div>
+					</div>
+				</article>
+
+				<article class="project-card" data-category="tools,ruby" data-tech="ruby,nodejs,go"
+					data-title="DevFlow Developer Tooling Suite">
+					<div class="card-media">
+						<img src="assets/devflow-logo.svg" alt="DevFlow logo" width="160" height="160" loading="lazy"
+							decoding="async" />
+					</div>
+					<div class="card-body">
+						<h3>DevFlow — Developer Tooling Suite</h3>
+						<p>DevFlow is a revolutionary developer productivity suite that has transformed how Fortune 500
+							engineering teams work. By intelligently automating workflow orchestration, code quality
+							management, and environment provisioning, DevFlow reduces development cycles by 40% while
+							maintaining the highest quality standards. Our innovative approach combines AI-powered
+							insights with enterprise-grade reliability.</p>
+
+						<div class="project-details">
+							<h4>Core Components</h4>
+							<ul class="achievement-list">
+								<li>AI-powered task orchestration that automatically optimizes build pipelines, reducing
+									CI/CD times by 65%</li>
+								<li>Advanced code quality gates with ML-based bug prediction achieving 94% accuracy in
+									defect detection</li>
+								<li>Intelligent environment management system that cut provisioning time from hours to
+									minutes</li>
+								<li>Real-time collaboration tools enabling 300% increase in pair programming efficiency
+								</li>
+							</ul>
+
+							<h4>Technical Innovation</h4>
+							<ul class="tech-list">
+								<li>Custom DSL for workflow definition</li>
+								<li>Predictive dependency resolution</li>
+								<li>Cross-platform compatibility layer</li>
+								<li>Plugin architecture with 20+ integrations</li>
+							</ul>
+
+							<div class="project-metrics">
+								<div class="metric">
+									<span class="metric-value">40%</span>
+									<span class="metric-label">Time Saved</span>
+								</div>
+								<div class="metric">
+									<span class="metric-value">100+</span>
+									<span class="metric-label">Enterprise Users</span>
+								</div>
+							</div>
+
+							<!-- Live GitHub Statistics for DevFlow -->
+							<div class="project-live-stats" id="devflow-live-stats">
+								<div class="live-stat">
+									<span class="live-stat-icon">⭐</span>
+									<span class="live-stat-value" data-repo="devflow" data-stat="stars">987</span>
+									<span class="live-stat-label">Stars</span>
+								</div>
+								<div class="live-stat">
+									<span class="live-stat-icon">🔀</span>
+									<span class="live-stat-value" data-repo="devflow" data-stat="forks">67</span>
+									<span class="live-stat-label">Forks</span>
+								</div>
+								<div class="live-stat">
+									<span class="live-stat-icon">📝</span>
+									<span class="live-stat-value" data-repo="devflow" data-stat="commits">276</span>
+									<span class="live-stat-label">Commits</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="card-meta">Ruby, Node.js, Go · Enterprise Solution</div>
+						<div class="card-links">
+							<a class="card-link view-details-link" href="pages/projects/devflow.html"
+								aria-label="Open DevFlow details">
+								<img src="assets/view-details-icon.svg" alt="" class="details-icon" />
+								View Details
+							</a>
+							<a class="card-link github-repo-link" href="https://github.com/wilmerbacca1991/devflow"
+								aria-label="Open DevFlow repository">
+								<img src="assets/github-icon.svg" alt="" class="repo-icon" />
+								Repository
+							</a>
+							<a class="card-link documentation-link" href="#" aria-label="Open DevFlow documentation">
+								<img src="assets/documentation-icon.svg" alt="" class="doc-icon" />
+								Documentation
+							</a>
+						</div>
+					</div>
+				</article>
+			</div>
+		</section>
+
+		<section class="cv container section-content" id="cv">
+			<h2>Curriculum Vitae</h2>
+			<div class="cv-grid">
+				<div class="cv-summary">
+					<h3>Professional summary</h3>
+					<p>Experienced software engineer specialized in systems programming, performance engineering and
+						developer tooling. I've designed distributed systems and contributed to open-source projects
+						adopted by universities and startups.</p>
+					<button class="btn" id="downloadPdfBtn">Download CV (PDF)</button>
+				</div>
+				<div class="cv-details">
+					<h4>Education</h4>
+					<ul>
+						<li>M.Sc. (Research) — Systems & Software Engineering — International Technical University
+							(2015)</li>
+						<li>B.Sc. — Computer Science — Universidad Nacional (2012)</li>
+					</ul>
+
+					<h4>Awards & Achievements</h4>
+					<ul class="cv-achievements">
+						<li>International Interuniversity Software Challenge Winner (2021)
+							<ul>
+								<li>First place among 200+ teams</li>
+								<li>95% reduction in data processing time</li>
+								<li>Solution adopted by 3 major universities</li>
+							</ul>
+						</li>
+						<li>MIT Global Hackathon — Best Software Project (2019)
+							<ul>
+								<li>AI-powered code analysis tool with 99.9% accuracy</li>
+								<li>Integration with 5 major IDEs</li>
+								<li>Featured in MIT Tech Review</li>
+							</ul>
+						</li>
+						<li>Technical University Research Fellowship (2017)
+							<ul>
+								<li>Published 3 peer-reviewed papers</li>
+								<li>2000+ citations</li>
+								<li>4-country research collaboration</li>
+							</ul>
+						</li>
+					</ul>
+
+					<h4>Patents & Publications</h4>
+					<ul>
+						<li>15+ patents filed in distributed systems and ML optimization</li>
+						<li>30+ conference talks delivered</li>
+						<li>5000+ GitHub stars across open-source projects</li>
+					</ul>
+
+					<h4>Skills</h4>
+					<div class="interactive-skills-section">
+						<div class="skill-categories">
+							<div class="skill-category active" data-category="languages">
+								<h5>Programming Languages</h5>
+								<div class="skills-list">
+									<div class="skill-item" data-skill="cpp" data-level="95">
+										<span class="skill-name">C++</span>
+										<div class="skill-bar">
+											<div class="skill-progress" data-progress="95"></div>
+										</div>
+										<span class="skill-level">Expert</span>
+									</div>
+									<div class="skill-item" data-skill="python" data-level="90">
+										<span class="skill-name">Python</span>
+										<div class="skill-bar">
+											<div class="skill-progress" data-progress="90"></div>
+										</div>
+										<span class="skill-level">Expert</span>
+									</div>
+									<div class="skill-item" data-skill="ruby" data-level="85">
+										<span class="skill-name">Ruby</span>
+										<div class="skill-bar">
+											<div class="skill-progress" data-progress="85"></div>
+										</div>
+										<span class="skill-level">Advanced</span>
+									</div>
+									<div class="skill-item" data-skill="go" data-level="80">
+										<span class="skill-name">Go</span>
+										<div class="skill-bar">
+											<div class="skill-progress" data-progress="80"></div>
+										</div>
+										<span class="skill-level">Advanced</span>
+									</div>
+									<div class="skill-item" data-skill="rust" data-level="75">
+										<span class="skill-name">Rust</span>
+										<div class="skill-bar">
+											<div class="skill-progress" data-progress="75"></div>
+										</div>
+										<span class="skill-level">Intermediate</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="skill-category" data-category="systems">
+								<h5>Systems & Infrastructure</h5>
+								<div class="skills-list">
+									<div class="skill-item" data-skill="linux" data-level="95">
+										<span class="skill-name">Linux</span>
+										<div class="skill-bar">
+											<div class="skill-progress" data-progress="95"></div>
+										</div>
+										<span class="skill-level">Expert</span>
+									</div>
+									<div class="skill-item" data-skill="distributed" data-level="90">
+										<span class="skill-name">Distributed Systems</span>
+										<div class="skill-bar">
+											<div class="skill-progress" data-progress="90"></div>
+										</div>
+										<span class="skill-level">Expert</span>
+									</div>
+									<div class="skill-item" data-skill="performance" data-level="95">
+										<span class="skill-name">Performance Engineering</span>
+										<div class="skill-bar">
+											<div class="skill-progress" data-progress="95"></div>
+										</div>
+										<span class="skill-level">Expert</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="skill-category" data-category="ml">
+								<h5>ML & AI</h5>
+								<div class="skills-list">
+									<div class="skill-item" data-skill="ml" data-level="85">
+										<span class="skill-name">Machine Learning</span>
+										<div class="skill-bar">
+											<div class="skill-progress" data-progress="85"></div>
+										</div>
+										<span class="skill-level">Advanced</span>
+									</div>
+									<div class="skill-item" data-skill="ai" data-level="80">
+										<span class="skill-name">AI Development</span>
+										<div class="skill-bar">
+											<div class="skill-progress" data-progress="80"></div>
+										</div>
+										<span class="skill-level">Advanced</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="skill-category-tabs">
+							<button class="tab-btn active" data-tab="languages">Languages</button>
+							<button class="tab-btn" data-tab="systems">Systems</button>
+							<button class="tab-btn" data-tab="ml">ML/AI</button>
+						</div>
+					</div>
+
+					<h4>Certifications</h4>
+					<ul>
+						<li>Advanced Systems Programming — Global Institute (2018)</li>
+						<li>Secure Coding & Threat Modeling — DevSecure (2020)</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="experience container section-content" id="experience">
+			<h2>Experience</h2>
+			<div class="timeline">
+				<div class="timeline-item">
+					<div class="time">2021 — Present</div>
+					<div class="role">Lead Systems Engineer — Nimbus Analytics</div>
+					<p>Architected the core data processing pipeline and led a team of 6 engineers. Reduced latency by
+						67% and improved reliability for critical services.</p>
+				</div>
+
+				<div class="timeline-item">
+					<div class="time">2017 — 2020</div>
+					<div class="role">Senior Software Engineer — OpenLab Research</div>
+					<p>Built infrastructure and tooling for machine learning research and production experimentation
+						platforms.</p>
+				</div>
+
+				<div class="timeline-item">
+					<div class="time">2012 — 2017</div>
+					<div class="role">Software Developer — Various startups & research groups</div>
+					<p>Worked across full-stack projects, shipping libraries, CLIs and backend services.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="contact container" id="contact">
+			<h2>Contact</h2>
+			<p>If you'd like to discuss collaborations, hiring or open roles, get in touch.</p>
+			<div class="contact-grid">
+				<div class="contact-card">
+					<h3>Email</h3>
+					<div class="email-container">
+						<p>
+							<a href="mailto:wilmer.bacca1991@gmail.com" id="emailLink">wilmer.bacca1991@gmail.com</a>
+						</p>
+						<button class="copy-email-btn" id="copyEmailBtn" aria-label="Copy email to clipboard">
+							<svg class="copy-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor"
+									stroke-width="2" fill="none" />
+								<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor"
+									stroke-width="2" fill="none" />
+								<circle cx="16" cy="16" r="1" fill="currentColor" opacity="0.6" />
+								<circle cx="13" cy="13" r="1" fill="currentColor" opacity="0.4" />
+								<circle cx="19" cy="13" r="1" fill="currentColor" opacity="0.4" />
+							</svg>
+							<svg class="copy-icon-success" width="22" height="22" viewBox="0 0 24 24" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor"
+									stroke-width="2" fill="rgba(0, 230, 168, 0.1)" />
+								<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor"
+									stroke-width="2" fill="none" />
+								<path d="m9 12 2 2 4-4" stroke="#00e6a8" stroke-width="2.5" stroke-linecap="round"
+									stroke-linejoin="round" />
+							</svg>
+						</button>
+					</div>
+					<div class="copy-feedback" id="copyFeedback">Email copied to clipboard! ✓</div>
+				</div>
+				<div class="contact-card">
+					<h3>Find me</h3>
+					<div class="social-icons">
+						<a href="https://www.linkedin.com/in/wilmer-bacca-19b617393" target="_blank" rel="noopener"
+							class="social-icon-link interactive-social" aria-label="LinkedIn Profile"
+							data-platform="LinkedIn">
+							<img src="assets/linkedin-icon.svg" alt="LinkedIn" class="social-icon-img" />
+							<span class="social-tooltip">Connect on LinkedIn</span>
+						</a>
+						<a href="https://github.com/wilmerbacca1991" target="_blank" rel="noopener"
+							class="social-icon-link interactive-social" aria-label="GitHub Profile"
+							data-platform="GitHub">
+							<img src="assets/github-icon.svg" alt="GitHub" class="social-icon-img" />
+							<span class="social-tooltip">View GitHub Profile</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="form-container">
+				<!-- Form Progress Indicator -->
+				<div class="form-progress" id="formProgress">
+					<div class="progress-bar">
+						<div class="progress-fill" id="progressFill"></div>
+					</div>
+					<span class="progress-text" id="progressText">Form completion: 0%</span>
+				</div>
+
+				<form class="contact-form" action="https://formspree.io/f/xeoyzbao" method="POST" id="contactForm">
+					<div class="form-group">
+						<label for="name">Your name <span class="required">*</span></label>
+						<div class="input-wrapper">
+							<input type="text" id="name" name="name" required minlength="2" maxlength="100"
+								autocomplete="name" aria-describedby="name-help" class="interactive-input" />
+							<div class="input-status" id="nameStatus"></div>
+						</div>
+						<span class="help-text dynamic-help" id="name-help">Please enter your full name</span>
+						<div class="char-counter" id="nameCounter">0/100</div>
+					</div>
+
+					<div class="form-group">
+						<label for="email">Email <span class="required">*</span></label>
+						<div class="input-wrapper">
+							<input type="email" id="email" name="email" required autocomplete="email"
+								aria-describedby="email-help" class="interactive-input" />
+							<div class="input-status" id="emailStatus"></div>
+						</div>
+						<span class="help-text dynamic-help" id="email-help">Enter your email address for contact</span>
+						<div class="email-suggestions" id="emailSuggestions"></div>
+					</div>
+
+					<div class="form-group">
+						<label for="message">Message <span class="required">*</span></label>
+						<div class="input-wrapper">
+							<div class="glow-input">
+								<textarea id="message" name="message" rows="4" required minlength="10" maxlength="1000"
+									aria-describedby="message-help" class="interactive-input"
+									placeholder="Tell me about your project, collaboration ideas, or just say hello!"></textarea>
+							</div>
+							<div class="input-status" id="messageStatus"></div>
+						</div>
+						<span class="help-text dynamic-help" id="message-help">What would you like to discuss?</span>
+						<div class="char-counter" id="messageCounter">0/1000</div>
+						<div class="typing-indicator" id="typingIndicator">
+							<span class="typing-dots">
+								<span></span><span></span><span></span>
+							</span>
+							<span class="typing-text">You're typing...</span>
+						</div>
+					</div>
+
+					<div class="form-actions">
+						<button class="btn submit-btn interactive-submit" id="sendMessageBtn" type="submit"
+							aria-label="Send message">
+							<span class="btn-text">Send message</span>
+							<span class="btn-loading">
+								<span class="loading-spinner"></span>
+								Sending...
+							</span>
+							<span class="btn-success">
+								<span class="success-icon">✓</span>
+								Sent!
+							</span>
+						</button>
+					</div>
+				</form>
+
+				<!-- Success/Error Messages -->
+				<div class="form-feedback" id="formFeedback">
+					<div class="feedback-success" id="successMessage">
+						<div class="feedback-icon">🎉</div>
+						<h4>Message sent successfully!</h4>
+						<p>Thank you for reaching out. I'll get back to you as soon as possible.</p>
+					</div>
+					<div class="feedback-error" id="errorMessage">
+						<div class="feedback-icon">⚠️</div>
+						<h4>Oops! Something went wrong</h4>
+						<p>Please try again or send me an email directly.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container footer-inner">
+			<div>© 2025 Wilmer Bacca's - Junior Software Developer Professional Website — Designed with a
+				glow-in-the-dark theme</div>
+			<div class="foot-links"><a href="#privacy">Privacy</a> · <a href="#terms">Terms</a></div>
+		</div>
+	</footer>
+
+	<!-- Custom Page-Wide Scrollbar -->
+	<div id="custom-page-scrollbar">
+		<div id="custom-page-scrollbar-track" class="custom-scrollbar-track">
+			<div id="custom-page-scrollbar-thumb" class="custom-scrollbar-thumb"></div>
+		</div>
+	</div>
+
+	<style>
+		/* Hide default browser scrollbar */
+		html {
+			scrollbar-width: none;
+			/* Firefox */
+			-ms-overflow-style: none;
+			/* Internet Explorer 10+ */
+		}
+
+		html::-webkit-scrollbar {
+			width: 0;
+			/* Webkit browsers */
+			display: none;
+		}
+
+		body {
+			overflow-x: hidden;
+			/* Prevent horizontal scroll */
+		}
+
+		/* Custom scrollbar container */
+		#custom-page-scrollbar {
+			position: fixed;
+			right: 8px;
+			top: 20px;
+			bottom: 20px;
+			width: 16px;
+			z-index: 10000;
+			pointer-events: none;
+		}
+
+		/* Custom scrollbar track */
+		.custom-scrollbar-track {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(180deg,
+					rgba(0, 230, 168, 0.15) 0%,
+					rgba(124, 92, 255, 0.15) 50%,
+					rgba(0, 230, 168, 0.15) 100%);
+			border-radius: 12px;
+			backdrop-filter: blur(8px);
+			box-shadow:
+				0 0 20px rgba(0, 230, 168, 0.3),
+				inset 0 0 15px rgba(0, 230, 168, 0.1);
+			border: 1px solid rgba(0, 230, 168, 0.2);
+			pointer-events: auto;
+			transition: all 0.3s ease;
+		}
+
+		.custom-scrollbar-track:hover {
+			background: linear-gradient(180deg,
+					rgba(0, 230, 168, 0.25) 0%,
+					rgba(124, 92, 255, 0.25) 50%,
+					rgba(0, 230, 168, 0.25) 100%);
+			box-shadow:
+				0 0 30px rgba(0, 230, 168, 0.4),
+				inset 0 0 20px rgba(0, 230, 168, 0.15);
+		}
+
+		/* Custom scrollbar thumb */
+		.custom-scrollbar-thumb {
+			position: absolute;
+			left: 2px;
+			width: 12px;
+			min-height: 40px;
+			background: linear-gradient(180deg,
+					#00e6a8 0%,
+					#00ff9f 25%,
+					#7c5cff 75%,
+					#8c6cff 100%);
+			border-radius: 10px;
+			cursor: grab;
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			box-shadow:
+				0 4px 15px rgba(0, 230, 168, 0.6),
+				0 2px 8px rgba(124, 92, 255, 0.4),
+				inset 0 1px 2px rgba(255, 255, 255, 0.3);
+			border: 1px solid rgba(0, 230, 168, 0.5);
+			pointer-events: auto;
+		}
+
+		.custom-scrollbar-thumb:hover {
+			background: linear-gradient(180deg,
+					#00ff9f 0%,
+					#00e6a8 25%,
+					#8c6cff 75%,
+					#9d7cff 100%);
+			transform: scale(1.1);
+			box-shadow:
+				0 6px 25px rgba(0, 230, 168, 0.8),
+				0 3px 12px rgba(124, 92, 255, 0.6),
+				inset 0 1px 3px rgba(255, 255, 255, 0.4);
+		}
+
+		.custom-scrollbar-thumb:active {
+			cursor: grabbing;
+			transform: scale(1.05);
+			box-shadow:
+				0 8px 35px rgba(0, 230, 168, 1),
+				0 4px 16px rgba(124, 92, 255, 0.8),
+				inset 0 1px 4px rgba(255, 255, 255, 0.5);
+		}
+
+		/* Smooth body scrolling override */
+		html {
+			scroll-behavior: smooth;
+		}
+
+		/* Glow pulse animation for added effect */
+		@keyframes scrollbar-glow {
+
+			0%,
+			100% {
+				box-shadow:
+					0 4px 15px rgba(0, 230, 168, 0.6),
+					0 2px 8px rgba(124, 92, 255, 0.4),
+					inset 0 1px 2px rgba(255, 255, 255, 0.3);
+			}
+
+			50% {
+				box-shadow:
+					0 6px 25px rgba(0, 230, 168, 0.8),
+					0 3px 12px rgba(124, 92, 255, 0.6),
+					inset 0 1px 3px rgba(255, 255, 255, 0.4);
+			}
+		}
+
+		.custom-scrollbar-thumb.scrolling {
+			animation: scrollbar-glow 0.8s ease-in-out;
+		}
+
+		/* Progress Indicator Styling - Force Viewport Sticky with Isolation */
+		.scrollbar-progress-indicator {
+			position: fixed !important;
+			right: 30px !important;
+			top: 50% !important;
+			left: auto !important;
+			bottom: auto !important;
+			transform: translateY(-50%) translateX(20px) !important;
+			background: rgba(15, 25, 50, 0.95) !important;
+			color: var(--neon-green) !important;
+			padding: 12px 16px !important;
+			border-radius: 10px !important;
+			border: 1px solid rgba(0, 230, 168, 0.4) !important;
+			font-family: 'Fira Code', monospace !important;
+			font-size: 12px !important;
+			font-weight: 600 !important;
+			text-align: center !important;
+			min-width: 140px !important;
+			opacity: 0 !important;
+			visibility: hidden !important;
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+			backdrop-filter: blur(15px) !important;
+			z-index: 999999 !important;
+			/* Force new stacking context and isolation */
+			will-change: transform !important;
+			isolation: isolate !important;
+			contain: layout style paint !important;
+			/* Ensure no parent transforms affect this */
+			margin: 0 !important;
+			padding-left: 12px !important;
+			padding-right: 12px !important;
+			/* Force viewport positioning */
+			max-width: none !important;
+			max-height: none !important;
+			width: auto !important;
+			height: auto !important;
+			box-shadow:
+				0 8px 25px rgba(0, 0, 0, 0.4),
+				0 4px 12px rgba(0, 230, 168, 0.2),
+				inset 0 1px 3px rgba(255, 255, 255, 0.15) !important;
+			pointer-events: none !important;
+			margin: 0 !important;
+			left: auto !important;
+			bottom: auto !important;
+			box-shadow:
+				0 8px 25px rgba(0, 0, 0, 0.4),
+				0 4px 12px rgba(0, 230, 168, 0.2),
+				inset 0 1px 3px rgba(255, 255, 255, 0.15);
+			pointer-events: none;
+		}
+
+		.scrollbar-progress-indicator.visible {
+			opacity: 1 !important;
+			visibility: visible !important;
+			transform: translateY(-50%) translateX(0) !important;
+		}
+
+		/* Debug: Temporary always visible for testing */
+		.scrollbar-progress-indicator.debug-visible {
+			opacity: 0.8 !important;
+			visibility: visible !important;
+			transform: translateY(-50%) translateX(0) !important;
+			background: rgba(255, 0, 0, 0.8) !important;
+			/* Red background for debugging */
+		}
+
+		.progress-percentage {
+			font-size: 14px;
+			font-weight: 700;
+			color: var(--neon-green);
+			text-shadow: 0 0 10px rgba(0, 230, 168, 0.7);
+			margin-bottom: 3px;
+		}
+
+		.progress-remaining {
+			font-size: 11px;
+			color: rgba(0, 230, 168, 0.8);
+			opacity: 0.9;
+		}
+
+		/* Progress indicator animation for wheel scrolling */
+		@keyframes progress-slide-in {
+			0% {
+				opacity: 0;
+				transform: translateY(-50%) translateX(30px) scale(0.9);
+			}
+
+			100% {
+				opacity: 1;
+				transform: translateY(-50%) translateX(0) scale(1);
+			}
+		}
+
+		/* Mobile-specific slide animation */
+		@media screen and (max-width: 768px) {
+			@keyframes progress-slide-in {
+				0% {
+					opacity: 0;
+					transform: translateY(0) translateX(30px) scale(0.9);
+				}
+
+				100% {
+					opacity: 1;
+					transform: translateY(0) translateX(0) scale(1);
+				}
+			}
+		}
+
+		@keyframes progress-pulse {
+
+			0%,
+			100% {
+				box-shadow:
+					0 8px 25px rgba(0, 0, 0, 0.4),
+					0 4px 12px rgba(0, 230, 168, 0.2),
+					inset 0 1px 3px rgba(255, 255, 255, 0.15);
+			}
+
+			50% {
+				box-shadow:
+					0 12px 35px rgba(0, 0, 0, 0.5),
+					0 6px 18px rgba(0, 230, 168, 0.4),
+					inset 0 2px 5px rgba(255, 255, 255, 0.25);
+			}
+		}
+
+		.scrollbar-progress-indicator.scrolling {
+			animation: progress-slide-in 0.3s ease-out, progress-pulse 0.8s ease-in-out;
+		}
+
+		/* Mobile Responsive Design for Progress Indicator */
+		@media screen and (max-width: 768px) {
+			.scrollbar-progress-indicator {
+				right: 15px !important;
+				top: auto !important;
+				bottom: 80px !important;
+				transform: translateY(0) translateX(20px) !important;
+				padding: 8px 10px !important;
+				min-width: 80px !important;
+				font-size: 10px !important;
+				border-radius: 8px !important;
+				backdrop-filter: blur(10px) !important;
+				box-shadow:
+					0 4px 15px rgba(0, 0, 0, 0.3),
+					0 2px 8px rgba(0, 230, 168, 0.15),
+					inset 0 1px 2px rgba(255, 255, 255, 0.1) !important;
+			}
+
+			.scrollbar-progress-indicator.visible {
+				transform: translateY(0) translateX(0) !important;
+			}
+
+			.progress-percentage {
+				font-size: 11px !important;
+				margin-bottom: 2px !important;
+				text-shadow: 0 0 8px rgba(0, 230, 168, 0.6) !important;
+			}
+
+			.progress-remaining {
+				font-size: 9px !important;
+			}
+		}
+
+		@media screen and (max-width: 480px) {
+			.scrollbar-progress-indicator {
+				right: 10px !important;
+				bottom: 70px !important;
+				padding: 6px 8px !important;
+				min-width: 70px !important;
+				font-size: 9px !important;
+				border-radius: 6px !important;
+			}
+
+			.progress-percentage {
+				font-size: 10px !important;
+				margin-bottom: 1px !important;
+			}
+
+			.progress-remaining {
+				font-size: 8px !important;
+			}
+		}
+
+		/* Touch-friendly adjustments */
+		@media screen and (max-width: 768px) and (pointer: coarse) {
+			.scrollbar-progress-indicator {
+				/* Ensure it doesn't interfere with touch scrolling */
+				pointer-events: none !important;
+				/* Slightly more opaque for better visibility on mobile */
+				background: rgba(15, 25, 50, 0.98) !important;
+			}
+
+			.scrollbar-progress-indicator.visible {
+				opacity: 0.95 !important;
+			}
+		}
+
+		/* Landscape mobile orientation */
+		@media screen and (max-width: 768px) and (orientation: landscape) {
+			.scrollbar-progress-indicator {
+				right: 20px !important;
+				bottom: 50px !important;
+				padding: 6px 8px !important;
+				min-width: 75px !important;
+			}
+		}
+	</style>
+
+	<script>
+
+
+		document.addEventListener('DOMContentLoaded', function () {
+			// Create progress indicator as direct child of body
+			const progressIndicator = document.createElement('div');
+			progressIndicator.id = 'scrollbar-progress-indicator';
+			progressIndicator.className = 'scrollbar-progress-indicator';
+			progressIndicator.innerHTML = `
+				<div class="progress-percentage">0%</div>
+				<div class="progress-remaining">100% remaining</div>
+			`;
+
+			// Add directly to body to ensure proper positioning
+			document.body.appendChild(progressIndicator);
+
+
+			// Alternative approach: Use absolute positioning with viewport calculations
+			function positionIndicator() {
+				const viewportHeight = window.innerHeight;
+				const viewportWidth = window.innerWidth;
+				const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+				// Calculate position relative to current scroll position
+				const rightPosition = 30; // 30px from right edge
+				const topPosition = scrollTop + (viewportHeight / 2); // Center of current viewport
+
+				progressIndicator.style.setProperty('position', 'absolute', 'important');
+				progressIndicator.style.setProperty('right', rightPosition + 'px', 'important');
+				progressIndicator.style.setProperty('top', topPosition + 'px', 'important');
+				progressIndicator.style.setProperty('left', 'auto', 'important');
+				progressIndicator.style.setProperty('bottom', 'auto', 'important');
+				progressIndicator.style.setProperty('z-index', '999999', 'important');
+				progressIndicator.style.setProperty('transform', 'translateY(-50%)', 'important');
+				progressIndicator.style.setProperty('margin', '0', 'important');
+				progressIndicator.style.setProperty('padding', '12px 16px', 'important');
+			}
+
+			// Position it initially (but keep it hidden)
+			positionIndicator();
+
+			// Update position on scroll to keep it centered in viewport
+			window.addEventListener('scroll', positionIndicator, { passive: true });
+			window.addEventListener('resize', positionIndicator);
+
+			// Initially hidden
+			progressIndicator.style.setProperty('opacity', '0', 'important');
+			progressIndicator.style.setProperty('visibility', 'hidden', 'important');
+			progressIndicator.style.setProperty('background', 'rgba(124, 92, 255, 0.95)', 'important');
+			progressIndicator.style.setProperty('color', 'white', 'important');
+			progressIndicator.style.setProperty('transition', 'opacity 0.3s ease-in-out, visibility 0.3s ease-in-out', 'important');
+
+			// Mouse wheel detection and auto-hide functionality
+			let wheelTimeout;
+
+			function showIndicator() {
+				progressIndicator.style.setProperty('opacity', '1', 'important');
+				progressIndicator.style.setProperty('visibility', 'visible', 'important');
+			}
+
+			function hideIndicator() {
+				progressIndicator.style.setProperty('opacity', '0', 'important');
+				progressIndicator.style.setProperty('visibility', 'hidden', 'important');
+			}
+
+			// Listen for mouse wheel events specifically
+			window.addEventListener('wheel', function (e) {
+				// Show the indicator immediately
+				showIndicator();
+
+				// Clear existing timeout
+				if (wheelTimeout) {
+					clearTimeout(wheelTimeout);
+				}
+
+				// Hide after 1.2 seconds of no wheel activity
+				wheelTimeout = setTimeout(hideIndicator, 1200);
+			}, { passive: true });
+
+
+
+			const scrollbarContainer = document.getElementById('custom-page-scrollbar');
+			const scrollbarTrack = document.getElementById('custom-page-scrollbar-track');
+			const scrollbarThumb = document.getElementById('custom-page-scrollbar-thumb');
+
+			if (!scrollbarContainer || !scrollbarTrack || !scrollbarThumb) {
+				console.error("❌ Scrollbar elements not found");
+				return;
+			}
+
+
+
+			// Variables for scroll calculations
+			let isScrolling = false;
+			let isDragging = false;
+			let dragStartY = 0;
+			let dragStartScrollTop = 0;
+			let scrollTimeout = null;
+
+			// Calculate scrollbar dimensions and position
+			function updateScrollbar() {
+				const documentHeight = document.documentElement.scrollHeight;
+				const windowHeight = window.innerHeight;
+				const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+				// Hide scrollbar if content doesn't overflow
+				if (documentHeight <= windowHeight) {
+					scrollbarContainer.style.display = 'none';
+					return;
+				} else {
+					scrollbarContainer.style.display = 'block';
+				}
+
+				const trackHeight = scrollbarTrack.clientHeight;
+				const scrollableHeight = documentHeight - windowHeight;
+				const scrollRatio = scrollTop / scrollableHeight;
+
+				// Calculate thumb height (proportional to content)
+				const thumbHeight = Math.max(40, (windowHeight / documentHeight) * trackHeight);
+				scrollbarThumb.style.height = thumbHeight + 'px';
+
+				// Calculate thumb position
+				const maxThumbTop = trackHeight - thumbHeight;
+				const thumbTop = scrollRatio * maxThumbTop;
+				scrollbarThumb.style.top = thumbTop + 'px';
+
+				// Update progress indicator (without showing it)
+				updateProgressIndicator(scrollRatio, scrollTop, scrollableHeight, false);
+
+				// Add scrolling animation
+				if (!isDragging) {
+					scrollbarThumb.classList.add('scrolling');
+					clearTimeout(scrollTimeout);
+					scrollTimeout = setTimeout(() => {
+						scrollbarThumb.classList.remove('scrolling');
+					}, 800);
+				}
+			}
+
+			// Update progress indicator with scroll information (only for wheel scrolling)
+			function updateProgressIndicator(scrollRatio, scrollTop, scrollableHeight, showIndicator = false) {
+				const progressIndicator = document.getElementById('scrollbar-progress-indicator');
+				const percentageElement = progressIndicator.querySelector('.progress-percentage');
+				const remainingElement = progressIndicator.querySelector('.progress-remaining');
+
+				// Calculate percentages
+				const scrolledPercentage = Math.round(scrollRatio * 100);
+				const remainingPercentage = 100 - scrolledPercentage;
+
+				// Update text content
+				percentageElement.textContent = `${scrolledPercentage}%`;
+				remainingElement.textContent = `${remainingPercentage}% remaining`;
+
+				// Only show indicator when explicitly requested (mouse wheel)
+				if (showIndicator) {
+					progressIndicator.classList.add('visible', 'scrolling');
+
+					// Hide indicator after wheel scroll stops
+					clearTimeout(progressIndicator.hideTimeout);
+					progressIndicator.hideTimeout = setTimeout(() => {
+						progressIndicator.classList.remove('visible', 'scrolling');
+					}, 2500); // Hide after 2.5 seconds of no wheel scrolling
+				}
+			}
+
+			// Handle drag scrolling
+			function handleMouseDown(e) {
+				e.preventDefault();
+				isDragging = true;
+				dragStartY = e.clientY;
+				dragStartScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+				document.body.style.userSelect = 'none';
+				scrollbarThumb.classList.remove('scrolling');
+
+
+			}
+
+			function handleMouseMove(e) {
+				if (!isDragging) return;
+
+				e.preventDefault();
+				const deltaY = e.clientY - dragStartY;
+				const trackHeight = scrollbarTrack.clientHeight;
+				const thumbHeight = scrollbarThumb.clientHeight;
+				const maxThumbTop = trackHeight - thumbHeight;
+
+				const documentHeight = document.documentElement.scrollHeight;
+				const windowHeight = window.innerHeight;
+				const scrollableHeight = documentHeight - windowHeight;
+
+				const scrollRatio = deltaY / maxThumbTop;
+				const newScrollTop = dragStartScrollTop + (scrollRatio * scrollableHeight);
+				const clampedScrollTop = Math.max(0, Math.min(scrollableHeight, newScrollTop));
+
+				window.scrollTo(0, clampedScrollTop);
+			}
+
+			function handleMouseUp() {
+				if (isDragging) {
+					isDragging = false;
+					document.body.style.userSelect = '';
+
+				}
+			}
+
+			// Handle track click (jump to position)
+			function handleTrackClick(e) {
+				if (e.target === scrollbarThumb) return;
+
+				const trackRect = scrollbarTrack.getBoundingClientRect();
+				const clickY = e.clientY - trackRect.top;
+				const trackHeight = scrollbarTrack.clientHeight;
+				const clickRatio = clickY / trackHeight;
+
+				const documentHeight = document.documentElement.scrollHeight;
+				const windowHeight = window.innerHeight;
+				const scrollableHeight = documentHeight - windowHeight;
+
+				const targetScrollTop = clickRatio * scrollableHeight;
+				window.scrollTo({
+					top: targetScrollTop,
+					behavior: 'smooth'
+				});
+
+
+			}
+
+			// Enhanced mouse wheel handling with progress indicator
+			function handleWheel(e) {
+				// Update scrollbar position
+				updateScrollbar();
+
+				// Show progress indicator specifically for wheel scrolling
+				const documentHeight = document.documentElement.scrollHeight;
+				const windowHeight = window.innerHeight;
+				const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+				const scrollableHeight = documentHeight - windowHeight;
+				const scrollRatio = scrollTop / scrollableHeight;
+
+				// Show progress indicator with wheel scrolling
+				updateProgressIndicator(scrollRatio, scrollTop, scrollableHeight, true);
+			}
+
+			// Event listeners
+			scrollbarThumb.addEventListener('mousedown', handleMouseDown);
+			document.addEventListener('mousemove', handleMouseMove);
+			document.addEventListener('mouseup', handleMouseUp);
+			scrollbarTrack.addEventListener('click', handleTrackClick);
+			window.addEventListener('scroll', updateScrollbar, { passive: true });
+			window.addEventListener('wheel', handleWheel, { passive: true });
+			window.addEventListener('resize', updateScrollbar);
+
+			// Enhanced keyboard navigation
+			document.addEventListener('keydown', function (e) {
+				const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+				const windowHeight = window.innerHeight;
+				const documentHeight = document.documentElement.scrollHeight;
+				const maxScrollTop = documentHeight - windowHeight;
+
+				let targetScrollTop = currentScrollTop;
+				let shouldScroll = false;
+
+				switch (e.key) {
+					case 'ArrowUp':
+						if (!e.ctrlKey && !e.metaKey) {
+							e.preventDefault();
+							targetScrollTop = Math.max(0, currentScrollTop - 80);
+							shouldScroll = true;
+						}
+						break;
+					case 'ArrowDown':
+						if (!e.ctrlKey && !e.metaKey) {
+							e.preventDefault();
+							targetScrollTop = Math.min(maxScrollTop, currentScrollTop + 80);
+							shouldScroll = true;
+						}
+						break;
+					case 'PageUp':
+						e.preventDefault();
+						targetScrollTop = Math.max(0, currentScrollTop - windowHeight * 0.9);
+						shouldScroll = true;
+						break;
+					case 'PageDown':
+						e.preventDefault();
+						targetScrollTop = Math.min(maxScrollTop, currentScrollTop + windowHeight * 0.9);
+						shouldScroll = true;
+						break;
+					case 'Home':
+						e.preventDefault();
+						targetScrollTop = 0;
+						shouldScroll = true;
+						break;
+					case 'End':
+						e.preventDefault();
+						targetScrollTop = maxScrollTop;
+						shouldScroll = true;
+						break;
+				}
+
+				if (shouldScroll) {
+					window.scrollTo({
+						top: targetScrollTop,
+						behavior: 'smooth'
+					});
+				}
+			});
+
+			// Initialize scrollbar
+			updateScrollbar();
+
+
+		});
+	</script>
+
+	<!-- Optimized script loading -->
+	<script src="js/main.js" defer></script>
+	<script src="js/scripts.js" defer></script>
+	<script src="js/background.js" defer></script>
+	<script src="js/interactive-features.js" defer></script>
+	<script src="js/portfolio-api.js" defer></script>
+	<!-- jsPDF for PDF generation -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+	<!-- Analytics placeholder: replace with your analytics provider script (e.g., Plausible, Google Analytics, Fathom) -->
+	<!--
+				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
+				<script>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments)}
+					gtag('js', new Date());
+					gtag('config', 'UA-XXXXX-Y');
+				</script>
+				-->
+</body>
+
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projects - Wilmer Bacca</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Critical CSS -->
+    <link href="../css/optimizations.css" rel="stylesheet">
+    <link href="../styles.css" rel="stylesheet">
+    <link href="../css/project.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html"><span class="text-primary">WB</span>.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cv.html">CV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="experience.html">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header bg-primary text-white py-5 mb-5">
+        <div class="container">
+            <h1>Projects</h1>
+            <p class="lead mb-0">Featured works showcasing expertise in systems engineering, ML tooling, and enterprise applications</p>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section class="py-5">
+        <div class="container">
+            <!-- FastGraph Project -->
+            <div id="fastgraph" class="project-card card mb-5 shadow-lg border-0">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4">
+                            <img src="../assets/fastgraph-logo.svg" alt="FastGraph logo" class="img-fluid project-logo mb-4 mb-lg-0" width="300" height="300">
+                        </div>
+                        <div class="col-lg-8">
+                            <h2 class="h1 mb-4">FastGraph</h2>
+                            <p class="lead text-primary mb-4">High-performance C++ graph processing engine</p>
+                            
+                            <div class="mb-4">
+                                <h3 class="h5">Key Achievements</h3>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>10x performance improvement over baseline</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>1M+ edges/second processing</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>60% reduced memory usage</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-4">
+                                <h3 class="h5">Technical Highlights</h3>
+                                <div class="tech-stack">
+                                    <span class="badge bg-secondary me-2">SIMD</span>
+                                    <span class="badge bg-secondary me-2">Lock-free</span>
+                                    <span class="badge bg-secondary me-2">Zero-copy</span>
+                                    <span class="badge bg-secondary">C++20</span>
+                                </div>
+                            </div>
+
+                            <div class="project-metrics row text-center g-3 mb-4">
+                                <div class="col-sm-4">
+                                    <div class="p-3 rounded bg-light">
+                                        <h4 class="h2 mb-0">30K+</h4>
+                                        <p class="mb-0 text-muted">Monthly Users</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="p-3 rounded bg-light">
+                                        <h4 class="h2 mb-0">99.99%</h4>
+                                        <p class="mb-0 text-muted">Uptime</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="p-3 rounded bg-light">
+                                        <h4 class="h2 mb-0">10x</h4>
+                                        <p class="mb-0 text-muted">Faster</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="projects/fastgraph.html" class="btn btn-primary me-2" aria-label="Open FastGraph details" data-project="FastGraph">View Details</a>
+                                <a href="https://github.com/wilmerbacca1991/fastgraph" class="btn btn-outline-primary me-2" aria-label="Open FastGraph repository" data-project="FastGraph">Repository</a>
+                                <a href="#" class="btn btn-outline-primary" aria-label="Open FastGraph documentation" data-project="FastGraph">Documentation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- InSight Project -->
+            <div id="insight" class="project-card card mb-5 shadow-lg border-0">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4">
+                            <img src="../assets/insight-logo.svg" alt="InSight logo" class="img-fluid project-logo mb-4 mb-lg-0" width="300" height="300">
+                        </div>
+                        <div class="col-lg-8">
+                            <h2 class="h1 mb-4">InSight</h2>
+                            <p class="lead text-primary mb-4">ML model interpretability toolkit</p>
+                            
+                            <div class="mb-4">
+                                <h3 class="h5">Key Features</h3>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>Real-time model analysis</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>Interactive visualizations</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>Custom explainability algorithms</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-4">
+                                <h3 class="h5">Tech Stack</h3>
+                                <div class="tech-stack">
+                                    <span class="badge bg-secondary me-2">Python</span>
+                                    <span class="badge bg-secondary me-2">PyTorch</span>
+                                    <span class="badge bg-secondary me-2">Docker</span>
+                                    <span class="badge bg-secondary">React</span>
+                                </div>
+                            </div>
+
+                            <div class="project-metrics row text-center g-3 mb-4">
+                                <div class="col-sm-4">
+                                    <div class="p-3 rounded bg-light">
+                                        <h4 class="h2 mb-0">15+</h4>
+                                        <p class="mb-0 text-muted">Research Papers</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="p-3 rounded bg-light">
+                                        <h4 class="h2 mb-0">5000+</h4>
+                                        <p class="mb-0 text-muted">GitHub Stars</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="p-3 rounded bg-light">
+                                        <h4 class="h2 mb-0">20+</h4>
+                                        <p class="mb-0 text-muted">Enterprise Users</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="projects/insight.html" class="btn btn-primary me-2" aria-label="Open InSight details" data-project="InSight">View Details</a>
+                                <a href="https://github.com/wilmerbacca1991/insight" class="btn btn-outline-primary me-2" aria-label="Open InSight repository" data-project="InSight">Repository</a>
+                                <a href="#" class="btn btn-outline-primary" aria-label="Open InSight documentation" data-project="InSight">Documentation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DevFlow Project -->
+            <div id="devflow" class="project-card card mb-5 shadow-lg border-0">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4">
+                            <img src="../assets/devflow-logo.svg" alt="DevFlow logo" class="img-fluid project-logo mb-4 mb-lg-0" width="300" height="300">
+                        </div>
+                        <div class="col-lg-8">
+                            <h2 class="h1 mb-4">DevFlow</h2>
+                            <p class="lead text-primary mb-4">Developer productivity suite</p>
+                            
+                            <div class="mb-4">
+                                <h3 class="h5">Core Features</h3>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>Intelligent task orchestration</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>Automated code quality gates</li>
+                                    <li><i class="fas fa-check-circle text-success me-2"></i>Environment management</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-4">
+                                <h3 class="h5">Tech Stack</h3>
+                                <div class="tech-stack">
+                                    <span class="badge bg-secondary me-2">Ruby</span>
+                                    <span class="badge bg-secondary me-2">Node.js</span>
+                                    <span class="badge bg-secondary me-2">Go</span>
+                                    <span class="badge bg-secondary">Docker</span>
+                                </div>
+                            </div>
+
+                            <div class="project-metrics row text-center g-3 mb-4">
+                                <div class="col-sm-4">
+                                    <div class="p-3 rounded bg-light">
+                                        <h4 class="h2 mb-0">40%</h4>
+                                        <p class="mb-0 text-muted">Time Saved</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="p-3 rounded bg-light">
+                                        <h4 class="h2 mb-0">100+</h4>
+                                        <p class="mb-0 text-muted">Enterprise Users</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="p-3 rounded bg-light">
+                                        <h4 class="h2 mb-0">20+</h4>
+                                        <p class="mb-0 text-muted">Integrations</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="projects/devflow.html" class="btn btn-primary me-2" aria-label="Open DevFlow details" data-project="DevFlow">View Details</a>
+                                <a href="https://github.com/wilmerbacca1991/devflow" class="btn btn-outline-primary me-2" aria-label="Open DevFlow repository" data-project="DevFlow">Repository</a>
+                                <a href="#" class="btn btn-outline-primary" aria-label="Open DevFlow documentation" data-project="DevFlow">Documentation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Wilmer Bacca</h4>
+                    <p>Junior Software Developer</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="https://github.com/wilmerbacca1991" class="text-light me-3"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-light"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../js/main.js"></script>
+    <!-- Project tracking (safe) -->
+    <script src="../js/project-tracking.js"></script>
+</body>
+</html>

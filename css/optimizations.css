@@ -1,0 +1,137 @@
+/* Performance optimizations */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Optimize paint operations */
+html {
+    background-color: var(--bg);
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+/* Reduce paint area and optimize GPU usage */
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Optimize images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    /* Prevent layout shifts */
+    content-visibility: auto;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: no-preference) {
+    .animate {
+        animation-play-state: running;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Optimize transitions */
+.nav-link,
+.btn,
+.card,
+.project-card,
+.achievement-item {
+    /* Use high-performance properties */
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    transition: 
+        transform var(--transition-normal),
+        opacity var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+/* Prevent layout shifts */
+.hero-content,
+.project-grid,
+.achievement-section {
+    contain: layout style paint;
+}
+
+/* Optimize scrolling performance */
+.smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Reduce paint operations during scroll */
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    /* Optimize GPU usage */
+    transform: translateZ(0);
+    will-change: transform;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Optimize card animations */
+.card-hover {
+    transition: transform var(--transition-normal);
+    will-change: transform;
+    /* Prevent flickering */
+    backface-visibility: hidden;
+}
+
+/* Optimize loading states */
+.loading {
+    /* Reduce paint operations */
+    contain: layout style paint;
+    /* Hardware acceleration */
+    transform: translateZ(0);
+}
+
+/* Optimize form inputs */
+input,
+textarea,
+button {
+    /* Prevent iOS zoom */
+    font-size: 16px;
+    /* Optimize touch events */
+    touch-action: manipulation;
+}
+
+/* Optimize scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+}
+
+/* Optimize tap targets */
+button,
+.btn,
+.nav-link {
+    min-height: 44px;
+    min-width: 44px;
+    /* Optimize touch events */
+    touch-action: manipulation;
+}
