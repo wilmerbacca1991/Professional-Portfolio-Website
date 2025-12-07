@@ -188,7 +188,7 @@ class PortfolioAPI {
         const cacheKey = 'github_data_cache';
         const cacheTimeKey = 'github_data_timestamp';
         const cacheValidTime = 15 * 60 * 1000; // 15 minutes cache to avoid rate limits
-        const cacheVersion = 'v7'; // Increment to force cache refresh after code changes
+        const cacheVersion = 'v8'; // Increment to force cache refresh after code changes
         
         // Check if we have cached data with correct version
         try {
@@ -475,8 +475,10 @@ class PortfolioAPI {
                     following: profileResponse.following,
                     publicRepos: profileResponse.public_repos,
                     totalStars: totalStars,
-                    totalCommits: totalCommits > 0 ? totalCommits : '100+', // Use actual count or fallback
-                    contributionStreak: contributionStreak > 0 ? contributionStreak : 'Active' // Use calculated streak or fallback
+                    // GitHub's REST/Search APIs severely undercount commits (only public repo default branches)
+                    // Manual override based on actual GitHub profile contribution graph
+                    totalCommits: 114, // Accurate count from GitHub profile (updated manually)
+                    contributionStreak: contributionStreak > 0 ? contributionStreak : 'Active'
                 },
                 repositories: repositories,
                 recentActivity: recentActivity,
