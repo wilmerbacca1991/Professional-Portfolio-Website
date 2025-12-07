@@ -56,6 +56,31 @@ body {
     transform: scale(0.95);
 }
 
+/* Spin animation when clicked */
+.theme-toggle.spinning {
+    animation: theme-spin 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes theme-spin {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.3);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+.theme-toggle:hover::before {
+    opacity: 1;
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
 /* Light theme styles */
 body.light-theme {
     background: linear-gradient(135deg, #f0f4f8 0%, #e8ecf1 50%, #dfe3e8 100%);
