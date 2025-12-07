@@ -53,54 +53,6 @@
         gap: 20px;
     }
 
-    /* Mobile navigation */
-    .main-nav {
-        display: none;
-    }
-
-    .mobile-toggle {
-        display: inline-block;
-        padding: 10px;
-        border-radius: 12px;
-        transition: all 0.3s;
-        cursor: pointer;
-    }
-
-    .mobile-toggle:hover {
-        background: rgba(124, 92, 255, 0.1);
-    }
-
-    .main-nav.open {
-        position: fixed;
-        top: 82px;
-        left: 12px;
-        right: 12px;
-        background: linear-gradient(180deg, rgba(11, 15, 22, 0.98), rgba(11, 15, 22, 0.95));
-        backdrop-filter: blur(12px);
-        padding: 20px;
-        border-radius: 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        animation: slideInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid rgba(255, 255, 255, 0.04);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        z-index: 1000;
-    }
-
-    .main-nav.open a {
-        padding: 12px;
-        border-radius: 8px;
-        transition: all 0.3s;
-        font-size: 15px;
-    }
-
-    .main-nav.open a:hover,
-    .main-nav.open a:focus {
-        background: rgba(124, 92, 255, 0.1);
-        transform: translateX(8px);
-    }
-
     /* Achievement items mobile */
     .achievement-item {
         flex-direction: column;
@@ -1106,18 +1058,33 @@ video {
 /* Mobile navigation enhancements */
 .mobile-toggle {
     display: none;
-    background: transparent;
-    border: var(--border-glow);
-    color: var(--muted);
-    padding: 0.5rem;
-    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(124, 92, 255, 0.2), rgba(0, 230, 168, 0.15));
+    border: 2px solid rgba(124, 92, 255, 0.4);
+    color: #a0f5c8;
+    padding: 0.75rem;
+    border-radius: 12px;
     cursor: pointer;
-    transform-style: preserve-3d;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(124, 92, 255, 0.3);
+    z-index: 1001;
+}
+
+.mobile-toggle:hover {
+    background: linear-gradient(135deg, rgba(124, 92, 255, 0.3), rgba(0, 230, 168, 0.25));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(124, 92, 255, 0.5);
 }
 
 @media (max-width: 768px) {
     .mobile-toggle {
         display: block;
+    }
+
+    .header-inner {
+        padding: 1rem 1.5rem;
+        min-height: 72px;
     }
 
     .header-social-links {
@@ -1126,33 +1093,63 @@ video {
     }
 
     .header-social-links .social-icon {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
     }
 
     .header-social-links .social-icon svg {
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
     }
 
     .main-nav {
+        display: none;
         position: fixed;
         top: 72px;
         left: 0;
         right: 0;
-        background: rgba(5, 6, 10, 0.95);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        padding: 1rem;
+        background: linear-gradient(180deg, rgba(20, 5, 40, 0.98), rgba(5, 15, 30, 0.98));
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 1.5rem;
         flex-direction: column;
-        transform: translateY(-100%);
-        opacity: 0;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        gap: 0.5rem;
+        border-bottom: 2px solid rgba(124, 92, 255, 0.3);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        z-index: 1000;
     }
 
     .main-nav.open {
-        transform: translateY(0);
+        display: flex;
+        animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .main-nav a {
+        padding: 1rem;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .main-nav a:hover,
+    .main-nav a:focus {
+        background: rgba(124, 92, 255, 0.15);
+        border-color: rgba(124, 92, 255, 0.4);
+        transform: translateX(5px);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
         opacity: 1;
+        transform: translateY(0);
     }
 }
 
