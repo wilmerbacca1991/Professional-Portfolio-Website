@@ -441,4 +441,36 @@
     body, html {
         -webkit-overflow-scrolling: touch;
     }
+
+    /* Mobile scrollbar - same glow effect */
+    html::-webkit-scrollbar {
+        width: 8px; /* Slightly thinner for mobile */
+    }
+
+    html::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    html::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-radius: 10px;
+    }
+
+    /* Show custom scrollbar when scrolling on mobile */
+    html.scrolling::-webkit-scrollbar-track {
+        background: rgba(15, 25, 50, 0.4);
+        border-radius: 10px;
+    }
+
+    html.scrolling::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, 
+            rgba(0, 230, 168, 0.9) 0%, 
+            rgba(0, 180, 130, 0.9) 100%);
+        border-radius: 10px;
+        border: 1px solid rgba(15, 25, 50, 0.6);
+        box-shadow: 
+            0 0 12px rgba(0, 230, 168, 0.7),
+            0 0 25px rgba(0, 230, 168, 0.5),
+            inset 0 0 6px rgba(255, 255, 255, 0.4);
+    }
 }
