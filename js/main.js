@@ -1,4 +1,4 @@
-// Theme toggle functionality
+// Enhanced theme toggle functionality with smooth transitions
 document.addEventListener('DOMContentLoaded', function() {
     // Viewport height fix for mobile (address bar)
     function setViewportHeight(){
@@ -11,18 +11,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
+        // Enhanced theme toggle with animation
         themeToggle.addEventListener('click', function() {
+            // Add rotation animation
+            this.style.transform = 'rotate(360deg) scale(1.2)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 400);
+            
+            // Toggle theme
             document.body.classList.toggle('light-theme');
             const isDark = !document.body.classList.contains('light-theme');
             localStorage.setItem('darkTheme', isDark);
-            themeToggle.innerHTML = isDark ? '🌗' : '🌓';
+            
+            // Update icon with smooth transition
+            setTimeout(() => {
+                themeToggle.innerHTML = isDark ? '🌗' : '☀️';
+            }, 200);
         });
 
-        // Check for saved theme preference
-        const prefersDark = localStorage.getItem('darkTheme') === 'true';
+        // Check for saved theme preference or system preference
+        const savedTheme = localStorage.getItem('darkTheme');
+        const prefersDark = savedTheme !== null ? savedTheme === 'true' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
         if (prefersDark) {
             document.body.classList.remove('light-theme');
             themeToggle.innerHTML = '🌗';
+        } else {
+            document.body.classList.add('light-theme');
+            themeToggle.innerHTML = '☀️';
         }
     }
 });
