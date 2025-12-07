@@ -540,27 +540,6 @@ svg {
 .section-content.active {
     display: block;
     overflow: visible;
-    /* Ensure no scrollbars appear on section content */
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-}
-
-.section-content.active::-webkit-scrollbar {
-    display: none !important;
-}
-
-/* Additional fix: hide scrollbar on live stats specifically */
-#live-stats,
-.live-stats {
-    overflow: visible;
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-}
-
-#live-stats::-webkit-scrollbar,
-.live-stats::-webkit-scrollbar {
-    display: none !important;
-}
 }
 
 /* Unified paragraph spacing */
@@ -3003,15 +2982,29 @@ body.light .main-nav a.cta:hover {
 
 .contact-grid {
     display: flex;
-    gap: 18px
+    gap: 18px;
+    flex-wrap: wrap;
 }
 
 .contact-card {
     flex: 1;
+    min-width: 280px;
     background: linear-gradient(180deg, var(--card), var(--glass-2));
-    padding: 12px;
+    padding: 16px;
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.03)
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.contact-card h3 {
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.contact-card p {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Contact Form Label Styling with Green Glow */

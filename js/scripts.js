@@ -2,7 +2,6 @@
   // UI interactions for the portfolio (cleaned and deduplicated)
   const mobileToggle = document.getElementById('mobileToggle');
   const mainNav = document.getElementById('mainNav');
-  const themeToggle = document.getElementById('themeToggle');
   const downloadPdfBtn = document.getElementById('downloadPdfBtn');
   const downloadCvBtn = document.getElementById('downloadCvBtn');
 
@@ -11,20 +10,7 @@
     mobileToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
   }
 
-  // Theme toggle
-  function setTheme(theme) {
-    if (theme === 'light') document.body.classList.add('light');
-    else document.body.classList.remove('light');
-    localStorage.setItem('site-theme', theme);
-  }
-  (function initTheme() {
-    const savedTheme = localStorage.getItem('site-theme') || 'dark';
-    setTheme(savedTheme);
-    if (themeToggle) themeToggle.addEventListener('click', () => {
-      const next = document.body.classList.contains('light') ? 'dark' : 'light';
-      setTheme(next);
-    });
-  })();
+  // Theme toggle removed - handled by main.js to avoid conflicts
 
   // Smooth scrolling for internal links (exclude section navigation links)
   document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -62,14 +48,7 @@
     });
   }
 
-  // Fix viewport height on mobile (address bar issue)
-  function setViewportHeight() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }
-  setViewportHeight();
-  window.addEventListener('resize', setViewportHeight);
-  window.addEventListener('orientationchange', setViewportHeight);
+  // Viewport height fix removed - handled by main.js to avoid duplication
 
   // Close mobile nav when clicking outside
   if (mainNav) {

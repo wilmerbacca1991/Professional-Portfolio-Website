@@ -24,8 +24,6 @@ html {
     }
 
     body {
-        /* Prevent bounce effect while maintaining smooth scroll */
-        overscroll-behavior-y: none;
         /* Enable hardware acceleration for scrolling */
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
