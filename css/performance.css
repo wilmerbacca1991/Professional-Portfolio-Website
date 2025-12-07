@@ -1,0 +1,117 @@
+/* Mobile Performance Optimizations */
+/* Ultra-aggressive optimizations for buttery-smooth 60fps on all mobile devices */
+
+@media (max-width: 768px) {
+    /* Use will-change strategically only on actively animating elements */
+    .theme-toggle.spinning {
+        will-change: transform;
+    }
+    
+    /* Remove will-change from static elements to reduce memory */
+    * {
+        will-change: auto !important;
+    }
+    
+    /* Reduce paint complexity */
+    .card, .project-card, .stat-card, .contact-card {
+        contain: layout style paint;
+    }
+    
+    /* Force hardware acceleration only where needed */
+    .progress-bar,
+    .scrollbar::-webkit-scrollbar-thumb {
+        transform: translateZ(0);
+        will-change: width, opacity;
+    }
+    
+    /* Disable expensive text rendering */
+    body, * {
+        text-rendering: optimizeSpeed !important;
+        -webkit-font-smoothing: subpixel-antialiased !important;
+        -moz-osx-font-smoothing: auto !important;
+    }
+    
+    /* Simplify gradients to solid colors on mobile */
+    .hero-section {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+    }
+    
+    /* Remove complex background attachments */
+    * {
+        background-attachment: scroll !important;
+    }
+    
+    /* Optimize image rendering */
+    img {
+        image-rendering: -webkit-optimize-contrast;
+        transform: translateZ(0);
+    }
+    
+    /* Prevent layout thrashing */
+    .stat-value,
+    .project-title,
+    .skill-name {
+        contain: layout;
+    }
+    
+    /* Disable smooth scrolling on elements (use browser native) */
+    * {
+        scroll-behavior: auto !important;
+    }
+    
+    html {
+        scroll-behavior: smooth !important; /* Only on root */
+    }
+    
+    /* Reduce reflow on dynamic content */
+    .live-stats-content {
+        min-height: 400px; /* Prevent layout shift */
+    }
+    
+    /* Optimize form inputs */
+    input, textarea, select {
+        will-change: auto;
+        transform: translateZ(0);
+    }
+    
+    /* Prevent over-scrolling bounce (can cause jank) */
+    body {
+        overscroll-behavior-y: contain;
+    }
+    
+    /* Force compositing layers for smooth animations */
+    .particle-background canvas {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+    
+    /* Reduce complexity of navigation */
+    .main-nav {
+        will-change: transform;
+        backface-visibility: hidden;
+    }
+    
+    .main-nav:not(.open) {
+        will-change: auto;
+    }
+}
+
+/* Additional optimizations for low-end devices */
+@media (max-width: 768px) and (max-resolution: 1.5dppx) {
+    /* Further reduce effects on low-DPI screens (budget phones) */
+    .project-card,
+    .stat-card,
+    .contact-card {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    }
+    
+    /* Disable all animations on very low-end devices */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}

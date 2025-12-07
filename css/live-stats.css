@@ -20,7 +20,10 @@
 .live-stats *,
 .stats-grid,
 .stats-grid *,
-.stat-card {
+.stat-card,
+.stat-card *,
+.container.section-content,
+section.live-stats.container {
     scrollbar-width: none !important;
     scrollbar-color: transparent transparent !important;
     -ms-overflow-style: none !important;
@@ -32,7 +35,10 @@
 .live-stats *::-webkit-scrollbar,
 .stats-grid::-webkit-scrollbar,
 .stats-grid *::-webkit-scrollbar,
-.stat-card::-webkit-scrollbar {
+.stat-card::-webkit-scrollbar,
+.stat-card *::-webkit-scrollbar,
+.container.section-content::-webkit-scrollbar,
+section.live-stats.container::-webkit-scrollbar {
     display: none !important;
     width: 0 !important;
     height: 0 !important;
