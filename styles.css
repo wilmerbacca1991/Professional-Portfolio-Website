@@ -491,7 +491,6 @@ body {
     animation: rotateGradient 20s ease infinite;
     color: #a0f5c8;
     line-height: 1.65;
-    /* uniform body line-height */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -503,6 +502,11 @@ body {
     position: relative;
     isolation: isolate;
     text-rendering: optimizeLegibility;
+    /* Performance optimizations */
+    contain: layout style paint;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
 }
 
 /* Image rendering optimization */
@@ -839,6 +843,7 @@ video {
     background-size: 300% 100%;
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
     animation: borderGradientFlow 4s linear infinite;
     z-index: -1;
@@ -931,6 +936,7 @@ video {
     background-size: 300% 100%;
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
     animation: borderGradientFlow 4s linear infinite;
     z-index: -1;
@@ -1058,6 +1064,7 @@ video {
     background-size: 300% 100%;
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
     animation: borderGradientFlow 4s linear infinite;
     z-index: -1;
@@ -1256,20 +1263,6 @@ video {
         height: 40px;
         font-size: 1rem;
     }
-}
-
-/* Optimize rendering performance */
-body {
-    contain: content;
-    /* Hardware acceleration for smoother scrolling */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    /* Load heavy background effects after page load */
-    transition: background-image 0.3s ease;
-    /* Smooth scrolling behavior */
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Performance optimization for animations */
