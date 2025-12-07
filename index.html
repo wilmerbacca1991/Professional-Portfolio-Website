@@ -1014,6 +1014,8 @@
 			font-weight: 600 !important;
 			text-align: center !important;
 			min-width: 140px !important;
+			max-width: 160px !important;
+			width: max-content !important;
 			opacity: 0 !important;
 			visibility: hidden !important;
 			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -1025,26 +1027,14 @@
 			contain: layout style paint !important;
 			/* Ensure no parent transforms affect this */
 			margin: 0 !important;
-			padding-left: 12px !important;
-			padding-right: 12px !important;
 			/* Force viewport positioning */
-			max-width: none !important;
-			max-height: none !important;
-			width: auto !important;
+			max-height: fit-content !important;
 			height: auto !important;
 			box-shadow:
 				0 8px 25px rgba(0, 0, 0, 0.4),
 				0 4px 12px rgba(0, 230, 168, 0.2),
 				inset 0 1px 3px rgba(255, 255, 255, 0.15) !important;
 			pointer-events: none !important;
-			margin: 0 !important;
-			left: auto !important;
-			bottom: auto !important;
-			box-shadow:
-				0 8px 25px rgba(0, 0, 0, 0.4),
-				0 4px 12px rgba(0, 230, 168, 0.2),
-				inset 0 1px 3px rgba(255, 255, 255, 0.15);
-			pointer-events: none;
 		}
 
 		.scrollbar-progress-indicator.visible {
@@ -1135,6 +1125,8 @@
 				transform: translateY(0) translateX(20px) !important;
 				padding: 10px 14px !important;
 				min-width: 120px !important;
+				max-width: 140px !important;
+				width: max-content !important;
 				font-size: 11px !important;
 				border-radius: 10px !important;
 				backdrop-filter: blur(15px) !important;
@@ -1165,6 +1157,8 @@
 				bottom: 70px !important;
 				padding: 9px 12px !important;
 				min-width: 110px !important;
+				max-width: 130px !important;
+				width: max-content !important;
 				font-size: 10px !important;
 				border-radius: 8px !important;
 			}
@@ -1200,6 +1194,8 @@
 				bottom: 50px !important;
 				padding: 8px 12px !important;
 				min-width: 100px !important;
+				max-width: 120px !important;
+				width: max-content !important;
 			}
 		}
 	</style>
