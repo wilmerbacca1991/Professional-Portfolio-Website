@@ -11,13 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
-        // Enhanced theme toggle with animation
+        // Enhanced theme toggle with spinning animation
         themeToggle.addEventListener('click', function() {
-            // Add rotation animation
-            this.style.transform = 'rotate(360deg) scale(1.2)';
+            // Add spinning class for animation
+            this.classList.add('spinning');
+            
+            // Remove spinning class after animation completes
             setTimeout(() => {
-                this.style.transform = '';
-            }, 400);
+                this.classList.remove('spinning');
+            }, 600);
             
             // Toggle theme
             document.body.classList.toggle('light-theme');
