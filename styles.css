@@ -399,9 +399,14 @@ html {
     box-sizing: border-box;
     overflow-y: auto;
     overflow-x: hidden;
-    /* Hide default scrollbar completely */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    /* Custom scrollbar for Firefox - transparent by default */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+/* Show green scrollbar when scrolling (Firefox) */
+html.scrolling {
+    scrollbar-color: rgba(0, 230, 168, 1) rgba(0, 25, 20, 0.8);
 }
 
 /* Hide default scrollbar by default */
