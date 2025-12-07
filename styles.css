@@ -399,22 +399,23 @@ html {
     box-sizing: border-box;
     overflow-y: auto;
     overflow-x: hidden;
-    /* Hide default scrollbar */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
 }
 
-/* Hide default scrollbar for Chrome, Safari, Opera */
+/* Hide default scrollbar by default */
 html::-webkit-scrollbar {
-    display: none;
-}
-
-/* Custom scrollbar track - auto-hide */
-html.scrolling::-webkit-scrollbar {
     width: 12px;
-    display: block;
 }
 
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+}
+
+/* Show custom scrollbar when scrolling */
 html.scrolling::-webkit-scrollbar-track {
     background: rgba(15, 25, 50, 0.3);
     border-radius: 10px;
