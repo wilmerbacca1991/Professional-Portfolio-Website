@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Remove spinning class after animation completes
             setTimeout(() => {
                 this.classList.remove('spinning');
+                this.style.transform = 'none'; // Explicitly reset transform
             }, 600);
             
             // Toggle theme

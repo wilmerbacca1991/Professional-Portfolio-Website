@@ -10,50 +10,29 @@
     padding: 2rem;
     overflow-x: hidden;
     overflow-y: visible;
+    touch-action: pan-y;
 }
 
-/* CRITICAL: Force hide ALL scrollbars in live-stats section */
+/* CONSOLIDATED SCROLLBAR HIDING - All Live Stats elements */
 #live-stats,
 #live-stats *,
-section.live-stats,
-section.live-stats *,
-.section-content.live-stats,
-.section-content.live-stats * {
+.live-stats,
+.live-stats *,
+.stats-grid,
+.stats-grid *,
+.stat-card {
     scrollbar-width: none !important;
+    scrollbar-color: transparent transparent !important;
     -ms-overflow-style: none !important;
-    overflow-x: hidden !important;
 }
 
 #live-stats::-webkit-scrollbar,
 #live-stats *::-webkit-scrollbar,
-section.live-stats::-webkit-scrollbar,
-section.live-stats *::-webkit-scrollbar,
-.section-content.live-stats::-webkit-scrollbar,
-.section-content.live-stats *::-webkit-scrollbar {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-}
-
-/* Additional targeting for all possible states */
-#live-stats.section-content,
-#live-stats.section-content.active,
-#live-stats.section-content.active *,
-.live-stats.section-content,
-.live-stats.section-content.active,
-.live-stats.section-content.active * {
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-}
-
-#live-stats::-webkit-scrollbar,
-#live-stats.section-content::-webkit-scrollbar,
-#live-stats.section-content.active::-webkit-scrollbar,
-#live-stats.section-content.active *::-webkit-scrollbar,
 .live-stats::-webkit-scrollbar,
-.live-stats.section-content::-webkit-scrollbar,
-.live-stats.section-content.active::-webkit-scrollbar,
-.live-stats.section-content.active *::-webkit-scrollbar {
+.live-stats *::-webkit-scrollbar,
+.stats-grid::-webkit-scrollbar,
+.stats-grid *::-webkit-scrollbar,
+.stat-card::-webkit-scrollbar {
     display: none !important;
     width: 0 !important;
     height: 0 !important;
@@ -84,13 +63,8 @@ section.live-stats *::-webkit-scrollbar,
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
-    overflow: visible;
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-}
-
-.stats-grid::-webkit-scrollbar {
-    display: none !important;
+    overflow: visible !important;
+    touch-action: pan-y;
 }
 
 /* Ensure optimal layout for 6 cards */
@@ -119,12 +93,6 @@ section.live-stats *::-webkit-scrollbar,
     min-height: 280px;
     display: flex;
     flex-direction: column;
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-}
-
-.stat-card::-webkit-scrollbar {
-    display: none !important;
 }
 
 .stat-card::before {
@@ -508,6 +476,9 @@ section.live-stats *::-webkit-scrollbar,
     .live-stats {
         padding: 1rem;
         margin: 2rem auto;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y !important;
     }
 
     /* Fix text visibility on mobile */
@@ -515,6 +486,7 @@ section.live-stats *::-webkit-scrollbar,
     .news-card, .activity-card {
         background: rgba(15, 20, 30, 0.85) !important;
         backdrop-filter: blur(5px) !important;
+        touch-action: pan-y !important;
     }
 
     .stat-card h3, .stat-card h4,
@@ -537,6 +509,7 @@ section.live-stats *::-webkit-scrollbar,
     .stats-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
+        touch-action: pan-y !important;
     }
 
     .stat-card {

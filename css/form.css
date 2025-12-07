@@ -249,6 +249,18 @@
     .contact-card {
         padding: 1.5rem;
     }
+    
+    .contact-card h3 {
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+    
+    .contact-card p {
+        margin-bottom: 0.75rem;
+        line-height: 1.6;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
 
     .email-container {
         flex-direction: column;
@@ -356,8 +368,9 @@
 
 .copy-feedback {
     position: absolute;
-    top: -40px;
-    left: 0;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
     background: var(--secondary);
     color: var(--dark);
     padding: 8px 16px;
@@ -365,16 +378,16 @@
     font-size: 14px;
     font-weight: 600;
     opacity: 0;
-    transform: translateY(10px);
     transition: all 0.3s ease;
     pointer-events: none;
     white-space: nowrap;
     box-shadow: 0 4px 20px rgba(0, 230, 168, 0.3);
+    z-index: 1000;
 }
 
 .copy-feedback.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
 }
 
 /* Social Icons Interactive Effects */
