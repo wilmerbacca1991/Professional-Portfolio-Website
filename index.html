@@ -1219,6 +1219,38 @@
 
 	<script>
 
+		// Custom scrollbar auto-hide functionality
+		(function() {
+			let scrollTimeout;
+			const html = document.documentElement;
+			
+			function showScrollbar() {
+				html.classList.add('scrolling');
+			}
+			
+			function hideScrollbar() {
+				html.classList.remove('scrolling');
+			}
+			
+			// Show scrollbar when scrolling
+			window.addEventListener('scroll', function() {
+				showScrollbar();
+				
+				// Clear existing timeout
+				clearTimeout(scrollTimeout);
+				
+				// Hide scrollbar after 1 second of no scrolling
+				scrollTimeout = setTimeout(hideScrollbar, 1000);
+			}, { passive: true });
+			
+			// Also show on wheel event for immediate feedback
+			window.addEventListener('wheel', function() {
+				showScrollbar();
+				clearTimeout(scrollTimeout);
+				scrollTimeout = setTimeout(hideScrollbar, 1000);
+			}, { passive: true });
+		})();
+
 
 		document.addEventListener('DOMContentLoaded', function () {
 			// Create progress indicator as direct child of body
