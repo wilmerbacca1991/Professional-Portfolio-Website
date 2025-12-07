@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <rect width="800" height="520" rx="14" fill="#031018"/>
+  <rect x="28" y="22" width="744" height="56" rx="8" fill="#071826"/>
+  <!-- left panel -->
+  <rect x="28" y="96" width="260" height="380" rx="10" fill="#05121a"/>
+  <rect x="308" y="96" width="464" height="380" rx="10" fill="#051224"/>
+  <!-- left list -->
+  <g fill="#9fb3c6" font-family="Arial">
+    <text x="44" y="132" font-size="16">Model: ResNet-34</text>
+    <text x="44" y="164" font-size="14">Dataset: InSightSet v2</text>
+  </g>
+  <!-- right visual -->
+  <rect x="328" y="124" width="420" height="220" rx="6" fill="#071425"/>
+  <circle cx="520" cy="229" r="62" fill="#00e6a8" opacity="0.12"/>
+  <rect x="360" y="360" width="320" height="90" rx="6" fill="#071425"/>
+  <g fill="#fff" font-family="Arial">
+    <text x="336" y="164" font-size="20">Feature attribution</text>
+    <text x="336" y="196" font-size="14" fill="#9fb3c6">Top tokens and importance</text>
+  </g>
+  <g fill="#93a0b2" font-family="Arial" font-size="14">
+    <text x="28" y="500">InSight — ML interpretability toolkit</text>
+  </g>
+</svg>

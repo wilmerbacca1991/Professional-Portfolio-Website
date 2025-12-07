@@ -1,0 +1,12 @@
+{
+  "name": "wilmer-bacca-portfolio",
+  "version": "1.0.0",
+  "description": "Static portfolio for Wilmer Bacca's - Senior Software Developer Professional Website",
+  "scripts": {
+    "start": "live-server . --port=8080",
+    "build:docker": "docker build -t wilmer-portfolio ."
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

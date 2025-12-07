@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FastGraph - High-Performance Graph Processing | Wilmer Bacca</title>
+    
+    <!-- Critical CSS -->
+    <link href="../css/optimizations.css" rel="stylesheet">
+    <link href="../styles.css" rel="stylesheet">
+    <link href="../css/project.css" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html"><span class="text-primary">WB</span>.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../pages/projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/cv.html">CV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/experience.html">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Header -->
+    <header class="project-header text-white">
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-transparent p-0 mb-3">
+                            <li class="breadcrumb-item"><a href="../projects.html">Projects</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">FastGraph</li>
+                        </ol>
+                    </nav>
+                    <h1 class="display-4 mb-4">FastGraph</h1>
+                    <p class="lead mb-4">A revolutionary high-performance C++ graph processing engine designed for enterprise-scale applications.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <!-- TODO: replace href with real repository URL -->
+                        <a href="https://github.com/wilmerbacca1991/fastgraph" class="btn btn-light btn-lg" aria-label="Open FastGraph repository" data-project="FastGraph">View Repository</a>
+                        <!-- TODO: replace href with real docs URL -->
+                        <a href="#" class="btn btn-outline-light btn-lg" aria-label="Open FastGraph documentation" data-project="FastGraph">Documentation</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="../assets/fastgraph-logo.svg" alt="FastGraph logo" class="img-fluid project-logo mt-5 mt-lg-0" width="400">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Content -->
+    <section class="project-content">
+        <div class="container">
+            <!-- Overview -->
+            <div class="row mb-5">
+                <div class="col-lg-8">
+                    <h2 class="h1 mb-4">Project Overview</h2>
+                    <p class="lead text-muted">FastGraph represents a breakthrough in graph processing technology, delivering unprecedented performance for enterprise applications.</p>
+                    <p>The engine utilizes cutting-edge C++20 features and advanced optimization techniques to achieve remarkable processing speeds while maintaining memory efficiency. It's designed for scalability and seamless integration into existing enterprise systems.</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h3 class="h5 mb-4">Quick Stats</h3>
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <i class="fas fa-code me-2 text-primary"></i>
+                                    <strong>Language:</strong> C++20
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-clock me-2 text-primary"></i>
+                                    <strong>Processing Speed:</strong> 1M+ edges/sec
+                                </li>
+                                <li class="mb-3">
+                                    <i class="fas fa-memory me-2 text-primary"></i>
+                                    <strong>Memory Usage:</strong> 60% reduction
+                                </li>
+                                <li>
+                                    <i class="fas fa-users me-2 text-primary"></i>
+                                    <strong>Active Users:</strong> 30K+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Features -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="h1 mb-4">Key Features</h2>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-bolt fa-2x text-primary"></i>
+                            </div>
+                            <h3 class="h5">SIMD Optimization</h3>
+                            <p class="text-muted">Utilizes CPU vectorization for parallel processing of graph operations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-lock-open fa-2x text-primary"></i>
+                            </div>
+                            <h3 class="h5">Lock-free Design</h3>
+                            <p class="text-muted">Advanced concurrency patterns for maximum throughput.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-copy fa-2x text-primary"></i>
+                            </div>
+                            <h3 class="h5">Zero-copy Pipeline</h3>
+                            <p class="text-muted">Eliminates unnecessary data copying for optimal performance.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-chart-line fa-2x text-primary"></i>
+                            </div>
+                            <h3 class="h5">Real-time Analytics</h3>
+                            <p class="text-muted">Built-in monitoring and performance analytics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Details -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="h1 mb-4">Technical Deep Dive</h2>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <h3 class="h4 mb-3">Architecture</h3>
+                    <p>FastGraph's architecture is built on three core principles:</p>
+                    <ul>
+                        <li>Modular component design for easy extensibility</li>
+                        <li>Lock-free concurrent data structures</li>
+                        <li>SIMD-optimized core algorithms</li>
+                    </ul>
+                    <p>The engine uses custom memory allocators and a zero-copy pipeline to minimize overhead and maximize throughput.</p>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <h3 class="h4 mb-3">Performance Optimizations</h3>
+                    <ul>
+                        <li>Custom memory allocators for graph structures</li>
+                        <li>SIMD instruction sets for parallel processing</li>
+                        <li>Cache-friendly data layouts</li>
+                        <li>Lock-free concurrent algorithms</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="h1 mb-4">Performance Metrics</h2>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="display-4 text-primary">10x</h3>
+                            <p class="text-muted">Faster than baseline</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="display-4 text-primary">60%</h3>
+                            <p class="text-muted">Less memory usage</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card text-center border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="display-4 text-primary">1M+</h3>
+                            <p class="text-muted">Edges processed per second</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Use Cases -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="h1 mb-4">Use Cases</h2>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="h5">Social Network Analysis</h3>
+                            <p>Processing large-scale social graphs for recommendation engines and influence analysis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="h5">Financial Transactions</h3>
+                            <p>Real-time fraud detection and transaction pattern analysis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="h5">Supply Chain Optimization</h3>
+                            <p>Route optimization and logistics network analysis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2 class="h1 mb-4">Gallery</h2>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <img src="../assets/fastgraph-screenshot1.svg" alt="FastGraph Dashboard" class="img-fluid rounded project-screenshot">
+                </div>
+                <div class="col-md-4 mb-4">
+                    <img src="../assets/fastgraph-screenshot2.svg" alt="Performance Metrics" class="img-fluid rounded project-screenshot">
+                </div>
+                <div class="col-md-4 mb-4">
+                    <img src="../assets/fastgraph-screenshot3.svg" alt="Graph Visualization" class="img-fluid rounded project-screenshot">
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="h1 mb-4">Ready to Get Started?</h2>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="#" class="btn btn-primary btn-lg">View Documentation</a>
+                        <a href="#" class="btn btn-outline-primary btn-lg">Download SDK</a>
+                        <a href="#" class="btn btn-outline-primary btn-lg">View Source</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">© 2025 Wilmer Bacca. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Project tracking (safe) -->
+    <script src="../js/project-tracking.js"></script>
+</body>
+</html>

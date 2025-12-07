@@ -1,0 +1,89 @@
+/* Color Scheme Module */
+:root {
+    /* Primary Colors */
+    --color-primary-100: #f3f0ff;
+    --color-primary-200: #e5dbff;
+    --color-primary-300: #d0bfff;
+    --color-primary-400: #b197fc;
+    --color-primary-500: #7c5cff;  /* Main Primary */
+    --color-primary-600: #6246e5;
+    --color-primary-700: #5235c1;
+    --color-primary-800: #40279e;
+    --color-primary-900: #2d1b7e;
+
+    /* Secondary Colors */
+    --color-secondary-100: #e3fdf5;
+    --color-secondary-200: #c1fce9;
+    --color-secondary-300: #88f5d4;
+    --color-secondary-400: #36edb0;
+    --color-secondary-500: #00e6a8;  /* Main Secondary */
+    --color-secondary-600: #00c38e;
+    --color-secondary-700: #00a077;
+    --color-secondary-800: #007d5c;
+    --color-secondary-900: #005a42;
+
+    /* Gradient Colors */
+    --color-gradient-1: #ff3399;
+    --color-gradient-2: #7c5cff;
+    --color-gradient-3: #00e6a8;
+    --color-gradient-4: #3366ff;
+
+    /* Neutral Colors */
+    --color-dark-100: #2d2d3a;
+    --color-dark-200: #252531;
+    --color-dark-300: #1e1e28;
+    --color-dark-400: #16161f;
+    --color-dark-500: #05060a;  /* Main Background */
+
+    /* Text Colors */
+    --color-text-primary: #d8e6f2;
+    --color-text-secondary: #93a0b2;
+    --color-text-muted: #6c757d;
+
+    /* UI Colors */
+    --color-success: #00e676;
+    --color-warning: #ffd600;
+    --color-error: #ff1744;
+    --color-info: #00b0ff;
+
+    /* Overlay Colors */
+    --color-overlay-light: rgba(255, 255, 255, 0.03);
+    --color-overlay-medium: rgba(255, 255, 255, 0.05);
+    --color-overlay-dark: rgba(0, 0, 0, 0.5);
+
+    /* Shadow Colors */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --glow-color: rgba(124, 92, 255, 0.3);
+}
+
+/* Gradient Mixins */
+.gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-secondary-500));
+}
+
+.gradient-rainbow {
+    background: linear-gradient(
+        45deg,
+        var(--color-gradient-1),
+        var(--color-gradient-2),
+        var(--color-gradient-3),
+        var(--color-gradient-4)
+    );
+}
+
+/* Color Utility Classes */
+.text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.border-gradient {
+    border: 2px solid;
+    border-image: linear-gradient(45deg, var(--color-gradient-1), var(--color-gradient-4)) 1;
+}
+
+.glow-primary {
+    box-shadow: 0 0 20px var(--glow-color);
+}

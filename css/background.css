@@ -1,0 +1,62 @@
+/* Background Animation Styles */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.85;
+    mix-blend-mode: screen;
+}
+
+/* Ensure content stays above the animation but doesn't block it */
+main, header, footer {
+    position: relative;
+    z-index: 1;
+}
+
+section {
+    position: relative;
+    z-index: 0;
+}
+
+/* Ensure container and content have transparent backgrounds */
+.container,
+.projects,
+.cv,
+.experience {
+    position: relative;
+    z-index: auto;
+    background: transparent;
+}
+
+section > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Additional background effects */
+.glow-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(124, 92, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 230, 168, 0.05) 0%, transparent 50%);
+    z-index: 0;
+    mix-blend-mode: screen;
+}
+
+/* Mobile optimizations for better visibility */
+@media (max-width: 768px) {
+    .background-animation {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,605 @@
+/* Enhanced Section Styles */
+section {
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+/* Projects section needs visible overflow to avoid clipped glows and ensure natural stacking */
+section.projects {
+    overflow: visible;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gradient-primary);
+    opacity: 0.1;
+}
+
+/* Enhanced headings with glow effect */
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #ffa347;
+    text-align: center;
+    transform: translateZ(20px);
+    text-shadow: 
+        0 0 15px rgba(255, 163, 71, 0.6),
+        0 0 30px rgba(255, 163, 71, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Projects section title alignment to match Experience section */
+.projects h2 {
+    text-align: left;
+}
+
+.section-lead {
+    text-align: justify;
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    transform: translateZ(15px);
+}
+
+/* Enhanced project cards */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    transform-style: preserve-3d;
+    grid-auto-flow: row;
+    grid-auto-rows: auto;
+    justify-items: center; /* center cards horizontally */
+}
+
+.project-card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 2rem;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 920px; /* uniform card width to match FastGraph */
+    overflow: visible; /* allow content to display fully */
+    height: auto; /* dynamic height */
+    min-height: auto; /* remove fixed min-height so JS can control it */
+    opacity: 1;
+}
+
+/* Ensure natural height on project cards; override any global aspect-ratio */
+section.projects .project-card {
+    aspect-ratio: auto;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+}
+
+/* Fade-in animation class applied by JS */
+.project-card.resizing {
+    opacity: 0.7;
+    transition: opacity 0.2s ease, min-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card.resized {
+    opacity: 1;
+    transition: opacity 0.3s ease 0.1s, min-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animated multicolor glowing border - blurred outer glow */
+.project-card::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 24px;
+    background: linear-gradient(
+        45deg,
+        #ff0080,
+        #ff0080,
+        #ff8c00,
+        #ffa347,
+        #00e6a8,
+        #00e6a8,
+        #7c5cff,
+        #7c5cff,
+        #ff0080
+    );
+    background-size: 400% 400%;
+    animation: rotateBorder 8s linear infinite;
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0.7;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 3px;
+}
+
+/* Sharp inner border */
+.project-card::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 24px;
+    background: linear-gradient(
+        45deg,
+        #ff0080,
+        #ff0080,
+        #ff8c00,
+        #ffa347,
+        #00e6a8,
+        #00e6a8,
+        #7c5cff,
+        #7c5cff,
+        #ff0080
+    );
+    background-size: 400% 400%;
+    animation: rotateBorder 8s linear infinite;
+    z-index: -2;
+    opacity: 1;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 3px;
+}
+
+.project-card:hover {
+    /* Avoid vertical shift that can cause perceived overlap; keep visual emphasis via shadow only */
+    transform: translateY(-4px);
+    box-shadow: 0 12px 48px rgba(124, 92, 255, 0.4),
+                0 0 80px rgba(255, 163, 71, 0.2),
+                0 0 120px rgba(0, 230, 168, 0.15);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+    filter: blur(15px);
+}
+
+.project-card:hover::after {
+    opacity: 1;
+}
+
+.card-media {
+    margin: 0 0 1rem;
+    padding: 1.25rem;
+    background: var(--glass);
+    border-radius: 24px 24px 0 0;
+    text-align: center;
+    transform-style: preserve-3d;
+}
+
+.card-media img {
+    max-width: 96px;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(124, 92, 255, 0.15));
+    transition: all 0.4s ease;
+    transform: translateZ(20px);
+}
+
+.project-card:hover .card-media img {
+    transform: translateZ(40px) scale(1.05);
+    filter: drop-shadow(0 8px 24px rgba(124, 92, 255, 0.25));
+}
+
+.card-body {
+    position: relative;
+    z-index: 1;
+    transform-style: preserve-3d;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    line-height: 1.35;
+    color: #ffa347;
+    transform: translateZ(15px);
+    text-shadow: 
+        0 0 15px rgba(255, 163, 71, 0.6),
+        0 0 30px rgba(255, 163, 71, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.card-body p {
+    color: var(--text);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.1px;
+    transform: translateZ(10px);
+    text-align: justify;
+}
+
+.project-details {
+    margin: 1rem 0 0.75rem;
+    transform-style: preserve-3d;
+}
+
+.project-details h4 {
+    color: #ffa347;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    transform: translateZ(12px);
+    text-shadow: 
+        0 0 15px rgba(255, 163, 71, 0.6),
+        0 0 30px rgba(255, 163, 71, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.tech-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    transform: translateZ(8px);
+}
+
+.tech-list li {
+    padding: 0.35rem 0.7rem;
+    background: var(--glass);
+    border-radius: 16px;
+    font-size: 0.85rem;
+    color: var(--accent);
+    border: var(--border-glow);
+    transition: all 0.3s ease;
+}
+
+.tech-list li:hover {
+    transform: translateZ(15px);
+    box-shadow: var(--glow);
+    background: var(--glass-2);
+}
+
+.project-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+    transform-style: preserve-3d;
+}
+
+.metric {
+    text-align: center;
+    padding: 1rem;
+    background: var(--glass);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    border: var(--border-glow);
+    transform: translateZ(10px);
+}
+
+.metric:hover {
+    transform: translateZ(20px);
+    box-shadow: var(--glow);
+}
+
+.metric-value {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--accent-2);
+    display: block;
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.card-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-top: auto;
+    transform: translateZ(15px);
+    padding-top: 0.5rem;
+}
+
+.card-link {
+    padding: 0.75rem 1.2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #a0f5c8;
+    background: rgba(18, 18, 27, 0.8);
+    border: 2px solid transparent;
+    background-image: 
+        linear-gradient(rgba(18, 18, 27, 0.9), rgba(18, 18, 27, 0.9)),
+        linear-gradient(135deg, #ff0080, #ff8c00, #00e6a8, #7c5cff);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 0 12px rgba(160, 245, 200, 0.4);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(124, 92, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-link::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff0080, #ff8c00, #00e6a8, #7c5cff, #ff0080);
+    background-size: 300% 300%;
+    animation: gradientShift 6s linear infinite;
+    z-index: -1;
+    opacity: 0;
+    filter: blur(8px);
+    transition: opacity 0.4s ease;
+}
+
+.card-link:hover {
+    transform: translateY(-3px) translateZ(20px) scale(1.02);
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(124, 92, 255, 0.5),
+        0 0 60px rgba(0, 230, 168, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    color: #c0ffd8;
+    text-shadow: 
+        0 0 20px rgba(160, 245, 200, 0.8),
+        0 0 40px rgba(160, 245, 200, 0.5);
+}
+
+.card-link:hover::before {
+    opacity: 1;
+}
+
+/* Desktop-only tightening of card bottom spacing */
+@media (min-width: 769px) {
+    .projects-grid .project-card {
+        /* Keep generous padding on sides/top, further reduce bottom padding */
+        padding: 2rem 2rem 0.5rem;
+    }
+
+    .projects-grid .project-card .card-links {
+        margin-bottom: 0; /* ensure links sit close to bottom border */
+    }
+}
+
+/* Hero section - wider to stand out */
+section.hero {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 6vw;
+    padding-right: 6vw;
+}
+
+/* About, CV, and Experience sections - consistent narrower layout */
+section.about,
+section.cv,
+section.experience {
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+
+@media (max-width: 768px) {
+    section.hero {
+        max-width: 98vw;
+        padding-left: 6vw;
+        padding-right: 6vw;
+    }
+    
+    section.about,
+    section.projects,
+    section.cv,
+    section.experience {
+        max-width: 98vw;
+        padding-left: 4vw;
+        padding-right: 4vw;
+    }
+}
+
+@media (max-width: 480px) {
+    section.hero {
+        max-width: 100vw;
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+    
+    section.about,
+    section.projects,
+    section.cv,
+    section.experience {
+        max-width: 100vw;
+        padding-left: 3vw;
+        padding-right: 3vw;
+    }
+}
+
+/* Header and Contact sections - consistent layout */
+/* Header full-width - removed from this rule */
+section.contact {
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+
+@media (max-width: 768px) {
+    /* Header full-width - removed from this rule */
+    section.contact {
+        max-width: 98vw;
+        padding-left: 4vw;
+        padding-right: 4vw;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Header full-width - removed from this rule */
+    section.contact {
+        max-width: 100vw;
+        padding-left: 3vw;
+        padding-right: 3vw;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    section {
+        padding: 4rem 0;
+        margin: 3rem auto;
+        border-radius: 20px;
+           transform-style: flat;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .projects-grid {
+           gap: 2rem;
+           padding: 0;
+           transform-style: flat;
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+        width: 100%;
+       }
+
+    .project-card {
+        /* Tighten bottom padding so buttons sit closer to the card edge on mobile */
+        padding: 1.25rem 1rem 0.75rem;
+        max-width: 100%;
+        width: 100%;
+        border-radius: 16px;
+        transform: none;
+        transform-style: flat;
+        margin-bottom: 2rem;
+    }
+
+       .project-card::before,
+       .project-card::after {
+           border-radius: 16px;
+    }
+
+    .card-media {
+        margin: 0 0 1rem;
+        padding: 0;
+        transform: none;
+    }
+
+    .card-media img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+       .card-header h3,
+       .card-content,
+       .tech-list,
+       .project-metrics,
+       .card-links {
+           transform: none;
+       }
+
+    .card-links {
+        flex-direction: column;
+        gap: 0.85rem;
+    }
+
+    .card-link {
+        width: 100%;
+        text-align: center;
+        padding: 0.85rem 1rem;
+           transform: none;
+       }
+
+    /* Ensure the buttons sit close to the bottom border on mobile */
+    .project-card .card-links {
+        margin-bottom: 0;
+    }
+
+       .card-link:hover {
+           transform: translateY(-2px) scale(1.02);
+    }
+}
+
+/* Readability for achievement lists inside project cards */
+.achievement-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+
+.achievement-list li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.65rem;
+    color: var(--text);
+    line-height: 1.65;
+}
+
+.achievement-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(124, 92, 255, 0.5);
+}
+
+/* Meta text at bottom of card */
+.card-meta {
+    margin-top: 0.5rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+/* Triangle layout for 3 cards: apex on top, two below (desktop) */
+@media (min-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* stack one after another on desktop too */
+    }
+    /* Let cards grow naturally to fit content */
+    .projects-grid .project-card {
+        min-height: unset; /* remove fixed height so cards expand dynamically */
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .card-media img,
+    .metric,
+    .card-link,
+    .tech-list li {
+        transition: none;
+        animation: none;
+    }
+}

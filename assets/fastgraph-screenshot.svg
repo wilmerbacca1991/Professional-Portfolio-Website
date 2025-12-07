@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0" stop-color="#07121a"/>
+      <stop offset="1" stop-color="#0b2b2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" rx="14" fill="url(#bg)" stroke="#0f1720"/>
+  <!-- header -->
+  <rect x="24" y="18" width="320" height="36" rx="6" fill="#081826"/>
+  <rect x="360" y="18" width="420" height="36" rx="6" fill="#081826"/>
+  <!-- chart area -->
+  <rect x="24" y="72" width="752" height="300" rx="8" fill="#061018"/>
+  <!-- lines -->
+  <polyline points="48,340 120,260 200,280 280,220 360,240 440,180 520,210 600,150 680,190 760,140" fill="none" stroke="#7c5cff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+  <circle cx="760" cy="140" r="8" fill="#00e6a8"/>
+  <!-- sidebar stats -->
+  <rect x="24" y="388" width="220" height="110" rx="8" fill="#071624"/>
+  <text x="36" y="420" fill="#9fb3c6" font-size="20" font-family="Arial">Throughput</text>
+  <text x="36" y="448" fill="#fff" font-size="28" font-weight="700">12,430 qps</text>
+  <rect x="264" y="388" width="512" height="110" rx="8" fill="#071624"/>
+  <text x="276" y="420" fill="#9fb3c6" font-size="20">Latency (p99)</text>
+  <text x="276" y="448" fill="#fff" font-size="28" font-weight="700">18 ms</text>
+  <!-- footer badges -->
+  <g fill="#93a0b2" font-family="Arial" font-size="14">
+    <text x="24" y="516">FastGraph — real-time graph engine</text>
+  </g>
+</svg>
