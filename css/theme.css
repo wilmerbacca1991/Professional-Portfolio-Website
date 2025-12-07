@@ -1,0 +1,306 @@
+/* =============================================================================
+   ENHANCED THEME SYSTEM - Dark/Light Mode with Smooth Transitions
+   ============================================================================= */
+
+/* Smooth theme transition for all color-based properties */
+body {
+    transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced theme toggle button */
+.theme-toggle {
+    position: relative;
+    background: linear-gradient(135deg, rgba(0, 230, 168, 0.1), rgba(124, 92, 255, 0.1));
+    border: 2px solid rgba(0, 230, 168, 0.3);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 230, 168, 0.2);
+}
+
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 230, 168, 0.2), rgba(124, 92, 255, 0.2));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 6px 25px rgba(0, 230, 168, 0.4);
+    border-color: rgba(0, 230, 168, 0.6);
+}
+
+.theme-toggle:hover::before {
+    opacity: 1;
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Light theme styles */
+body.light-theme {
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8ecf1 50%, #dfe3e8 100%);
+    color: #1a202c;
+}
+
+/* Light theme - Header */
+body.light-theme .site-header {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 230, 168, 0.2);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .main-nav a {
+    color: #2d3748;
+}
+
+body.light-theme .main-nav a:hover,
+body.light-theme .main-nav a.active {
+    color: #00b894;
+}
+
+/* Light theme - Cards */
+body.light-theme .card,
+body.light-theme .project-card,
+body.light-theme .contact-card,
+body.light-theme .stat-card {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(0, 230, 168, 0.2) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .card:hover,
+body.light-theme .project-card:hover,
+body.light-theme .contact-card:hover,
+body.light-theme .stat-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 230, 168, 0.15);
+    border-color: rgba(0, 230, 168, 0.4) !important;
+}
+
+/* Light theme - Text */
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3,
+body.light-theme h4,
+body.light-theme h5,
+body.light-theme h6 {
+    color: #1a202c !important;
+}
+
+body.light-theme p,
+body.light-theme li,
+body.light-theme span {
+    color: #2d3748 !important;
+}
+
+body.light-theme .section-lead {
+    color: #4a5568 !important;
+}
+
+/* Light theme - Buttons */
+body.light-theme .btn {
+    background: linear-gradient(135deg, #00b894, #00cec9);
+    color: #ffffff !important;
+    border-color: #00b894;
+    box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+}
+
+body.light-theme .btn:hover {
+    background: linear-gradient(135deg, #00cec9, #00b894);
+    box-shadow: 0 6px 25px rgba(0, 184, 148, 0.4);
+    transform: translateY(-2px);
+}
+
+body.light-theme .btn.ghost {
+    background: transparent;
+    color: #00b894 !important;
+    border: 2px solid #00b894;
+}
+
+body.light-theme .btn.ghost:hover {
+    background: rgba(0, 184, 148, 0.1);
+    border-color: #00cec9;
+}
+
+/* Light theme - Forms */
+body.light-theme input,
+body.light-theme textarea,
+body.light-theme select {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #1a202c !important;
+    border: 2px solid rgba(0, 230, 168, 0.3) !important;
+}
+
+body.light-theme input:focus,
+body.light-theme textarea:focus,
+body.light-theme select:focus {
+    border-color: rgba(0, 184, 148, 0.6) !important;
+    box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
+}
+
+body.light-theme input::placeholder,
+body.light-theme textarea::placeholder {
+    color: #718096 !important;
+}
+
+/* Light theme - Background animation */
+body.light-theme .background-animation {
+    opacity: 0.3 !important;
+    mix-blend-mode: multiply;
+}
+
+/* Light theme - Scrollbar */
+body.light-theme html.scrolling {
+    scrollbar-color: rgba(0, 184, 148, 1) rgba(240, 244, 248, 0.8);
+}
+
+body.light-theme html.scrolling::-webkit-scrollbar-track {
+    background: linear-gradient(90deg,
+        rgba(240, 244, 248, 0.9) 0%,
+        rgba(232, 236, 241, 0.95) 50%,
+        rgba(240, 244, 248, 0.9) 100%);
+    border: 1px solid rgba(0, 184, 148, 0.2);
+}
+
+body.light-theme html.scrolling::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, 
+        rgba(0, 206, 201, 1) 0%,
+        rgba(0, 184, 148, 1) 50%, 
+        rgba(0, 168, 132, 1) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 
+        0 0 15px rgba(0, 184, 148, 0.6),
+        0 0 30px rgba(0, 206, 201, 0.4),
+        inset 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Light theme - Progress indicator */
+body.light-theme .scrollbar-progress-indicator {
+    background: rgba(255, 255, 255, 0.98) !important;
+    color: #00b894 !important;
+    border: 1px solid rgba(0, 184, 148, 0.3) !important;
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.1),
+        0 4px 12px rgba(0, 184, 148, 0.15) !important;
+}
+
+body.light-theme .progress-percentage {
+    color: #00b894 !important;
+    text-shadow: 0 0 8px rgba(0, 184, 148, 0.4) !important;
+}
+
+body.light-theme .progress-remaining {
+    color: rgba(0, 184, 148, 0.7) !important;
+}
+
+/* Light theme - Skills */
+body.light-theme .skill-bar {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .skill-progress {
+    background: linear-gradient(90deg, #00b894, #00cec9);
+    box-shadow: 0 2px 8px rgba(0, 184, 148, 0.3);
+}
+
+/* Light theme - Timeline */
+body.light-theme .timeline-item {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-left: 3px solid #00b894;
+}
+
+body.light-theme .timeline-item::before {
+    background: #00b894;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 1), 0 0 0 8px rgba(0, 184, 148, 0.2);
+}
+
+/* Light theme - Links */
+body.light-theme a {
+    color: #00b894;
+}
+
+body.light-theme a:hover {
+    color: #00cec9;
+}
+
+/* Light theme - Code blocks */
+body.light-theme code,
+body.light-theme pre {
+    background: rgba(0, 0, 0, 0.05);
+    color: #00b894;
+    border: 1px solid rgba(0, 184, 148, 0.2);
+}
+
+/* Light theme - Shadows and glows - reduce intensity */
+body.light-theme .card::before,
+body.light-theme .project-card::before,
+body.light-theme .stat-card::before {
+    opacity: 0.5;
+}
+
+/* Light theme - Hero section */
+body.light-theme .hero {
+    background: linear-gradient(135deg, rgba(240, 244, 248, 0.5) 0%, rgba(232, 236, 241, 0.5) 100%);
+}
+
+body.light-theme .tagline {
+    color: #1a202c !important;
+}
+
+body.light-theme .lead {
+    color: #2d3748 !important;
+}
+
+/* Light theme - Portrait */
+body.light-theme .portrait-frame {
+    border: 3px solid rgba(0, 184, 148, 0.3);
+    box-shadow: 0 8px 30px rgba(0, 184, 148, 0.15);
+}
+
+body.light-theme .portrait-frame::before {
+    background: linear-gradient(135deg, rgba(0, 184, 148, 0.1), rgba(0, 206, 201, 0.1));
+}
+
+/* Mobile optimizations for theme toggle */
+@media (max-width: 768px) {
+    .theme-toggle {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+    }
+    
+    body.light-theme .background-animation {
+        opacity: 0.2 !important;
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    body,
+    * {
+        transition: none !important;
+    }
+    
+    .theme-toggle {
+        transition: none !important;
+    }
+}
