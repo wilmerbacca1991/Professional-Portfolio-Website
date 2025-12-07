@@ -10,12 +10,12 @@
 html {
     overflow: auto;
     scrollbar-width: thin;
-    scrollbar-color: rgba(124, 92, 255, 0.5) transparent;
+    scrollbar-color: transparent transparent;
 }
 
 /* Hide scrollbar by default, show on hover/scroll */
 html::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 html::-webkit-scrollbar-track {
@@ -23,12 +23,17 @@ html::-webkit-scrollbar-track {
 }
 
 html::-webkit-scrollbar-thumb {
-    background: rgba(124, 92, 255, 0.3);
+    background: transparent;
     border-radius: 10px;
     transition: background 0.3s ease;
 }
 
-html::-webkit-scrollbar-thumb:hover {
+/* Show scrollbar on hover */
+html:hover::-webkit-scrollbar-thumb {
+    background: rgba(124, 92, 255, 0.3);
+}
+
+html::-webkit-scrollbar-thumb:active {
     background: rgba(124, 92, 255, 0.6);
 }
 
@@ -37,11 +42,11 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
-    scrollbar-color: rgba(124, 92, 255, 0.5) transparent;
+    scrollbar-color: transparent transparent;
 }
 
 body::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 body::-webkit-scrollbar-track {
@@ -49,12 +54,17 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-    background: rgba(124, 92, 255, 0.3);
+    background: transparent;
     border-radius: 10px;
     transition: background 0.3s ease;
 }
 
-body::-webkit-scrollbar-thumb:hover {
+/* Show scrollbar on hover */
+body:hover::-webkit-scrollbar-thumb {
+    background: rgba(124, 92, 255, 0.3);
+}
+
+body::-webkit-scrollbar-thumb:active {
     background: rgba(124, 92, 255, 0.6);
 }
 
@@ -167,16 +177,7 @@ button {
     touch-action: manipulation;
 }
 
-/* Optimize scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--accent);
-    border-radius: 4px;
-}
+/* Remove duplicate scrollbar styles - handled in components.css */
 
 /* Optimize tap targets */
 button,
