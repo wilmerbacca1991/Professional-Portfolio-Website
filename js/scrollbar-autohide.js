@@ -7,34 +7,50 @@
 
     function showScrollbar() {
         scrollbarStyle.textContent = `
-            ::-webkit-scrollbar {
-                display: block !important;
-                width: 8px;
-            }
-            ::-webkit-scrollbar-track {
-                background: transparent;
-            }
-            ::-webkit-scrollbar-thumb {
-                background: rgba(124, 92, 255, 0.5);
-                border-radius: 4px;
-            }
-            ::-webkit-scrollbar-thumb:hover {
-                background: rgba(124, 92, 255, 0.8);
-            }
-            html {
+            * {
                 scrollbar-width: thin !important;
                 scrollbar-color: rgba(124, 92, 255, 0.5) transparent !important;
+            }
+            *::-webkit-scrollbar {
+                display: block !important;
+                width: 8px !important;
+            }
+            *::-webkit-scrollbar-track {
+                background: transparent !important;
+            }
+            *::-webkit-scrollbar-thumb {
+                background: rgba(124, 92, 255, 0.5) !important;
+                border-radius: 4px !important;
+            }
+            *::-webkit-scrollbar-thumb:hover {
+                background: rgba(124, 92, 255, 0.8) !important;
             }
         `;
     }
 
     function hideScrollbar() {
         scrollbarStyle.textContent = `
-            ::-webkit-scrollbar {
+            * {
+                scrollbar-width: none !important;
+            }
+            *::-webkit-scrollbar {
                 display: none !important;
+                width: 0 !important;
+                height: 0 !important;
             }
             html {
                 scrollbar-width: none !important;
+            }
+            html::-webkit-scrollbar {
+                display: none !important;
+                width: 0 !important;
+            }
+            body {
+                scrollbar-width: none !important;
+            }
+            body::-webkit-scrollbar {
+                display: none !important;
+                width: 0 !important;
             }
         `;
     }
