@@ -2,6 +2,87 @@
 
 /* Touch-friendly tap targets */
 @media (max-width: 768px) {
+    /* CRITICAL: Fix text visibility on mobile */
+    body {
+        text-shadow: none !important;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+
+    /* Remove excessive text shadows from paragraphs */
+    p, h1, h2, h3, h4, h5, h6, span, a, li, label {
+        text-shadow: none !important;
+    }
+
+    /* Improve text contrast */
+    p {
+        color: #e0f5eb !important;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #ffffff !important;
+    }
+
+    a {
+        color: #a0f5c8;
+    }
+
+    /* Fix section headings visibility */
+    .section-title, .page-title {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    /* Remove heavy backdrop filters that blur text */
+    .card, .project-card, .contact-card, .cv-summary, .cv-details, 
+    .timeline-item, .stat-card, .achievement-item {
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+    }
+
+    /* Improve card background for better readability */
+    .card, .project-card, .contact-card {
+        background: rgba(15, 20, 30, 0.85) !important;
+        border: 1px solid rgba(124, 92, 255, 0.3) !important;
+    }
+
+    /* Fix form input visibility */
+    input, textarea, select {
+        color: #ffffff !important;
+        background: rgba(20, 25, 35, 0.9) !important;
+        border: 1px solid rgba(124, 92, 255, 0.4) !important;
+    }
+
+    input::placeholder, textarea::placeholder {
+        color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    /* Improve button text visibility */
+    .btn {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    /* Fix navigation text */
+    .main-nav a {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    /* Reduce glow effects that can blur text */
+    * {
+        filter: none !important;
+    }
+
+    /* Keep only essential filters */
+    img, svg {
+        filter: none;
+    }
+
+    .portrait-glow-wrapper::before {
+        filter: blur(8px);
+    }
+
     /* Minimum tap target size for mobile */
     a, button, .btn, input[type="submit"], input[type="button"] {
         min-height: 44px;
@@ -72,12 +153,6 @@
         padding-top: 72px;
     }
 
-    /* Better text readability */
-    body {
-        -webkit-text-size-adjust: 100%;
-        text-size-adjust: 100%;
-    }
-
     /* Optimize scroll behavior */
     html {
         scroll-behavior: smooth;
@@ -138,25 +213,141 @@
     .timeline-item::before {
         display: none; /* Hide decorative elements on mobile */
     }
+
+    /* Fix CV section visibility */
+    .cv-summary, .cv-details {
+        background: rgba(15, 20, 30, 0.85) !important;
+        color: #ffffff !important;
+    }
+
+    .cv-summary h3, .cv-details h3,
+    .cv-summary h4, .cv-details h4 {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    .cv-summary p, .cv-details p,
+    .cv-summary li, .cv-details li {
+        color: #e0f5eb !important;
+        text-shadow: none !important;
+    }
+
+    /* Fix timeline visibility */
+    .timeline-item {
+        background: rgba(15, 20, 30, 0.85) !important;
+    }
+
+    .timeline-item h3, .timeline-item h4 {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    .timeline-item p, .timeline-item li {
+        color: #e0f5eb !important;
+        text-shadow: none !important;
+    }
+
+    /* Fix project cards */
+    .project-card h3, .project-card h4 {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    .project-card p, .project-card li {
+        color: #e0f5eb !important;
+        text-shadow: none !important;
+    }
+
+    /* Fix stats visibility */
+    .stat-card {
+        background: rgba(15, 20, 30, 0.85) !important;
+    }
+
+    .stat-card h3, .stat-card h4,
+    .stat-value {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    .stat-label {
+        color: #a0f5c8 !important;
+        text-shadow: none !important;
+    }
+
+    /* Fix contact section */
+    .contact-card h3 {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    .contact-card p, .contact-card a {
+        color: #e0f5eb !important;
+        text-shadow: none !important;
+    }
+
+    /* Fix about section */
+    .about-content h3, .about-content h4 {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    .about-content p, .about-content li {
+        color: #e0f5eb !important;
+        text-shadow: none !important;
+    }
+
+    /* Fix achievement items */
+    .achievement-item h3, .achievement-item h4 {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    .achievement-item p {
+        color: #e0f5eb !important;
+        text-shadow: none !important;
+    }
+
+    /* Fix badge and label visibility */
+    .badge, .tag, .label {
+        color: #ffffff !important;
+        text-shadow: none !important;
+        background: rgba(124, 92, 255, 0.3) !important;
+    }
+
+    /* Fix live stats section */
+    .live-stats h3, .live-stats h4 {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    .live-stats p, .live-stats span {
+        color: #e0f5eb !important;
+        text-shadow: none !important;
+    }
 }
 
 /* Extra small devices */
 @media (max-width: 480px) {
+    /* Enhance text visibility even more on very small screens */
+    body {
+        font-size: 15px !important;
+    }
+
+    p {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+    }
+
     /* Further reduce spacing */
     .container {
         padding-left: 0.75rem;
         padding-right: 0.75rem;
     }
 
-    /* Smaller typography */
-    body {
-        font-size: 14px;
-    }
-
     /* Compact buttons */
     .btn {
         padding: 0.75rem 1.25rem;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     /* Stack hero actions */
@@ -168,6 +359,12 @@
     .hero-actions .btn {
         width: 100%;
     }
+
+    /* Ensure all headings are visible */
+    h1 { font-size: clamp(1.5rem, 7vw, 2rem) !important; }
+    h2 { font-size: clamp(1.35rem, 6vw, 1.75rem) !important; }
+    h3 { font-size: clamp(1.2rem, 5vw, 1.5rem) !important; }
+    h4 { font-size: clamp(1.1rem, 4.5vw, 1.3rem) !important; }
 }
 
 /* Landscape mobile optimization */

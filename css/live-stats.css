@@ -447,6 +447,30 @@
         margin: 2rem auto;
     }
 
+    /* Fix text visibility on mobile */
+    .stat-card, .github-profile-stats, .weather-card, 
+    .news-card, .activity-card {
+        background: rgba(15, 20, 30, 0.85) !important;
+        backdrop-filter: blur(5px) !important;
+    }
+
+    .stat-card h3, .stat-card h4,
+    .card-title, .stat-label, .stat-number {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    .stat-value, .weather-temp, .news-title {
+        color: #ffffff !important;
+        text-shadow: none !important;
+    }
+
+    .stat-description, .weather-description, 
+    .news-source, .activity-item {
+        color: #e0f5eb !important;
+        text-shadow: none !important;
+    }
+
     .stats-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
