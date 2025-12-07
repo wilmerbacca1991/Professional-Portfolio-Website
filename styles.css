@@ -397,7 +397,7 @@ html {
     perspective: 1000px;
     height: 100%;
     box-sizing: border-box;
-    overflow-y: scroll;
+    overflow-y: auto; /* Changed from scroll to auto - only shows when needed */
     overflow-x: hidden;
 }
 
@@ -446,7 +446,7 @@ svg {
 
 /* Section visibility control */
 .section-content {
-    display: block; /* Changed from none - all sections visible by default */
+    display: none;
 }
 
 .section-content.active {

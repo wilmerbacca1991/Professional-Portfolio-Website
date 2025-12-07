@@ -230,15 +230,31 @@
     to { width: var(--progress); }
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Auto-hide when not in use */
 ::-webkit-scrollbar {
     width: 8px;
-    background: var(--dark);
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(var(--gradient-1), var(--gradient-4));
+    background: rgba(124, 92, 255, 0);
     border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(var(--gradient-1), var(--gradient-4));
+}
+
+/* Show scrollbar on hover over the scrollbar area */
+html:hover::-webkit-scrollbar-thumb,
+body:hover::-webkit-scrollbar-thumb {
+    background: rgba(124, 92, 255, 0.3);
+}
+
+html:hover::-webkit-scrollbar-thumb:hover,
+body:hover::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(var(--gradient-1), var(--gradient-4));
 }
 
 /* Text Selection */
