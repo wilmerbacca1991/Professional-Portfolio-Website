@@ -9,27 +9,22 @@
 	<!-- Favicon -->
 	<link rel="icon" type="image/svg+xml" href="assets/portrait.svg" />
 
-	<!-- Critical CSS -->
-	<link rel="preload" href="css/optimizations.css" as="style" />
-	<link rel="preload" href="styles.css" as="style" />
-
-	<!-- Non-critical CSS -->
-	<link rel="preload" href="css/hero.css" as="style" />
-	<link rel="preload" href="css/sections.css" as="style" />
-	<link rel="preload" href="css/form.css" as="style" />
-	<link rel="preload" href="css/background.css" as="style" />
+	<!-- DNS prefetch and preconnect (must come before resource loading) -->
+	<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+	<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+	<link rel="dns-prefetch" href="https://formspree.io" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="preconnect" href="https://formspree.io" crossorigin />
 
 	<!-- Preload critical resources -->
+	<link rel="preload" href="css/optimizations.css" as="style" />
+	<link rel="preload" href="styles.css" as="style" />
+	<link rel="preload" href="css/hero.css" as="style" />
 	<link rel="preload" href="assets/images/Pic of Myself.jpg" as="image" />
 	<link rel="preload" href="assets/fastgraph-logo.svg" as="image" type="image/svg+xml" />
+	<link rel="preload" href="js/scripts.js" as="script" />
 
-	<!-- DNS prefetch -->
-	<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-	<link rel="dns-prefetch" href="https://formspree.io" />
-
-	<!-- Preconnect -->
-	<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-	<link rel="preconnect" href="https://formspree.io" crossorigin />
 	<!-- Stylish heading font -->
 	<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
@@ -48,14 +43,10 @@
 
 	<!-- Fallback for no-JS -->
 	<noscript>
+		<style>
+			.hamburger-menu { display: none; }
+		</style>
 	</noscript>
-	<link rel="preload" href="js/scripts.js" as="script" />
-	<link rel="preconnect" href="https://formspree.io" crossorigin />
-
-	<!-- Resource hints for performance -->
-	<link rel="dns-prefetch" href="https://formspree.io" />
-	<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
 	<!-- Critical rendering path optimization -->
 	<meta http-equiv="x-dns-prefetch-control" content="on" />
@@ -72,18 +63,9 @@
 		content="interest-cohort=(), accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()" />
 	<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
 
-	<!-- Performance hints -->
-	<link rel="prefetch" href="#about" />
-	<link rel="prefetch" href="#projects" />
-	<link rel="prefetch" href="#experience" />
-
 	<!-- Basic meta -->
 	<meta name="author" content="Wilmer Bacca" />
 	<meta name="keywords" content="Wilmer Bacca, software developer, C++, Python, Ruby, portfolio, CV" />
-	<meta name="theme-color" content="#05060a" />
-
-	<!-- Resource hints -->
-	<link rel="preload" href="assets/fastgraph-logo.svg" as="image" type="image/svg+xml" />
 	<!-- Open Graph / Social -->
 	<meta property="og:title" content="Wilmer Bacca - Junior Software Developer Professional Website">
 	<meta property="og:description"
@@ -1009,6 +991,11 @@
 	</footer>
 
 	<style>
+		/* CSS Variables for progress indicator */
+		:root {
+			--neon-green: #00e6a8;
+		}
+
 		/* Progress Indicator Styling - Force Viewport Sticky with Isolation */
 		.scrollbar-progress-indicator {
 			position: fixed !important;
@@ -1218,7 +1205,6 @@
 	</style>
 
 	<script>
-
 		// Custom scrollbar auto-hide functionality
 		(function() {
 			let scrollTimeout;
@@ -1232,28 +1218,19 @@
 				html.classList.remove('scrolling');
 			}
 			
-			// Show scrollbar when scrolling
-			window.addEventListener('scroll', function() {
+			// Show scrollbar when scrolling or using wheel
+			function handleScroll() {
 				showScrollbar();
-				
-				// Clear existing timeout
 				clearTimeout(scrollTimeout);
-				
-				// Hide scrollbar after 1 second of no scrolling
 				scrollTimeout = setTimeout(hideScrollbar, 1000);
-			}, { passive: true });
+			}
 			
-			// Also show on wheel event for immediate feedback
-			window.addEventListener('wheel', function() {
-				showScrollbar();
-				clearTimeout(scrollTimeout);
-				scrollTimeout = setTimeout(hideScrollbar, 1000);
-			}, { passive: true });
+			window.addEventListener('scroll', handleScroll, { passive: true });
+			window.addEventListener('wheel', handleScroll, { passive: true });
 		})();
 
-
 		document.addEventListener('DOMContentLoaded', function () {
-			// Create progress indicator as direct child of body
+			// Create progress indicator
 			const progressIndicator = document.createElement('div');
 			progressIndicator.id = 'scrollbar-progress-indicator';
 			progressIndicator.className = 'scrollbar-progress-indicator';
@@ -1261,78 +1238,26 @@
 				<div class="progress-percentage">0%</div>
 				<div class="progress-remaining">100% remaining</div>
 			`;
-
-			// Add directly to body to ensure proper positioning
 			document.body.appendChild(progressIndicator);
 
-
-			// Alternative approach: Use absolute positioning with viewport calculations
+			// Position indicator in viewport
 			function positionIndicator() {
 				const viewportHeight = window.innerHeight;
-				const viewportWidth = window.innerWidth;
 				const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-				// Calculate position relative to current scroll position
-				const rightPosition = 30; // 30px from right edge
-				const topPosition = scrollTop + (viewportHeight / 2); // Center of current viewport
+				const topPosition = scrollTop + (viewportHeight / 2);
 
 				progressIndicator.style.setProperty('position', 'absolute', 'important');
-				progressIndicator.style.setProperty('right', rightPosition + 'px', 'important');
+				progressIndicator.style.setProperty('right', '30px', 'important');
 				progressIndicator.style.setProperty('top', topPosition + 'px', 'important');
-				progressIndicator.style.setProperty('left', 'auto', 'important');
-				progressIndicator.style.setProperty('bottom', 'auto', 'important');
-				progressIndicator.style.setProperty('z-index', '999999', 'important');
 				progressIndicator.style.setProperty('transform', 'translateY(-50%)', 'important');
-				progressIndicator.style.setProperty('margin', '0', 'important');
-				progressIndicator.style.setProperty('padding', '12px 16px', 'important');
 			}
 
-			// Position it initially (but keep it hidden)
 			positionIndicator();
-
-			// Update position on scroll to keep it centered in viewport
 			window.addEventListener('scroll', positionIndicator, { passive: true });
-			window.addEventListener('resize', positionIndicator);
+			window.addEventListener('resize', positionIndicator, { passive: true });
 
-			// Initially hidden
-			progressIndicator.style.setProperty('opacity', '0', 'important');
-			progressIndicator.style.setProperty('visibility', 'hidden', 'important');
-			progressIndicator.style.setProperty('background', 'rgba(124, 92, 255, 0.95)', 'important');
-			progressIndicator.style.setProperty('color', 'white', 'important');
-			progressIndicator.style.setProperty('transition', 'opacity 0.3s ease-in-out, visibility 0.3s ease-in-out', 'important');
-
-			// Mouse wheel detection and auto-hide functionality
-			let wheelTimeout;
-
-			function showIndicator() {
-				progressIndicator.style.setProperty('opacity', '1', 'important');
-				progressIndicator.style.setProperty('visibility', 'visible', 'important');
-			}
-
-			function hideIndicator() {
-				progressIndicator.style.setProperty('opacity', '0', 'important');
-				progressIndicator.style.setProperty('visibility', 'hidden', 'important');
-			}
-
-			// Listen for mouse wheel events specifically
-			window.addEventListener('wheel', function (e) {
-				// Show the indicator immediately
-				showIndicator();
-
-				// Clear existing timeout
-				if (wheelTimeout) {
-					clearTimeout(wheelTimeout);
-				}
-
-				// Hide after 1.2 seconds of no wheel activity
-				wheelTimeout = setTimeout(hideIndicator, 1200);
-			}, { passive: true });
-
-			// Update progress indicator based on scroll
-
-			// Update progress indicator with scroll information
-			function updateProgressIndicator(showIndicator = false) {
-				const progressIndicator = document.getElementById('scrollbar-progress-indicator');
+			// Update progress indicator
+			function updateProgressIndicator() {
 				const percentageElement = progressIndicator.querySelector('.progress-percentage');
 				const remainingElement = progressIndicator.querySelector('.progress-remaining');
 
@@ -1340,44 +1265,41 @@
 				const windowHeight = window.innerHeight;
 				const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 				const scrollableHeight = documentHeight - windowHeight;
-				const scrollRatio = scrollTop / scrollableHeight;
+				const scrollRatio = scrollableHeight > 0 ? scrollTop / scrollableHeight : 0;
 
-				// Calculate percentages
-				const scrolledPercentage = Math.round(scrollRatio * 100);
+				const scrolledPercentage = Math.round(Math.max(0, Math.min(100, scrollRatio * 100)));
 				const remainingPercentage = 100 - scrolledPercentage;
 
-				// Update text content
 				percentageElement.textContent = `${scrolledPercentage}%`;
 				remainingElement.textContent = `${remainingPercentage}% remaining`;
-
-				// Only show indicator when explicitly requested (mouse wheel)
-				if (showIndicator) {
-					progressIndicator.classList.add('visible', 'scrolling');
-
-					// Hide indicator after wheel scroll stops
-					clearTimeout(progressIndicator.hideTimeout);
-					progressIndicator.hideTimeout = setTimeout(() => {
-						progressIndicator.classList.remove('visible', 'scrolling');
-					}, 2500); // Hide after 2.5 seconds of no wheel scrolling
-				}
 			}
 
-			// Show progress indicator on wheel scroll
+			// Show/hide progress indicator on wheel scroll
+			let wheelTimeout;
 			window.addEventListener('wheel', function() {
-				updateProgressIndicator(true);
+				progressIndicator.classList.add('visible', 'scrolling');
+				updateProgressIndicator();
+				
+				clearTimeout(wheelTimeout);
+				wheelTimeout = setTimeout(() => {
+					progressIndicator.classList.remove('visible', 'scrolling');
+				}, 2500);
 			}, { passive: true });
 
+			// Initial update
+			updateProgressIndicator();
 		});
 	</script>
 
-	<!-- Optimized script loading -->
+	<!-- Optimized script loading - Critical scripts with defer -->
 	<script src="js/main.js" defer></script>
 	<script src="js/scripts.js" defer></script>
 	<script src="js/background.js" defer></script>
 	<script src="js/interactive-features.js" defer></script>
 	<script src="js/portfolio-api.js" defer></script>
-	<!-- jsPDF for PDF generation -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+	
+	<!-- Non-critical external libraries with async -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" async></script>
 	<!-- Analytics placeholder: replace with your analytics provider script (e.g., Plausible, Google Analytics, Fathom) -->
 	<!--
 				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
