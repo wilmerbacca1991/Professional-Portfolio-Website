@@ -1,7 +1,71 @@
 /* Mobile-Specific Optimizations */
 
-/* Touch-friendly tap targets */
+/* Performance-first mobile optimizations for smooth scrolling */
 @media (max-width: 768px) {
+    /* Force GPU acceleration and optimize rendering */
+    * {
+        -webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        -webkit-perspective: 1000;
+    }
+
+    /* Disable expensive backdrop filters on mobile */
+    .card, .project-card, .contact-card, .cv-summary, .cv-details, 
+    .timeline-item, .stat-card, .achievement-item {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(15, 20, 30, 0.95) !important;
+    }
+
+    /* Simplify header backdrop */
+    .site-header {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(10, 15, 25, 0.98) !important;
+    }
+
+    /* Disable expensive shadow effects */
+    .card, .project-card, .contact-card {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* Simplify all animations to improve performance */
+    * {
+        animation-duration: 0.15s !important;
+        transition-duration: 0.15s !important;
+    }
+
+    /* Disable complex animations */
+    @keyframes fadeInUp,
+    @keyframes fadeInDown,
+    @keyframes fadeInLeft,
+    @keyframes fadeInRight {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    /* Remove heavy blur effects */
+    .glow-overlay {
+        display: none !important;
+    }
+
+    /* Reduce background animation opacity for performance */
+    .background-animation {
+        opacity: 0.5 !important;
+    }
+
+    /* Optimize transforms for better performance */
+    .project-card:hover,
+    .card:hover {
+        transform: translateY(-2px) !important;
+    }
+
+    /* Disable 3D transforms on mobile */
+    * {
+        transform-style: flat !important;
+        perspective: none !important;
+    }
+
     /* CRITICAL: Fix text visibility on mobile */
     body {
         text-shadow: none !important;
@@ -33,16 +97,8 @@
         text-shadow: none !important;
     }
 
-    /* Remove heavy backdrop filters that blur text */
-    .card, .project-card, .contact-card, .cv-summary, .cv-details, 
-    .timeline-item, .stat-card, .achievement-item {
-        backdrop-filter: blur(5px) !important;
-        -webkit-backdrop-filter: blur(5px) !important;
-    }
-
     /* Improve card background for better readability */
     .card, .project-card, .contact-card {
-        background: rgba(15, 20, 30, 0.85) !important;
         border: 1px solid rgba(124, 92, 255, 0.3) !important;
     }
 
@@ -81,6 +137,7 @@
 
     .portrait-glow-wrapper::before {
         filter: blur(8px);
+        animation: none !important;
     }
 
     /* Minimum tap target size for mobile */

@@ -16,7 +16,14 @@ class ParticleBackground {
         // Detect mobile/tablet devices and adjust particle count for performance
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
                         || window.innerWidth <= 768;
-        this.particleCount = isMobile ? 100 : 350; // Reduced count for mobile devices
+        const isHighEndMobile = /iPhone 1[2-9]|iPhone [2-9][0-9]|iPad Pro/i.test(navigator.userAgent);
+        
+        // Aggressive particle reduction for mobile performance
+        if (isMobile) {
+            this.particleCount = isHighEndMobile ? 50 : 30; // Much fewer particles on mobile
+        } else {
+            this.particleCount = 350; // Full count for desktop
+        }
         
         this.colors = [
             '#7c5cff', // Purple
@@ -65,17 +72,20 @@ class ParticleBackground {
 
     createParticles() {
         this.particles = [];
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+                        || window.innerWidth <= 768;
+        
         for (let i = 0; i < this.particleCount; i++) {
             this.particles.push({
                 x: Math.random() * this.width,
                 y: Math.random() * this.height,
-                size: Math.random() * 6 + 3.5, // Increased size range for thicker particles
-                speedX: (Math.random() - 0.5) * 4.5,
-                speedY: (Math.random() - 0.5) * 4.5,
+                size: isMobile ? Math.random() * 3 + 2 : Math.random() * 6 + 3.5, // Smaller on mobile
+                speedX: (Math.random() - 0.5) * (isMobile ? 2 : 4.5), // Slower on mobile
+                speedY: (Math.random() - 0.5) * (isMobile ? 2 : 4.5),
                 color: this.colors[Math.floor(Math.random() * this.colors.length)],
                 rotation: Math.random() * 360,
-                rotationSpeed: (Math.random() - 0.5) * 5,
-                glowSize: Math.random() * 45 + 25, // Enhanced glow for more shine
+                rotationSpeed: (Math.random() - 0.5) * (isMobile ? 2 : 5), // Slower rotation on mobile
+                glowSize: isMobile ? Math.random() * 15 + 10 : Math.random() * 45 + 25, // Much less glow on mobile
                 pulsePhase: Math.random() * Math.PI * 2,
                 z: Math.random() * 100 // Add depth for 3D effect
             });
@@ -116,26 +126,33 @@ class ParticleBackground {
     }
 
     animate() {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+                        || window.innerWidth <= 768;
+        
         this.ctx.clearRect(0, 0, this.width, this.height);
         
-        // Sort particles by depth for proper 3D layering
-        this.particles.sort((a, b) => a.z - b.z);
+        // Sort particles by depth for proper 3D layering (skip on mobile for performance)
+        if (!isMobile) {
+            this.particles.sort((a, b) => a.z - b.z);
+        }
         
         this.particles.forEach(particle => {
             // Update position with speed based on depth (parallax effect)
-            const depthFactor = 0.5 + (particle.z / 100) * 0.5;
+            const depthFactor = isMobile ? 1 : (0.5 + (particle.z / 100) * 0.5);
             particle.x += particle.speedX * depthFactor;
             particle.y += particle.speedY * depthFactor;
             particle.rotation += particle.rotationSpeed;
             
-            // Animate depth for 3D movement
-            particle.z += Math.sin(particle.pulsePhase) * 0.5;
-            if (particle.z < 0) particle.z = 0;
-            if (particle.z > 100) particle.z = 100;
+            // Animate depth for 3D movement (disable on mobile)
+            if (!isMobile) {
+                particle.z += Math.sin(particle.pulsePhase) * 0.5;
+                if (particle.z < 0) particle.z = 0;
+                if (particle.z > 100) particle.z = 100;
+            }
             
-            // Pulse effect
-            particle.pulsePhase += 0.03; // Slightly faster pulse
-            const pulseFactor = 1 + Math.sin(particle.pulsePhase) * 0.3; // More dramatic pulse
+            // Pulse effect (simplified on mobile)
+            particle.pulsePhase += isMobile ? 0.02 : 0.03;
+            const pulseFactor = isMobile ? 1 : (1 + Math.sin(particle.pulsePhase) * 0.3);
             
             // Wrap around screen
             if (particle.x < -50) particle.x = this.width + 50;
