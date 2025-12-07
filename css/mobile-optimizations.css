@@ -381,6 +381,29 @@
         width: 140px;
         height: 140px;
     }
+
+    /* Disable floating animation on mobile to prevent glitching */
+    .portrait-frame img {
+        animation: none !important;
+        transform: scale(1.05) !important;
+    }
+}
+
+/* Disable 3D transforms on mobile tablets to prevent glitching */
+@media (max-width: 768px) {
+    .portrait-frame {
+        transform-style: flat !important;
+    }
+
+    .portrait-frame:hover {
+        transform: scale(1.02) !important;
+    }
+
+    .portrait-frame img {
+        animation: none !important;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
 }
 
 /* Performance optimizations for low-end devices */
