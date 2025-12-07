@@ -37,8 +37,8 @@ const MOCK_GITHUB_DATA = {
         following: 89,
         publicRepos: 47,
         totalStars: 3890,
-        totalCommits: 2156,
-        contributionStreak: 127
+        totalCommits: '150+', // Conservative estimate shown while loading real data
+        contributionStreak: 'Active'
     },
     repositories: [
         {
@@ -188,18 +188,25 @@ class PortfolioAPI {
         const cacheKey = 'github_data_cache';
         const cacheTimeKey = 'github_data_timestamp';
         const cacheValidTime = 15 * 60 * 1000; // 15 minutes cache to avoid rate limits
+        const cacheVersion = 'v2'; // Increment to force cache refresh after code changes
         
-        // Check if we have cached data
+        // Check if we have cached data with correct version
         try {
             const cachedData = localStorage.getItem(cacheKey);
             const cachedTime = localStorage.getItem(cacheTimeKey);
+            const cachedVer = localStorage.getItem('github_cache_version');
             
-            if (cachedData && cachedTime) {
+            if (cachedData && cachedTime && cachedVer === cacheVersion) {
                 const timeDiff = Date.now() - parseInt(cachedTime);
                 if (timeDiff < cacheValidTime) {
                     console.log('📋 Using cached GitHub data (avoiding rate limits)');
                     return JSON.parse(cachedData);
                 }
+            } else if (cachedVer !== cacheVersion) {
+                // Clear old cache if version changed
+                console.log('🔄 Cache version mismatch - clearing old data');
+                localStorage.removeItem(cacheKey);
+                localStorage.removeItem(cacheTimeKey);
             }
         } catch (error) {
             console.warn('Cache read error:', error);
@@ -249,6 +256,69 @@ class PortfolioAPI {
             
             // Calculate total stars across all repos
             const totalStars = reposResponse.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+            
+            // Estimate total commits from recent activity
+            // GitHub REST API doesn't provide total commits, but we can estimate from events
+            let commitEstimate = 0;
+            const pushEvents = eventsResponse.filter(event => event.type === 'PushEvent');
+            
+            if (pushEvents.length > 0) {
+                // Count commits from recent push events
+                const recentCommits = pushEvents.reduce((sum, event) => {
+                    return sum + (event.payload?.commits?.length || 0);
+                }, 0);
+                
+                // Estimate total based on account age and recent activity
+                const accountCreated = new Date(profileResponse.created_at);
+                const accountAgeInDays = Math.max(1, Math.floor((Date.now() - accountCreated.getTime()) / (1000 * 60 * 60 * 24)));
+                const estimatedCommitsPerDay = Math.max(0.1, recentCommits / 30); // Minimum 0.1 commits/day
+                commitEstimate = Math.floor(estimatedCommitsPerDay * accountAgeInDays);
+                
+                // Apply realistic bounds: minimum based on repos, maximum reasonable for age
+                const minEstimate = profileResponse.public_repos * 5;
+                const maxEstimate = accountAgeInDays * 10; // Max 10 commits per day average
+                commitEstimate = Math.max(minEstimate, Math.min(commitEstimate, maxEstimate));
+            } else {
+                // Fallback: conservative estimate based on repo count and age
+                const accountCreated = new Date(profileResponse.created_at);
+                const accountAgeInYears = Math.max(0.1, (Date.now() - accountCreated.getTime()) / (1000 * 60 * 60 * 24 * 365));
+                commitEstimate = Math.floor(profileResponse.public_repos * 15 * Math.min(accountAgeInYears, 5));
+            }
+            
+            // Calculate contribution streak from events (recent events only give ~7 days)
+            let contributionStreak = 0;
+            if (eventsResponse.length > 0) {
+                // Group events by date
+                const eventDates = new Set();
+                eventsResponse.forEach(event => {
+                    const eventDate = new Date(event.created_at);
+                    eventDate.setHours(0, 0, 0, 0);
+                    eventDates.add(eventDate.getTime());
+                });
+                
+                // Check consecutive days starting from today
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                let currentDate = new Date(today);
+                
+                // Check if active today or yesterday (grace period)
+                let streakStarted = false;
+                for (let i = 0; i < 2; i++) {
+                    if (eventDates.has(currentDate.getTime())) {
+                        streakStarted = true;
+                        break;
+                    }
+                    currentDate.setDate(currentDate.getDate() - 1);
+                }
+                
+                if (streakStarted) {
+                    currentDate = new Date(today);
+                    while (contributionStreak < 30 && eventDates.has(currentDate.getTime())) {
+                        contributionStreak++;
+                        currentDate.setDate(currentDate.getDate() - 1);
+                    }
+                }
+            }
             
             // Process repositories data
             const repositories = reposResponse.slice(0, 6).map(repo => {
@@ -337,8 +407,8 @@ class PortfolioAPI {
                     following: profileResponse.following,
                     publicRepos: profileResponse.public_repos,
                     totalStars: totalStars,
-                    totalCommits: 'Loading...', // Would need complex API calls for all repos
-                    contributionStreak: 'Loading...' // Would need GitHub GraphQL API
+                    totalCommits: commitEstimate > 0 ? commitEstimate : '100+', // Use estimate or fallback
+                    contributionStreak: contributionStreak > 0 ? contributionStreak : 'Active' // Use calculated streak or fallback
                 },
                 repositories: repositories,
                 recentActivity: recentActivity,
@@ -347,6 +417,7 @@ class PortfolioAPI {
             
             // Cache successful result
             try {
+                localStorage.setItem('github_cache_version', cacheVersion);
                 localStorage.setItem('github_data_cache', JSON.stringify(realGitHubData));
                 localStorage.setItem('github_data_timestamp', Date.now().toString());
                 console.log('💾 GitHub data cached for future requests');
@@ -553,31 +624,35 @@ class PortfolioAPI {
                 console.warn('Weatherstack API failed:', error.message);
             }
             
-            // Fallback to Open-Meteo if Weatherstack fails
+            // Priority: Use Open-Meteo (free, reliable, no API key needed)
             try {
-                const freeWeatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=45.5017&longitude=-73.5673&current_weather=true&temperature_unit=celsius`;
+                const freeWeatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=45.5017&longitude=-73.5673&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&temperature_unit=celsius`;
                 const response = await fetch(freeWeatherUrl);
                 
                 if (response.ok) {
                     const data = await response.json();
-                    const currentWeather = data.current_weather;
+                    const current = data.current;
                     
-                    console.log('🌤️ Using Open-Meteo backup weather data for Montreal');
+                    console.log('🌤️ Using Open-Meteo weather data for Montreal (free, no API key)');
                     // Convert to consistent format
+                    const temp = Math.round(current.temperature_2m);
+                    const weatherCode = current.weather_code || 0;
+                    const isDay = new Date().getHours() >= 6 && new Date().getHours() < 20;
+                    
                     return {
                         name: 'Montreal',
                         main: {
-                            temp: Math.round(currentWeather.temperature),
-                            feels_like: Math.round(currentWeather.temperature - 2), // Approximation
-                            humidity: 65 // Default since open-meteo doesn't provide humidity in free tier
+                            temp: temp,
+                            feels_like: Math.round(temp - 2), // Wind chill approximation
+                            humidity: current.relative_humidity_2m || 65
                         },
                         weather: [{
-                            main: this.getWeatherDescription(currentWeather.weathercode).main,
-                            description: this.getWeatherDescription(currentWeather.weathercode).description,
-                            icon: this.getWeatherIcon(currentWeather.weathercode, currentWeather.is_day)
+                            main: this.getWeatherDescription(weatherCode).main,
+                            description: this.getWeatherDescription(weatherCode).description,
+                            icon: this.getWeatherIcon(weatherCode, isDay)
                         }],
                         wind: {
-                            speed: Math.round(currentWeather.windspeed * 0.277778) // Convert km/h to m/s
+                            speed: Math.round(current.wind_speed_10m * 0.277778) // Convert km/h to m/s
                         }
                     };
                 }
@@ -1350,9 +1425,15 @@ class PortfolioUIUpdater {
             setTimeout(() => {
                 const numbers = container.querySelectorAll('.stat-number');
                 numbers.forEach((el, i) => {
-                    const finalValue = parseInt(el.textContent.replace(/,/g, ''));
-                    el.textContent = '0';
-                    this.animateNumber(el, 0, finalValue, 1500 + (i * 200));
+                    const textContent = el.textContent.replace(/,/g, '');
+                    const finalValue = parseInt(textContent);
+                    
+                    // Only animate if it's a valid number
+                    if (!isNaN(finalValue) && isFinite(finalValue)) {
+                        el.textContent = '0';
+                        this.animateNumber(el, 0, finalValue, 1500 + (i * 200));
+                    }
+                    // Otherwise keep the original text (like "Loading..." or "180+ this year")
                 });
             }, 100);
 
