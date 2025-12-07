@@ -1205,11 +1205,12 @@
 	</style>
 
 	<script>
+		// Shared timeout for synchronized hiding
+		let scrollTimeout;
+		const html = document.documentElement;
+
 		// Custom scrollbar auto-hide functionality
 		(function() {
-			let scrollTimeout;
-			const html = document.documentElement;
-			
 			function showScrollbar() {
 				html.classList.add('scrolling');
 			}
@@ -1274,17 +1275,20 @@
 				remainingElement.textContent = `${remainingPercentage}% remaining`;
 			}
 
-			// Show/hide progress indicator on wheel scroll
-			let wheelTimeout;
-			window.addEventListener('wheel', function() {
+			// Show/hide progress indicator synchronized with scrollbar
+			function handleProgressIndicator() {
 				progressIndicator.classList.add('visible', 'scrolling');
 				updateProgressIndicator();
 				
-				clearTimeout(wheelTimeout);
-				wheelTimeout = setTimeout(() => {
+				clearTimeout(scrollTimeout);
+				scrollTimeout = setTimeout(() => {
 					progressIndicator.classList.remove('visible', 'scrolling');
-				}, 2500);
-			}, { passive: true });
+					html.classList.remove('scrolling');
+				}, 1000);
+			}
+
+			window.addEventListener('scroll', handleProgressIndicator, { passive: true });
+			window.addEventListener('wheel', handleProgressIndicator, { passive: true });
 
 			// Initial update
 			updateProgressIndicator();
