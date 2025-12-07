@@ -446,7 +446,7 @@ svg {
 
 /* Section visibility control */
 .section-content {
-    display: none;
+    display: block; /* Changed from none - all sections visible by default */
 }
 
 .section-content.active {
