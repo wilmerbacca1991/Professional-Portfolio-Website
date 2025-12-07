@@ -188,7 +188,7 @@ class PortfolioAPI {
         const cacheKey = 'github_data_cache';
         const cacheTimeKey = 'github_data_timestamp';
         const cacheValidTime = 15 * 60 * 1000; // 15 minutes cache to avoid rate limits
-        const cacheVersion = 'v4'; // Increment to force cache refresh after code changes
+        const cacheVersion = 'v5'; // Increment to force cache refresh after code changes
         
         // Check if we have cached data with correct version
         try {
@@ -238,9 +238,9 @@ class PortfolioAPI {
                 300000 // Cache for 5 minutes
             );
             
-            // Fetch real repositories
+            // Fetch real repositories (increased to 100 to get all repos)
             const reposResponse = await this.fetchWithRetry(
-                `https://api.github.com/users/${username}/repos?sort=updated&per_page=10`,
+                `https://api.github.com/users/${username}/repos?sort=updated&per_page=100`,
                 {},
                 `github_repos_${username}`,
                 300000
