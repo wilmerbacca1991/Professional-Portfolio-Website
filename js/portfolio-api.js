@@ -1632,22 +1632,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all APIs
     uiUpdater.initializeAll();
     
-    // Set up periodic updates
+    // Set up periodic updates (longer intervals on mobile to save battery/performance)
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+                    || window.innerWidth <= 768;
+    
+    const updateMultiplier = isMobile ? 2 : 1; // Double intervals on mobile
+    
     setInterval(() => {
         uiUpdater.updateDeveloperQuote();
         uiUpdater.updateTechNews();
         uiUpdater.updateCodePenProjects();
-    }, 300000); // Update every 5 minutes
+    }, 300000 * updateMultiplier); // Update every 5 minutes (10 on mobile)
     
     setInterval(() => {
         uiUpdater.updateWeatherInfo();
-    }, 600000); // Update weather every 10 minutes
+    }, 600000 * updateMultiplier); // Update weather every 10 minutes (20 on mobile)
     
     setInterval(() => {
         uiUpdater.updateGitHubStats();
         uiUpdater.updateProjectLiveStats();
         uiUpdater.updateStackOverflowStats();
-    }, 900000); // Update GitHub and SO stats every 15 minutes
+    }, 900000 * updateMultiplier); // Update GitHub and SO stats every 15 minutes (30 on mobile)
 });
 
 // Export for potential external use

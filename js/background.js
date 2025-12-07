@@ -18,12 +18,19 @@ class ParticleBackground {
                         || window.innerWidth <= 768;
         const isHighEndMobile = /iPhone 1[2-9]|iPhone [2-9][0-9]|iPad Pro/i.test(navigator.userAgent);
         
-        // Aggressive particle reduction for mobile performance
+        // Ultra-aggressive particle reduction for smooth mobile performance
         if (isMobile) {
-            this.particleCount = isHighEndMobile ? 50 : 30; // Much fewer particles on mobile
+            this.particleCount = isHighEndMobile ? 25 : 15; // Drastically fewer particles for 60fps
         } else {
             this.particleCount = 350; // Full count for desktop
         }
+        
+        // Frame rate throttling for mobile
+        this.isMobile = isMobile;
+        this.lastFrameTime = 0;
+        this.targetFPS = isMobile ? 30 : 60; // 30fps on mobile for battery/performance
+        this.frameInterval = 1000 / this.targetFPS;
+        this.isVisible = true; // Track page visibility for pause/resume
         
         this.colors = [
             '#7c5cff', // Purple
@@ -44,6 +51,11 @@ class ParticleBackground {
         
         this.init();
         window.addEventListener('resize', () => this.resize());
+        
+        // Pause animation when page is not visible (huge battery saving on mobile)
+        document.addEventListener('visibilitychange', () => {
+            this.isVisible = !document.hidden;
+        });
         
         // Recalculate canvas size when content loads or changes
         window.addEventListener('load', () => this.resize());
@@ -79,13 +91,13 @@ class ParticleBackground {
             this.particles.push({
                 x: Math.random() * this.width,
                 y: Math.random() * this.height,
-                size: isMobile ? Math.random() * 3 + 2 : Math.random() * 6 + 3.5, // Smaller on mobile
-                speedX: (Math.random() - 0.5) * (isMobile ? 2 : 4.5), // Slower on mobile
-                speedY: (Math.random() - 0.5) * (isMobile ? 2 : 4.5),
+                size: isMobile ? Math.random() * 2 + 1.5 : Math.random() * 6 + 3.5, // Much smaller on mobile
+                speedX: (Math.random() - 0.5) * (isMobile ? 1 : 4.5), // Much slower on mobile
+                speedY: (Math.random() - 0.5) * (isMobile ? 1 : 4.5),
                 color: this.colors[Math.floor(Math.random() * this.colors.length)],
                 rotation: Math.random() * 360,
-                rotationSpeed: (Math.random() - 0.5) * (isMobile ? 2 : 5), // Slower rotation on mobile
-                glowSize: isMobile ? Math.random() * 15 + 10 : Math.random() * 45 + 25, // Much less glow on mobile
+                rotationSpeed: (Math.random() - 0.5) * (isMobile ? 1 : 5), // Much slower rotation
+                glowSize: isMobile ? Math.random() * 5 + 3 : Math.random() * 45 + 25, // Minimal glow on mobile
                 pulsePhase: Math.random() * Math.PI * 2,
                 z: Math.random() * 100 // Add depth for 3D effect
             });
@@ -93,6 +105,9 @@ class ParticleBackground {
     }
 
     drawStar(x, y, size, rotation, color, glowSize, depth = 1) {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+                        || window.innerWidth <= 768;
+        
         this.ctx.save();
         this.ctx.translate(x, y);
         this.ctx.rotate(rotation * Math.PI / 180);
@@ -102,10 +117,13 @@ class ParticleBackground {
         const adjustedSize = size * scale;
         const adjustedGlow = glowSize * scale;
         
-        // Draw glow with shadowBlur for better performance
-        this.ctx.shadowBlur = adjustedGlow * 2.2; // Further increased glow blur for stronger shine
-        this.ctx.shadowColor = color;
-        this.ctx.globalAlpha = 0.8 + (depth / 100) * 0.2; // Even brighter particles
+        // Disable expensive shadow blur on mobile for smooth 60fps
+        if (!isMobile) {
+            this.ctx.shadowBlur = adjustedGlow * 2.2; // Further increased glow blur for stronger shine
+            this.ctx.shadowColor = color;
+        }
+        
+        this.ctx.globalAlpha = isMobile ? 0.6 : 0.8 + (depth / 100) * 0.2; // Dimmer on mobile for battery
         
         // Draw star/cube shape
         this.ctx.beginPath();
@@ -125,9 +143,25 @@ class ParticleBackground {
         this.ctx.restore();
     }
 
-    animate() {
+    animate(currentTime = 0) {
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
                         || window.innerWidth <= 768;
+        
+        // Pause animation when page is hidden (saves battery and CPU)
+        if (!this.isVisible) {
+            requestAnimationFrame((time) => this.animate(time));
+            return;
+        }
+        
+        // Throttle frame rate on mobile
+        if (isMobile) {
+            const elapsed = currentTime - this.lastFrameTime;
+            if (elapsed < this.frameInterval) {
+                requestAnimationFrame((time) => this.animate(time));
+                return;
+            }
+            this.lastFrameTime = currentTime - (elapsed % this.frameInterval);
+        }
         
         this.ctx.clearRect(0, 0, this.width, this.height);
         
@@ -172,7 +206,7 @@ class ParticleBackground {
             );
         });
         
-        requestAnimationFrame(() => this.animate());
+        requestAnimationFrame((time) => this.animate(time));
     }
 }
 

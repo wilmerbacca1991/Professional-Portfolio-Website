@@ -30,8 +30,8 @@
 
     /* Simplify all animations to improve performance */
     * {
-        animation-duration: 0.15s !important;
-        transition-duration: 0.15s !important;
+        animation-duration: 0.1s !important; /* Faster for snappier feel */
+        transition-duration: 0.1s !important; /* Faster for snappier feel */
     }
 
     /* Disable complex animations */
@@ -200,8 +200,8 @@
 
     /* Reduce animations on mobile for performance */
     * {
-        animation-duration: 0.2s !important;
-        transition-duration: 0.2s !important;
+        animation-duration: 0.1s !important; /* Faster for snappier feel */
+        transition-duration: 0.1s !important; /* Faster for snappier feel */
     }
 
     /* Disable heavy effects */
