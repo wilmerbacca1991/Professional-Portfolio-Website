@@ -8,6 +8,14 @@
     margin: 4rem auto;
     max-width: 1200px;
     padding: 2rem;
+    overflow: visible;
+    /* Hide any accidental scrollbars */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.live-stats::-webkit-scrollbar {
+    display: none;
 }
 
 .live-stats h2 {
@@ -62,6 +70,13 @@
     min-height: 280px;
     display: flex;
     flex-direction: column;
+    /* Hide default scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.stat-card::-webkit-scrollbar {
+    display: none;
 }
 
 .stat-card::before {
@@ -124,6 +139,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
+    /* Hide default scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.stat-content::-webkit-scrollbar {
+    display: none;
 }
 
 /* GitHub Statistics Styles */
