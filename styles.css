@@ -397,7 +397,7 @@ html {
     perspective: 1000px;
     height: 100%;
     box-sizing: border-box;
-    overflow-y: auto; /* Changed from scroll to auto - only shows when needed */
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
@@ -420,7 +420,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    overflow-y: auto;
     perspective: var(--perspective);
     text-shadow: 
         0 0 8px rgba(160, 245, 200, 0.3),
