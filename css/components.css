@@ -230,24 +230,6 @@
     to { width: var(--progress); }
 }
 
-/* Custom Scrollbar - Completely hidden by default */
-* {
-    scrollbar-width: none !important;
-}
-
-*::-webkit-scrollbar {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-}
-
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-}
-
 /* Text Selection */
 ::selection {
     background: var(--primary);

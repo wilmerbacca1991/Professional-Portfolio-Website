@@ -6,17 +6,6 @@
     -webkit-font-smoothing: antialiased;
 }
 
-/* Auto-hide scrollbar */
-html {
-    overflow: auto;
-    scrollbar-width: none; /* Firefox - completely hide */
-}
-
-body {
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
 /* Optimize paint operations */
 html {
     background-color: var(--bg);
@@ -125,8 +114,6 @@ button {
     /* Optimize touch events */
     touch-action: manipulation;
 }
-
-/* Remove duplicate scrollbar styles - handled in components.css */
 
 /* Optimize tap targets */
 button,
