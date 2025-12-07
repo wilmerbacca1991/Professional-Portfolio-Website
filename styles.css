@@ -399,6 +399,47 @@ html {
     box-sizing: border-box;
     overflow-y: auto;
     overflow-x: hidden;
+    /* Hide default scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide default scrollbar for Chrome, Safari, Opera */
+html::-webkit-scrollbar {
+    display: none;
+}
+
+/* Custom scrollbar track - auto-hide */
+html.scrolling::-webkit-scrollbar {
+    width: 12px;
+    display: block;
+}
+
+html.scrolling::-webkit-scrollbar-track {
+    background: rgba(15, 25, 50, 0.3);
+    border-radius: 10px;
+}
+
+html.scrolling::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, 
+        rgba(0, 230, 168, 0.8) 0%, 
+        rgba(0, 180, 130, 0.8) 100%);
+    border-radius: 10px;
+    border: 2px solid rgba(15, 25, 50, 0.5);
+    box-shadow: 
+        0 0 10px rgba(0, 230, 168, 0.6),
+        0 0 20px rgba(0, 230, 168, 0.4),
+        inset 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+html.scrolling::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, 
+        rgba(0, 255, 190, 0.9) 0%, 
+        rgba(0, 200, 145, 0.9) 100%);
+    box-shadow: 
+        0 0 15px rgba(0, 230, 168, 0.8),
+        0 0 30px rgba(0, 230, 168, 0.5),
+        inset 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
 *, *::before, *::after {
