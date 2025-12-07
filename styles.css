@@ -530,6 +530,14 @@ svg {
 
 .section-content.active {
     display: block;
+    overflow: visible;
+    /* Ensure no scrollbars appear on section content */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.section-content.active::-webkit-scrollbar {
+    display: none;
 }
 
 /* Unified paragraph spacing */
