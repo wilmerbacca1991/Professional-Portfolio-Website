@@ -188,7 +188,7 @@ class PortfolioAPI {
         const cacheKey = 'github_data_cache';
         const cacheTimeKey = 'github_data_timestamp';
         const cacheValidTime = 15 * 60 * 1000; // 15 minutes cache to avoid rate limits
-        const cacheVersion = 'v6'; // Increment to force cache refresh after code changes
+        const cacheVersion = 'v7'; // Increment to force cache refresh after code changes
         
         // Check if we have cached data with correct version
         try {
@@ -258,74 +258,90 @@ class PortfolioAPI {
             const totalStars = reposResponse.reduce((sum, repo) => sum + repo.stargazers_count, 0);
             
             // Fetch actual commit counts from repositories
-            // This is more accurate than estimating from events
+            // Use GitHub Search API for accurate commit counts
             let totalCommits = 0;
             
             try {
                 console.log(`🔍 Fetching commits from ${reposResponse.length} repositories...`);
                 
-                // Fetch commits from ALL repositories
-                const commitPromises = reposResponse.map(async (repo) => {
-                    try {
-                        // Use a larger per_page to get accurate count from headers
-                        const commitsUrl = `https://api.github.com/repos/${username}/${repo.name}/commits?per_page=100`;
-                        const response = await fetch(commitsUrl);
-                        
-                        if (response.ok) {
-                            const commits = await response.json();
-                            let count = 0;
+                // Use GitHub's search API to get total commit count for the user
+                // This is the most accurate method
+                try {
+                    const searchUrl = `https://api.github.com/search/commits?q=author:${username}&per_page=1`;
+                    const searchResponse = await fetch(searchUrl, {
+                        headers: {
+                            'Accept': 'application/vnd.github.cloak-preview+json'
+                        }
+                    });
+                    
+                    if (searchResponse.ok) {
+                        const searchData = await searchResponse.json();
+                        if (searchData.total_count) {
+                            totalCommits = searchData.total_count;
+                            console.log(`✅ Total commits from Search API: ${totalCommits}`);
+                        }
+                    }
+                } catch (searchError) {
+                    console.warn('Search API failed, falling back to per-repo counting:', searchError);
+                }
+                
+                // If Search API failed, count per repository
+                if (totalCommits === 0) {
+                    const commitPromises = reposResponse.map(async (repo) => {
+                        try {
+                            // Use a larger per_page to get accurate count from headers
+                            const commitsUrl = `https://api.github.com/repos/${username}/${repo.name}/commits?per_page=100`;
+                            const response = await fetch(commitsUrl);
                             
-                            // Check Link header for pagination
-                            const linkHeader = response.headers.get('Link');
-                            if (linkHeader) {
-                                // Parse the last page number from Link header
-                                // Example: <https://api.github.com/repos/user/repo/commits?per_page=100&page=2>; rel="last"
-                                const lastMatch = linkHeader.match(/<[^>]*[?&]page=(\d+)[^>]*>;\s*rel="last"/);
-                                if (lastMatch) {
-                                    const lastPage = parseInt(lastMatch[1]);
-                                    // Total commits = (lastPage - 1) * 100 + commits on last page
-                                    // But we need to fetch the last page to get exact count
-                                    const lastPageUrl = `https://api.github.com/repos/${username}/${repo.name}/commits?per_page=100&page=${lastPage}`;
-                                    const lastPageResponse = await fetch(lastPageUrl);
-                                    if (lastPageResponse.ok) {
-                                        const lastPageCommits = await lastPageResponse.json();
-                                        count = (lastPage - 1) * 100 + lastPageCommits.length;
+                            if (response.ok) {
+                                const commits = await response.json();
+                                let count = 0;
+                                
+                                // Check Link header for pagination
+                                const linkHeader = response.headers.get('Link');
+                                if (linkHeader) {
+                                    // Parse the last page number from Link header
+                                    const lastMatch = linkHeader.match(/<[^>]*[?&]page=(\d+)[^>]*>;\s*rel="last"/);
+                                    if (lastMatch) {
+                                        const lastPage = parseInt(lastMatch[1]);
+                                        // Total commits = (lastPage - 1) * 100 + commits on last page
+                                        const lastPageUrl = `https://api.github.com/repos/${username}/${repo.name}/commits?per_page=100&page=${lastPage}`;
+                                        const lastPageResponse = await fetch(lastPageUrl);
+                                        if (lastPageResponse.ok) {
+                                            const lastPageCommits = await lastPageResponse.json();
+                                            count = (lastPage - 1) * 100 + lastPageCommits.length;
+                                        } else {
+                                            count = lastPage * 100;
+                                        }
                                     } else {
-                                        // Estimate if we can't fetch last page
-                                        count = lastPage * 100;
+                                        count = commits.length;
                                     }
                                 } else {
-                                    // No "last" rel, just count what we got
                                     count = commits.length;
                                 }
-                            } else {
-                                // No Link header means all commits are in this response
-                                count = commits.length;
+                                
+                                if (count > 0) {
+                                    console.log(`📊 ${repo.name}: ${count} commits`);
+                                }
+                                return count;
+                            } else if (response.status === 409) {
+                                console.log(`📊 ${repo.name}: 0 commits (empty repo)`);
+                                return 0;
                             }
-                            
-                            if (count > 0) {
-                                console.log(`📊 ${repo.name}: ${count} commits`);
-                            }
-                            return count;
-                        } else if (response.status === 409) {
-                            // Empty repository
-                            console.log(`📊 ${repo.name}: 0 commits (empty repo)`);
+                            return 0;
+                        } catch (error) {
+                            console.warn(`Failed to fetch commits for ${repo.name}:`, error);
                             return 0;
                         }
-                        return 0;
-                    } catch (error) {
-                        console.warn(`Failed to fetch commits for ${repo.name}:`, error);
-                        return 0;
-                    }
-                });
-                
-                const commitCounts = await Promise.all(commitPromises);
-                totalCommits = commitCounts.reduce((sum, count) => sum + count, 0);
-                
-                console.log(`✅ Total commits across ${reposResponse.length} repositories: ${totalCommits}`);
+                    });
+                    
+                    const commitCounts = await Promise.all(commitPromises);
+                    totalCommits = commitCounts.reduce((sum, count) => sum + count, 0);
+                    console.log(`✅ Total commits across ${reposResponse.length} repositories: ${totalCommits}`);
+                }
                 
             } catch (error) {
-                console.warn('Failed to fetch commit counts from repos:', error);
+                console.warn('Failed to fetch commit counts:', error);
                 totalCommits = 0;
             }
             
