@@ -1077,29 +1077,17 @@ video {
     box-shadow: 0 6px 20px rgba(124, 92, 255, 0.5);
 }
 
-@media (max-width: 768px) {
+/* Show mobile toggle on tablets and phones */
+@media (max-width: 1024px) {
     .mobile-toggle {
-        display: block;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
     }
 
     .header-inner {
         padding: 1rem 1.5rem;
         min-height: 72px;
-    }
-
-    .header-social-links {
-        margin-left: 0.5rem;
-        gap: 0.5rem;
-    }
-
-    .header-social-links .social-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    .header-social-links .social-icon svg {
-        width: 20px;
-        height: 20px;
     }
 
     .main-nav {
@@ -1120,7 +1108,7 @@ video {
     }
 
     .main-nav.open {
-        display: flex;
+        display: flex !important;
         animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -1139,6 +1127,23 @@ video {
         background: rgba(124, 92, 255, 0.15);
         border-color: rgba(124, 92, 255, 0.4);
         transform: translateX(5px);
+    }
+}
+
+@media (max-width: 768px) {
+    .header-social-links {
+        margin-left: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .header-social-links .social-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .header-social-links .social-icon svg {
+        width: 20px;
+        height: 20px;
     }
 }
 
@@ -1203,73 +1208,6 @@ body {
 /* Prevent will-change on all elements by default (only apply when needed) */
 * {
     will-change: auto;
-}
-
-/* Force visible mobile/tablet Menu button and dropdown up to tablet widths */
-@media (max-width: 1024px) {
-    /* Always show the Menu button on mobile/tablet */
-    .mobile-toggle {
-        display: inline-flex !important;
-        align-items: center;
-        gap: 0.4rem;
-        font-weight: 600;
-        padding: 0.6rem 0.9rem;
-        border-radius: 12px;
-        background: linear-gradient(135deg, rgba(124, 92, 255, 0.2), rgba(0, 230, 168, 0.2));
-        border: 2px solid rgba(124, 92, 255, 0.35);
-        color: #ffffff;
-        z-index: 1001;
-        position: relative;
-    }
-
-    /* Hide inline nav and use dropdown overlay */
-    .header-inner .main-nav {
-        position: fixed;
-        top: 72px;
-        left: 0;
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        padding: 1.5rem;
-        background: linear-gradient(180deg, rgba(5, 10, 20, 0.98), rgba(5, 10, 20, 0.95));
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-bottom: 2px solid rgba(124, 92, 255, 0.3);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 0 60px rgba(124, 92, 255, 0.25);
-        transform: translateY(-120%);
-        opacity: 0;
-        pointer-events: none;
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-        z-index: 1000;
-    }
-
-    .header-inner .main-nav.open {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .header-inner .main-nav a {
-        width: 100%;
-        text-align: center;
-        padding: 1rem;
-        margin: 0;
-        border-radius: 12px;
-        background: rgba(124, 92, 255, 0.06);
-        border: 1px solid rgba(124, 92, 255, 0.25);
-    }
-
-    .header-inner .main-nav a.cta {
-        padding: 1rem 1.25rem;
-        border-radius: 14px;
-    }
-
-    .header-inner .theme-toggle {
-        width: 100%;
-        margin-right: 0;
-        padding: 1rem;
-    }
 }
 
 /* Apply will-change only to animated elements */
@@ -1349,15 +1287,6 @@ body::before {
 /* Duplicate .logo removed - defined earlier in file */
 
 /* Duplicate .main-nav a removed - defined earlier in file */
-
-.mobile-toggle {
-    display: none;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    color: var(--muted);
-    padding: 8px 10px;
-    border-radius: 10px
-}
 
 .theme-toggle {
     margin-left: 12px;
