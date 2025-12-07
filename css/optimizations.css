@@ -6,6 +6,58 @@
     -webkit-font-smoothing: antialiased;
 }
 
+/* Auto-hide scrollbar - only visible when scrolling */
+html {
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(124, 92, 255, 0.5) transparent;
+}
+
+/* Hide scrollbar by default, show on hover/scroll */
+html::-webkit-scrollbar {
+    width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: rgba(124, 92, 255, 0.3);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background: rgba(124, 92, 255, 0.6);
+}
+
+/* Auto-hide scrollbar for body */
+body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(124, 92, 255, 0.5) transparent;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(124, 92, 255, 0.3);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: rgba(124, 92, 255, 0.6);
+}
+
 /* Optimize paint operations */
 html {
     background-color: var(--bg);

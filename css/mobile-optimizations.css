@@ -2,6 +2,17 @@
 
 /* Touch-friendly tap targets */
 @media (max-width: 768px) {
+    /* Auto-hide scrollbar on mobile */
+    html, body {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
     /* CRITICAL: Fix text visibility on mobile */
     body {
         text-shadow: none !important;
