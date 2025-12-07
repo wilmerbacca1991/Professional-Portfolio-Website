@@ -11,16 +11,24 @@
 }
 
 /* Force hide default scrollbar when live-stats section is visible */
+#live-stats,
+#live-stats.section-content,
 #live-stats.section-content.active,
 #live-stats.section-content.active *,
+.live-stats,
+.live-stats.section-content,
 .live-stats.section-content.active,
 .live-stats.section-content.active * {
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
 }
 
+#live-stats::-webkit-scrollbar,
+#live-stats.section-content::-webkit-scrollbar,
 #live-stats.section-content.active::-webkit-scrollbar,
 #live-stats.section-content.active *::-webkit-scrollbar,
+.live-stats::-webkit-scrollbar,
+.live-stats.section-content::-webkit-scrollbar,
 .live-stats.section-content.active::-webkit-scrollbar,
 .live-stats.section-content.active *::-webkit-scrollbar {
     display: none !important;
