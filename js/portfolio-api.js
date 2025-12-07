@@ -188,7 +188,7 @@ class PortfolioAPI {
         const cacheKey = 'github_data_cache';
         const cacheTimeKey = 'github_data_timestamp';
         const cacheValidTime = 15 * 60 * 1000; // 15 minutes cache to avoid rate limits
-        const cacheVersion = 'v3'; // Increment to force cache refresh after code changes
+        const cacheVersion = 'v4'; // Increment to force cache refresh after code changes
         
         // Check if we have cached data with correct version
         try {
@@ -262,8 +262,8 @@ class PortfolioAPI {
             let totalCommits = 0;
             
             try {
-                // Fetch commits from top repositories (up to 10)
-                const commitPromises = reposResponse.slice(0, 10).map(async (repo) => {
+                // Fetch commits from ALL repositories (not just top 10)
+                const commitPromises = reposResponse.map(async (repo) => {
                     try {
                         const commitsUrl = `https://api.github.com/repos/${username}/${repo.name}/commits?per_page=1`;
                         const response = await fetch(commitsUrl);
@@ -274,12 +274,16 @@ class PortfolioAPI {
                             if (linkHeader) {
                                 const match = linkHeader.match(/page=(\d+)>; rel="last"/);
                                 if (match) {
-                                    return parseInt(match[1]);
+                                    const count = parseInt(match[1]);
+                                    console.log(`📊 ${repo.name}: ${count} commits`);
+                                    return count;
                                 }
                             }
-                            // If no pagination, count the returned commits
+                            // If no pagination, likely has few commits
                             const commits = await response.json();
-                            return Array.isArray(commits) ? commits.length : 0;
+                            const count = Array.isArray(commits) ? commits.length : 1;
+                            console.log(`📊 ${repo.name}: ${count} commit(s)`);
+                            return count;
                         }
                         return 0;
                     } catch (error) {
@@ -291,7 +295,7 @@ class PortfolioAPI {
                 const commitCounts = await Promise.all(commitPromises);
                 totalCommits = commitCounts.reduce((sum, count) => sum + count, 0);
                 
-                console.log(`📊 Fetched commit counts from ${reposResponse.slice(0, 10).length} repositories: ${totalCommits} total commits`);
+                console.log(`📊 Total commits across ${reposResponse.length} repositories: ${totalCommits}`);
                 
             } catch (error) {
                 console.warn('Failed to fetch commit counts from repos:', error);
