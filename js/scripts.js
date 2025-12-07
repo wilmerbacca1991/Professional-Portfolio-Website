@@ -26,11 +26,14 @@
     });
   })();
 
-  // Smooth scrolling for internal links
+  // Smooth scrolling for internal links (exclude section navigation links)
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', (e) => {
       const href = a.getAttribute('href');
-      if (href && href.length > 1) {
+      const targetId = href ? href.substring(1) : '';
+      
+      // Skip if it's a section navigation link (handled by main.js)
+      if (href && href.length > 1 && targetId !== 'projects' && targetId !== 'cv' && targetId !== 'contact' && targetId !== 'home' && targetId !== 'experience' && targetId !== 'live-stats') {
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
