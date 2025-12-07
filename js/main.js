@@ -89,9 +89,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar scroll behavior
+// Navbar scroll behavior with throttling for better mobile performance
 let lastScroll = 0;
-window.addEventListener('scroll', function() {
+let ticking = false;
+
+function updateNavbar() {
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
 
@@ -102,6 +104,15 @@ window.addEventListener('scroll', function() {
         navbar.classList.remove('navbar-hidden');
     }
     lastScroll = currentScroll;
+    ticking = false;
+}
+
+window.addEventListener('scroll', function() {
+    if (!ticking) {
+        window.requestAnimationFrame(updateNavbar);
+        ticking = true;
+    }
+}, { passive: true });
 });
 
 // Form validation and submission handling

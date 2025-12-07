@@ -14,6 +14,33 @@ html {
     height: 100%;
 }
 
+/* Mobile-specific smooth scrolling optimization */
+@media (max-width: 768px) {
+    html {
+        /* Enable momentum scrolling on iOS */
+        -webkit-overflow-scrolling: touch;
+        /* Optimize scroll performance */
+        scroll-behavior: auto;
+    }
+
+    body {
+        /* Prevent bounce effect while maintaining smooth scroll */
+        overscroll-behavior-y: none;
+        /* Enable hardware acceleration for scrolling */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+
+    /* Optimize fixed elements on mobile */
+    .site-header,
+    .scrollbar-progress-indicator {
+        position: -webkit-sticky;
+        position: sticky;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+}
+
 /* Reduce paint area and optimize GPU usage */
 body {
     min-height: 100vh;
