@@ -10,6 +10,25 @@
     padding: 2rem;
 }
 
+/* Force hide default scrollbar when live-stats section is visible */
+#live-stats.section-content.active,
+#live-stats.section-content.active *,
+.live-stats.section-content.active,
+.live-stats.section-content.active * {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+#live-stats.section-content.active::-webkit-scrollbar,
+#live-stats.section-content.active *::-webkit-scrollbar,
+.live-stats.section-content.active::-webkit-scrollbar,
+.live-stats.section-content.active *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+}
+
 .live-stats h2 {
     text-align: center;
     margin-bottom: 1rem;
@@ -34,6 +53,13 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
+    overflow: visible;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.stats-grid::-webkit-scrollbar {
+    display: none !important;
 }
 
 /* Ensure optimal layout for 6 cards */
@@ -62,6 +88,12 @@
     min-height: 280px;
     display: flex;
     flex-direction: column;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.stat-card::-webkit-scrollbar {
+    display: none !important;
 }
 
 .stat-card::before {
