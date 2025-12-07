@@ -113,7 +113,6 @@ window.addEventListener('scroll', function() {
         ticking = true;
     }
 }, { passive: true });
-});
 
 // Form validation and submission handling
 const contactForm = document.querySelector('#contactForm');
