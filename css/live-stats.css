@@ -42,6 +42,14 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
+    overflow: visible;
+    /* Hide any scrollbars */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.stats-grid::-webkit-scrollbar {
+    display: none;
 }
 
 /* Ensure optimal layout for 6 cards */
@@ -337,6 +345,14 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    overflow: visible;
+    /* Hide any scrollbars */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.news-list::-webkit-scrollbar {
+    display: none;
 }
 
 .news-item {
@@ -1047,4 +1063,22 @@ body.light-theme .news-item:hover {
     .cp-stat-number {
         font-size: 1.2rem;
     }
+}
+
+/* Global scrollbar hiding for entire live stats section and all children */
+#live-stats,
+#live-stats *,
+.live-stats,
+.live-stats * {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+#live-stats::-webkit-scrollbar,
+#live-stats *::-webkit-scrollbar,
+.live-stats::-webkit-scrollbar,
+.live-stats *::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
 }
