@@ -145,7 +145,12 @@
     transform: translateY(20px) scale(0.95);
     visibility: hidden;
     pointer-events: none;
-    margin-bottom: -20px; /* Smooth collapse effect */
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Loading state for smooth transitions */
@@ -154,6 +159,20 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     transition: all 0.3s ease;
+    align-content: start;
+}
+
+/* Mobile optimization for project grid */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        align-content: start;
+    }
+    
+    .project-card.filtered-out {
+        display: none !important; /* Instant removal on mobile for better UX */
+    }
 }
 
 /* INTERACTIVE SKILLS VISUALIZATION */
