@@ -42,6 +42,8 @@ function initializeProjectFiltering() {
     }
     
     function filterProjects(category, searchTerm) {
+        let hasVisibleCards = false;
+        
         projectCards.forEach(card => {
             const cardCategories = card.dataset.category?.split(',') || [];
             const cardTech = card.dataset.tech?.split(',') || [];
@@ -62,6 +64,7 @@ function initializeProjectFiltering() {
             if (matchesCategory && matchesSearch) {
                 card.classList.remove('filtered-out');
                 card.setAttribute('aria-hidden', 'false');
+                hasVisibleCards = true;
             } else {
                 card.classList.add('filtered-out');
                 card.setAttribute('aria-hidden', 'true');
@@ -71,6 +74,21 @@ function initializeProjectFiltering() {
         // Update results count and announce to screen readers
         updateResultsCount();
         announceFilterResults();
+        
+        // On mobile, scroll to first visible card after filtering
+        if (window.innerWidth <= 768 && hasVisibleCards && searchTerm) {
+            setTimeout(() => {
+                const firstVisibleCard = document.querySelector('.project-card:not(.filtered-out)');
+                if (firstVisibleCard) {
+                    const cardTop = firstVisibleCard.getBoundingClientRect().top + window.pageYOffset;
+                    const offset = 100; // Account for header
+                    window.scrollTo({
+                        top: cardTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 100); // Small delay to allow DOM to update
+        }
     }
     
     function updateResultsCount() {
